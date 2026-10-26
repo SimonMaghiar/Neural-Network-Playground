@@ -1,3 +1,4 @@
+import { aiTrack } from './ai/meta'
 import { appsTrack } from './apps/meta'
 import { foundationsTrack } from './foundations/meta'
 import { gpuTrack } from './gpu/meta'
@@ -9,7 +10,7 @@ import type { ListedTrack } from './types'
  * To add a track, create its folder with a `meta.ts` and list it below.
  * Courses are numbered by their position here; labs are hands-on workshops outside the numbered path.
  */
-export const courses: ListedTrack[] = [gpuTrack, llmTrack, servingTrack, appsTrack].map((t, i) => ({
+export const courses: ListedTrack[] = [aiTrack, gpuTrack, llmTrack, servingTrack, appsTrack].map((t, i) => ({
   ...t,
   section: 'course',
   label: `Track ${i + 1}`,

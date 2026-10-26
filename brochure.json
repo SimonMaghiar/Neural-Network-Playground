@@ -15,14 +15,153 @@
     "progress": "Saved in the browser. Each course shows how many modules are done."
   },
   "learningPath": [
-    "Track 1: Why AI Runs on GPUs",
-    "Track 2: How LLMs Work",
-    "Track 3: Running LLMs at Scale",
-    "Track 4: What LLMs Are Used For"
+    "Track 1: AI and Neural Network Foundations",
+    "Track 2: Why AI Runs on GPUs",
+    "Track 3: How LLMs Work",
+    "Track 4: Running LLMs at Scale",
+    "Track 5: What LLMs Are Used For"
   ],
   "courses": [
     {
       "track": 1,
+      "id": "ai",
+      "code": "AI",
+      "title": "AI and Neural Network Foundations",
+      "status": "available",
+      "level": "Beginner",
+      "description": "Start here: what AI really is, how machines learn patterns from data, what a neuron does, how a network learns from its mistakes, and the difference between training a model and using it.",
+      "url": "/ai/",
+      "modules": [
+        {
+          "number": 1,
+          "id": "what-is-ai",
+          "title": "What is AI? How it differs from traditional software",
+          "goal": "Understand the big difference between AI and normal software: AI learns its rules from examples.",
+          "summary": "Traditional software follows rules a person wrote. AI is shown examples with the right answers and works out the rules itself, which wins on fuzzy problems like spam, faces and language.",
+          "simulation": {
+            "name": "Spam sorter: rules vs learning",
+            "component": "src/tracks/ai/sims/SpamSorter.tsx",
+            "description": "Six new emails to sort. On one side you switch on hand-written rules ('contains free', 'has !!!'); on the other a model learns a score per word from up to 12 labelled examples. A table shows each email's verdict from both approaches.",
+            "whatYouDo": ["Switch hand-written spam rules on and off", "Slide how many labelled examples the model learns from"],
+            "task": "Try the rules, then let the model learn from all 12 examples: the rules get at most 4 of 6 right, the learned model all 6."
+          },
+          "keyTakeaways": [
+            "Traditional software follows rules a person wrote; AI learns its own rules from examples.",
+            "A learned model is only as good as its examples, and it can make mistakes."
+          ]
+        },
+        {
+          "number": 2,
+          "id": "ml-dl-llms",
+          "title": "Machine learning, deep learning and LLMs",
+          "goal": "Know what AI, machine learning, deep learning and LLMs mean, and how they fit inside each other.",
+          "summary": "The terms nest like boxes: AI contains machine learning (learning from examples), which contains deep learning (many-layered neural networks), which contains LLMs (deep networks trained on text).",
+          "simulation": {
+            "name": "Sort the AI family",
+            "component": "src/tracks/ai/sims/AiFamily.tsx",
+            "description": "Seven real systems (a calculator, a chess rule engine, a spam filter, face unlock, a chatbot…) to sort into Not AI, AI without learning, machine learning, deep learning or LLM. Correct answers appear as numbered dots inside nested circles, with a short explanation.",
+            "whatYouDo": ["Pick the smallest circle each system belongs to", "Read why each answer is right"],
+            "task": "Sort all 7 systems correctly."
+          },
+          "keyTakeaways": [
+            "Every LLM is deep learning, all deep learning is machine learning, and all machine learning is AI.",
+            "'Deep' means a neural network with many layers."
+          ]
+        },
+        {
+          "number": 3,
+          "id": "data-patterns",
+          "title": "Data, patterns and predictions",
+          "goal": "See how a model finds a pattern in data and uses it to make predictions, and why more examples help.",
+          "summary": "A model finds a pattern in examples (house size vs price) and applies it to new cases. With too few examples the pattern is wrong; with many, random quirks cancel out.",
+          "simulation": {
+            "name": "House price pattern",
+            "component": "src/tracks/ai/sims/PatternFit.tsx",
+            "description": "A chart of house sales with the best straight line through them. Five new houses show how far each prediction misses, and a slider predicts the price of any size.",
+            "whatYouDo": ["Learn the pattern from 2, 5 or 20 examples", "Predict prices for new house sizes"],
+            "task": "Compare 2 and 20 examples: the average miss drops from about €29k to about €8k."
+          },
+          "keyTakeaways": [
+            "A prediction is the learned pattern applied to a new case.",
+            "Judge a model on new cases, not on the examples it learned from."
+          ]
+        },
+        {
+          "number": 4,
+          "id": "neuron",
+          "title": "Meet the neuron: inputs, weights and bias",
+          "goal": "See that a neuron just multiplies its inputs by weights, adds them up and adds a bias.",
+          "summary": "A neuron multiplies each input by a weight (how much it matters), adds them up and adds a bias. Its weights and bias are its parameters: everything it knows.",
+          "simulation": {
+            "name": "Beach-day neuron",
+            "component": "src/tracks/ai/sims/NeuronDecision.tsx",
+            "description": "A neuron with three inputs (sunshine, friends coming, homework left) decides whether to go to the beach. Line thickness and colour show the weights; the full calculation is shown for Saturday and Tuesday.",
+            "whatYouDo": ["Set three weights and the bias with sliders", "Switch between Saturday and Tuesday"],
+            "task": "Make the neuron say 'go' on Saturday and 'stay home' on Tuesday."
+          },
+          "keyTakeaways": [
+            "Output = inputs × weights, added up, plus the bias.",
+            "Weights and biases are the only things a network learns."
+          ]
+        },
+        {
+          "number": 5,
+          "id": "learning",
+          "title": "How networks learn: loss and gradient descent",
+          "goal": "Understand how a network finds good weights by itself: measure the mistakes, then nudge the weights downhill.",
+          "summary": "The loss measures how wrong the model is. The gradient points downhill, and gradient descent takes small steps that way until the loss is low. The step size must be just right.",
+          "simulation": {
+            "name": "Rolling down the loss valley",
+            "component": "src/tracks/ai/sims/GradientDescent.tsx",
+            "description": "A one-weight model converts kilometres to miles. The loss curve is drawn as a valley with a ball for the current weight and a trail of past steps.",
+            "whatYouDo": ["Choose tiny, good or too-big steps", "Take one step or ten at a time"],
+            "task": "Get the loss below 0.01, then see too-big steps overshoot and blow up."
+          },
+          "keyTakeaways": [
+            "Gradient descent: small step downhill, measure again, repeat.",
+            "Too small is slow; too big overshoots and the mistakes explode."
+          ]
+        },
+        {
+          "number": 6,
+          "id": "hidden-layers",
+          "title": "Hidden layers and deep neural networks",
+          "goal": "See why networks need hidden layers, and how stacking layers makes them deep.",
+          "summary": "A single neuron can only draw one straight line. Hidden neurons each draw a line and the next layer combines them into curved shapes. Stacking layers makes a network deep.",
+          "simulation": {
+            "name": "Circle sorter",
+            "component": "src/tracks/ai/sims/HiddenLayers.tsx",
+            "description": "140 dots, inside or outside a circle, sorted by three networks. The map shades what each network calls 'inside' and draws every neuron's line, next to a network diagram, the accuracy and the parameter count, with real networks for comparison.",
+            "whatYouDo": ["Switch between no hidden layer, 3 and 8 hidden neurons"],
+            "task": "Reach 95% or more: no hidden layer gets 61%, 3 neurons 89%, 8 neurons 99%."
+          },
+          "keyTakeaways": [
+            "Hidden neurons combine straight lines into curved shapes.",
+            "More neurons and layers mean many more parameters."
+          ]
+        },
+        {
+          "number": 7,
+          "id": "training-vs-inference",
+          "title": "Training vs inference",
+          "goal": "Know the two jobs of every model, training and inference, and why both need huge amounts of math.",
+          "summary": "Training runs a forward pass, compares and runs a backward pass to change the weights, over huge amounts of data. Inference only runs the forward pass with frozen weights. Both lead straight into Track 2: why AI needs GPUs.",
+          "simulation": {
+            "name": "Train it, then use it",
+            "component": "src/tracks/ai/sims/TrainVsInfer.tsx",
+            "description": "Training mode trains the km-to-miles model one example at a time, showing the forward pass, the comparison and the backward pass. Inference mode asks the frozen model questions. A model picker shows the operations and memory for a 1-weight model, a handwriting reader and Llama 3 8B.",
+            "whatYouDo": ["Train on examples and watch the weight change", "Ask the frozen model questions", "Compare the cost for real models"],
+            "task": "Train at least 3 times, ask the model once, then pick Llama 3 8B (16 billion operations per answer)."
+          },
+          "keyTakeaways": [
+            "Training changes the weights; inference only reads them.",
+            "Every weight must be stored and used for every answer: the reason AI needs special hardware."
+          ]
+        }
+      ]
+    },
+    {
+      "track": 2,
       "id": "gpu",
       "code": "GPU",
       "title": "Why AI Runs on GPUs",
@@ -40,7 +179,7 @@
           "simulation": {
             "name": "Operations counter",
             "component": "src/tracks/gpu/sims/OpsCounter.tsx",
-            "description": "Pick a network, from a 2-weight neuron up to GPT-3 (175 billion weights). The simulation counts the multiplications and additions needed for one word and shows how long that takes for a person with a calculator, a desktop CPU and an AI GPU (NVIDIA H100), on a logarithmic bar chart.",
+            "description": "Pick a network, from the 4-parameter beach neuron of Track 1 up to GPT-3 (175 billion weights). The simulation counts the multiplications and additions needed for one word and shows how long that takes for a person with a calculator, a desktop CPU and an AI GPU (NVIDIA H100), on a logarithmic bar chart.",
             "whatYouDo": ["Choose bigger and bigger models", "Compare the time per word for a human, a CPU and a GPU"],
             "task": "Finish with GPT-3: one word needs about 350 billion operations, over 11,000 years by hand."
           },
@@ -206,7 +345,7 @@
       ]
     },
     {
-      "track": 2,
+      "track": 3,
       "id": "llm",
       "code": "LLM",
       "title": "How LLMs Work",
@@ -380,7 +519,7 @@
       ]
     },
     {
-      "track": 3,
+      "track": 4,
       "id": "serving",
       "code": "API",
       "title": "Running LLMs at Scale",
@@ -398,7 +537,7 @@
       ]
     },
     {
-      "track": 4,
+      "track": 5,
       "id": "apps",
       "code": "APP",
       "title": "What LLMs Are Used For",

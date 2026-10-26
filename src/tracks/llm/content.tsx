@@ -74,8 +74,8 @@ export const content: TrackContent = {
         </p>
         <p>
           Training an LLM means adjusting its weights so the probability it gives to the actual next token in its
-          training text goes up. This is the same "nudge the weights to reduce the mistake score" loop from the Neural Network Lab,
-          with the loss called <i>cross-entropy</i>.
+          training text goes up. This is the same "nudge the weights to reduce the mistake score" loop from Track 1 (gradient
+          descent), with the loss called <i>cross-entropy</i>.
         </p>
       </>
     ),
@@ -319,7 +319,7 @@ export const content: TrackContent = {
         </p>
         <p>
           1) <b>Attention</b>: every token gathers information from the other tokens. 2) <b>Feed-forward</b>: every token
-          is processed on its own by two big layers of neurons, just like the networks in the Neural Network Lab. This{' '}
+          is processed on its own by two big layers of neurons, just like the hidden layers you met in Track 1. This{' '}
           <Term t="feed-forward" /> part holds most of the model's knowledge.
         </p>
         <p>

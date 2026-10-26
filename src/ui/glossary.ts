@@ -29,6 +29,26 @@ export const glossary = {
     'Neurons between the input and the output. They are "hidden" because you never see their answers directly; they work out helpful in-between ideas.',
   parameter:
     'Any number the model learns: every weight and every bias. "A 70B model" means a model with about 70 billion of them.',
+  AI: 'Artificial Intelligence: computer systems that do things we normally think need human intelligence, like recognising faces, translating or answering questions. Today most AI learns from examples instead of following hand-written rules.',
+  'traditional software':
+    'A program that follows exact step-by-step rules written by a programmer. It does exactly what it was told, and nothing it was not told.',
+  'machine learning':
+    'A way to build AI where the computer finds the rules itself, by spotting patterns in lots of examples, instead of a programmer writing them.',
+  'deep learning':
+    'Machine learning with neural networks that have many layers ("deep" means many layers). It powers face recognition, speech recognition, image generators and LLMs.',
+  model: 'What learning produces: a program whose behaviour is set by the numbers (parameters) it learned from data. You give it an input and it gives back a prediction.',
+  pattern: 'A regularity in data, like "bigger houses usually cost more". Machine learning finds patterns in examples and uses them on new cases.',
+  prediction:
+    'A model\'s answer for an input it has not seen before, based on the patterns it learned. It can be a number, a label ("spam") or the next word.',
+  layer: 'A group of neurons that all work on the same inputs at the same time. A network passes numbers from one layer to the next.',
+  'deep neural network':
+    'A neural network with many hidden layers. Each layer builds on the one before it, from simple features to complex ideas.',
+  'gradient descent':
+    'How almost every neural network learns: measure the mistakes, work out which way each weight should move to reduce them (the gradient), take a small step that way, and repeat.',
+  'forward pass':
+    'Running an input through the network, layer by layer, to get its answer. Every time you use a model, it does a forward pass.',
+  'backward pass':
+    'The extra step during training: going back through the network to work out how much each weight was to blame for the mistake, so it can be nudged. Experts call it "backpropagation".',
   GPU: 'Graphics Processing Unit. A chip with thousands of simple workers that all do math at the same time. Built for video games, now the engine of AI.',
   CPU: 'Central Processing Unit: the main chip of a computer. It has a few very smart, very fast cores that are great at doing different things one after another.',
   core: 'One worker inside a chip that can do calculations. A CPU has a handful of strong cores; a GPU has thousands of simple ones.',

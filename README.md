@@ -4,10 +4,11 @@ An interactive course that takes complete beginners from a single neuron to the 
 
 **Courses** (a numbered, step-by-step path):
 
-1. **Why AI Runs on GPUs**: nine hands-on modules covering parallelism, matrix multiplication, the memory wall, the memory hierarchy, threads and warps, tiling, number precision and GPU sizing.
-2. **How LLMs Work**: nine hands-on modules covering next-word prediction, tokenization, embeddings, attention, the transformer, sampling, the training stages, the KV cache and quantization.
-3. **Running LLMs at Scale** (coming soon)
-4. **What LLMs Are Used For** (coming soon)
+1. **AI and Neural Network Foundations**: seven hands-on modules for complete beginners covering what AI is, machine learning vs deep learning vs LLMs, data and predictions, the neuron, loss and gradient descent, hidden layers, and training vs inference.
+2. **Why AI Runs on GPUs**: nine hands-on modules covering parallelism, matrix multiplication, the memory wall, the memory hierarchy, threads and warps, tiling, number precision and GPU sizing.
+3. **How LLMs Work**: nine hands-on modules covering next-word prediction, tokenization, embeddings, attention, the transformer, sampling, the training stages, the KV cache and quantization.
+4. **Running LLMs at Scale** (coming soon)
+5. **What LLMs Are Used For** (coming soon)
 
 **Lab** (hands-on workshops, outside the numbered path):
 
@@ -106,10 +107,11 @@ src/
     catalog.ts      The courses (numbered by position) and the labs
     types.ts        Shared types: TrackMeta, ModuleContent, SimProps, …
     TrackPage.tsx   Generic page for any standard track (loads its content on demand)
-    gpu/            Track 1
-    llm/            Track 2
-    serving/        Track 3 (outline only)
-    apps/           Track 4 (outline only)
+    ai/             Track 1
+    gpu/            Track 2
+    llm/            Track 3
+    serving/        Track 4 (outline only)
+    apps/           Track 5 (outline only)
     foundations/    Lab: lessons and free playground (custom page)
   site.ts           Site name, domain, contact email and owner
   site.css          Global header, search box, footer and site pages

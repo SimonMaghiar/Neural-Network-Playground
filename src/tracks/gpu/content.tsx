@@ -16,9 +16,9 @@ export const content: TrackContent = {
     intro: (
       <>
         <p>
-          AI models are built from tiny calculators called <Term t="neuron">neurons</Term>. Each one multiplies its inputs
-          by a <Term t="weight" />, adds them up and adds a <Term t="bias" />. That's it. No magic, just multiplication and
-          addition. (Want to build one yourself? Try the Neural Network Lab.)
+          In Track 1 you saw that AI models are built from tiny calculators called <Term t="neuron">neurons</Term>. Each
+          one multiplies its inputs by a <Term t="weight" />, adds them up and adds a <Term t="bias" />. That's it. No
+          magic, just multiplication and addition.
         </p>
         <p>
           A big AI model is the same idea repeated billions of times. Every number it learned is called a{' '}
