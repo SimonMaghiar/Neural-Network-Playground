@@ -8,6 +8,7 @@ import { NotFound } from './pages/NotFound'
 import { resolveRoute } from './routes'
 import { useRoute } from './router'
 import { TrackPage } from './tracks/TrackPage'
+import { CourseProgressBar } from './ui/CourseProgressBar'
 import { SiteHeader } from './ui/SiteHeader'
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
       <div className="site-page">
         <Suspense fallback={<div className="page-loading">Loading…</div>}>{content}</Suspense>
       </div>
+      {page.kind === 'track' && page.track.section === 'course' && <CourseProgressBar color={page.track.color} />}
     </>
   )
 }
