@@ -1,6 +1,14 @@
 # Neural Network Playground
 
-An interactive, beginner-friendly playground for learning how neural networks work. You can watch neurons, weights and biases change as a network trains, and follow an input as it flows through the network to the output.
+An interactive course that takes complete beginners from a single neuron to the hardware and language models behind modern AI. It is organised in five tracks:
+
+1. **Neural Network Foundations**: guided lessons and a free playground where you watch neurons, weights and biases change as a network trains.
+2. **Why AI Runs on GPUs**: nine hands-on modules covering parallelism, matrix multiplication, the memory wall, the memory hierarchy, threads and warps, tiling, number precision and GPU sizing.
+3. **How LLMs Work** (coming soon)
+4. **Running LLMs at Scale** (coming soon)
+5. **What LLMs Are Used For** (coming soon)
+
+Each module has a plain-language introduction, an interactive simulation with a task, key takeaways, a short quiz and an optional technical deep dive.
 
 > **Proprietary software. All rights reserved.** This code may not be copied, reused, modified or redistributed. See [License](#license).
 
@@ -51,7 +59,18 @@ src/
     Charts.tsx      Loss chart, fit chart, decision map and truth table
     useTrainer.ts   Training loop and parameter history
     glossary.ts     Plain-language definitions used by hover tooltips
-  App.tsx           Mode switching (lessons / free playground) and saved progress
+    TrackLayout.tsx Shared module page: intro, simulation, takeaways, quiz, deep dive
+    Quiz.tsx        Multiple-choice check with explanations
+  pages/
+    Home.tsx        Landing page with the learning path and track cards
+  tracks/
+    catalog.ts      Track and module list
+    FoundationsTrack.tsx  Track 1: lessons and free playground
+    gpu/
+      modules.tsx   Track 2 content
+      sims/         One interactive simulation per GPU module
+  router.ts         Hash-based routing (#/gpu/tiling)
+  App.tsx           Routes to the home page and the tracks
 ```
 
 ## Built with
@@ -60,6 +79,6 @@ React, TypeScript, Vite, [React Flow](https://reactflow.dev/) (`@xyflow/react`),
 
 ## License
 
-Copyright © 2026 smbondrnet. All rights reserved.
+Copyright ï¿½ 2026 smbondrnet. All rights reserved.
 
 This is proprietary software. No permission is granted to use, copy, modify, merge, publish, distribute, sublicense or sell any part of this code, or to create derivative works from it, without prior written permission from the copyright holder. See [LICENSE](LICENSE) for the full terms.

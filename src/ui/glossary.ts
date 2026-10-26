@@ -27,6 +27,41 @@ export const glossary = {
   activation: 'The technical name for the squish function a neuron applies to its result.',
   'hidden layer':
     'Neurons between the input and the output. They are "hidden" because you never see their answers directly; they work out helpful in-between ideas.',
+  parameter:
+    'Any number the model learns: every weight and every bias. "A 70B model" means a model with about 70 billion of them.',
+  GPU: 'Graphics Processing Unit. A chip with thousands of simple workers that all do math at the same time. Built for video games, now the engine of AI.',
+  CPU: 'Central Processing Unit: the main chip of a computer. It has a few very smart, very fast cores that are great at doing different things one after another.',
+  core: 'One worker inside a chip that can do calculations. A CPU has a handful of strong cores; a GPU has thousands of simple ones.',
+  parallel: 'Doing many things at the same time instead of one after another.',
+  FLOP: 'A FLoating-point OPeration: one multiplication or addition of decimal numbers. "FLOP/s" counts how many a chip can do per second.',
+  'matrix multiplication':
+    'Multiplying two grids of numbers: each output is a row of one grid times a column of the other, summed up. Almost all of the work in a neural network is this.',
+  matrix: 'A grid of numbers with rows and columns. A layer of a network keeps its weights in a matrix.',
+  'memory bandwidth':
+    'How many bytes per second can travel between memory and the chip. Often the real speed limit for AI, not the math.',
+  HBM: 'High Bandwidth Memory: the GPU\'s main memory, stacked right next to the chip. Big (tens of GB) and fast compared to normal memory, but slow compared to the chip itself.',
+  cache: 'A small, fast memory close to the chip that keeps copies of recently used data, so it does not have to be fetched from far away again.',
+  register: 'The tiniest, fastest memory: a few slots inside each worker that hold the numbers it is calculating with right now.',
+  'shared memory':
+    'A small fast memory shared by one group of GPU workers (one SM). Programmers fill it on purpose with data the group will reuse.',
+  thread: 'One small sequence of instructions run by one GPU worker, usually responsible for one tiny piece of the result.',
+  warp: 'A team of 32 threads on an NVIDIA GPU that always execute the same instruction at the same time.',
+  SM: 'Streaming Multiprocessor: one "workshop" on an NVIDIA GPU with its own workers, registers and shared memory. An H100 has 132 of them.',
+  kernel: 'A program that runs on the GPU. Thousands of threads all run the same kernel, each on its own piece of the data.',
+  block: 'A group of threads that runs together on one SM and can share its fast memory. A kernel is split into many blocks.',
+  tile: 'A small square piece of a big matrix, sized so it fits in fast memory.',
+  'arithmetic intensity':
+    'How many calculations you do for each byte you load from memory. High intensity keeps the math units busy; low intensity leaves them waiting.',
+  precision: 'How many bits a number uses. More bits = more exact, but more memory and slower math.',
+  'floating point':
+    'The way computers store decimal numbers: a sign, an exponent (how big) and a mantissa (the digits), like scientific notation (3.14 × 10²).',
+  'tensor core':
+    'A special unit in modern NVIDIA GPUs that multiplies small matrices in one go, much faster than ordinary cores, especially with low-precision numbers.',
+  quantization: 'Storing a model\'s numbers with fewer bits (for example 8 or 4 instead of 16) to save memory and gain speed, at a small cost in accuracy.',
+  inference: 'Using a trained model to get answers. The opposite of training.',
+  VRAM: 'The memory on a graphics card (on AI GPUs this is HBM). The model must fit in it to run fast.',
+  batch: 'A group of inputs processed together in one go. Bigger batches reuse the same weights for more work.',
+  token: 'A small piece of text (a word or part of a word) that a language model reads or writes one at a time.',
 } as const
 
 export type GlossaryTerm = keyof typeof glossary
