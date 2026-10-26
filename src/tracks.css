@@ -82,7 +82,7 @@
 /* ---------- home ---------- */
 
 .home {
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
   padding: 0 24px;
 }
@@ -331,14 +331,91 @@ a.track-card:hover {
   color: var(--muted);
 }
 
-.home-foot {
-  max-width: 1200px;
-  margin: 40px auto 0;
-  padding: 20px 0 32px;
-  border-top: 1px solid var(--border);
-  font-size: 12px;
+/* ---------- course overview ---------- */
+
+.overview .hero {
+  padding-top: 40px;
+}
+
+.overview .hero h1 {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--text-h);
+}
+
+.overview .hero-kicker {
+  color: var(--track);
+}
+
+.overview-section {
+  max-width: 900px;
+}
+
+.overview-modules {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.overview-modules li > * {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+
+.overview-modules a:hover {
+  border-color: var(--track);
+}
+
+.overview-num {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--track);
+  color: var(--track);
+  font: 700 12px var(--mono);
+}
+
+.overview-text h3 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.overview-text p {
+  margin: 3px 0 0;
+  font-size: 13px;
   color: var(--muted);
-  text-align: center;
+}
+
+.overview-modules .ok {
+  color: var(--pos, #4ade80);
+}
+
+.overview-modules svg:not(.ok) {
+  color: var(--border);
+}
+
+.module-kicker a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.module-kicker a:hover {
+  text-decoration: underline;
 }
 
 /* ---------- track layout ---------- */
@@ -1608,14 +1685,14 @@ a.track-card:hover {
   .app.track-app {
     grid-template-columns: 220px 1fr;
     grid-template-rows: auto auto;
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
   }
   .track-app .sidebar {
     grid-row: span 2;
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: calc(100dvh - var(--header-h));
   }
   .track-app .module-main,
   .track-app .sim-panel {

@@ -1,15 +1,17 @@
 import { ArrowRight, Clock, FlaskConical, GraduationCap } from 'lucide-react'
 import { href } from '../router'
+import { homeMeta, useDocumentHead } from '../seo'
 import { courses, labs } from '../tracks/catalog'
-import { loadProgress } from '../tracks/progress'
+import { useProgress } from '../tracks/progress'
 import { isAvailable, type ListedTrack } from '../tracks/types'
+import { SiteFooter } from '../ui/SiteFooter'
+import { useHydrated } from '../ui/useHydrated'
 
 const PREVIEW = 5
 
 function TrackCard({ track, done }: { track: ListedTrack; done: number }) {
   const available = isAvailable(track)
   const count = track.modules.length
-  const startPath = track.page ? track.id : `${track.id}/${track.modules[0]?.id ?? ''}`
   const body = (
     <>
       <div className="track-card-top">
@@ -53,7 +55,7 @@ function TrackCard({ track, done }: { track: ListedTrack; done: number }) {
   )
   const style = { ['--track' as string]: track.color }
   return available ? (
-    <a className="track-card" href={href(startPath)} style={style}>
+    <a className="track-card" href={href(track.id)} style={style}>
       {body}
     </a>
   ) : (
@@ -64,8 +66,13 @@ function TrackCard({ track, done }: { track: ListedTrack; done: number }) {
 }
 
 export function Home() {
-  const progress = loadProgress()
-  const doneIn = (t: ListedTrack) => (t.modulesDone ? t.modulesDone() : (progress[t.id] ?? []).length)
+  useDocumentHead(homeMeta())
+  const progress = useProgress()
+  const hydrated = useHydrated()
+  const doneIn = (t: ListedTrack) => {
+    if (t.modulesDone) return hydrated ? t.modulesDone() : 0
+    return (progress[t.id] ?? []).length
+  }
   const first = courses[0]
 
   return (
@@ -91,7 +98,7 @@ export function Home() {
         </div>
       </header>
 
-      <section className="home-section">
+      <section className="home-section" id="courses">
         <h2 className="home-section-title">
           <GraduationCap size={20} /> Courses
         </h2>
@@ -112,7 +119,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="home-section">
+      <section className="home-section" id="lab">
         <h2 className="home-section-title">
           <FlaskConical size={20} /> Lab
         </h2>
@@ -127,10 +134,7 @@ export function Home() {
         </div>
       </section>
 
-      <footer className="home-foot">
-        © {new Date().getFullYear()} smbondrnet. All rights reserved. Spec figures are approximate and for learning
-        purposes.
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

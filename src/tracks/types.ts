@@ -52,6 +52,8 @@ export interface TrackMeta {
   loadContent?: () => Promise<TrackContent>
   /** Tracks with a custom page instead of the shared layout. */
   page?: ComponentType<TrackPageProps>
+  /** Custom-page tracks: search title and description of each path the page serves ('' is the track root). */
+  pageMeta?: Record<string, { title: string; description: string }>
   /** Number of finished modules, for tracks that track progress their own way. */
   modulesDone?: () => number
 }

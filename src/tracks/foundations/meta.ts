@@ -13,5 +13,17 @@ export const foundationsTrack: TrackMeta = {
   level: 'Beginner',
   modules: lessons.map((l, i) => ({ id: String(i), title: l.title })),
   page: lazy(() => import('./FoundationsTrack')),
+  pageMeta: {
+    '': {
+      title: 'Neural Network Foundations: Build and Train a Neural Network',
+      description:
+        'A hands-on lab for beginners: see what a neuron is, how a neural network measures its mistakes, and how it learns by nudging its weights, step by step in your browser.',
+    },
+    playground: {
+      title: 'Neural Network Playground: Train a Network in Your Browser',
+      description:
+        'Build a small neural network, pick a dataset and watch it learn in real time. Add layers and neurons, change activation functions and see every weight update.',
+    },
+  },
   modulesDone: foundationsLessonsDone,
 }

@@ -29,7 +29,7 @@
       "status": "available",
       "level": "Beginner → Intermediate",
       "description": "Why a graphics chip became the engine of AI: parallel workers, matrix multiplication, memory bottlenecks, number precision and how much hardware big models need.",
-      "url": "#/gpu/multiplication",
+      "url": "/gpu/",
       "modules": [
         {
           "number": 1,
@@ -213,7 +213,7 @@
       "status": "available",
       "level": "Intermediate",
       "description": "How a chatbot turns your words into an answer: tokens, embeddings, attention, the transformer, sampling, training, the KV cache and quantization.",
-      "url": "#/llm/next-word",
+      "url": "/llm/",
       "modules": [
         {
           "number": 1,
@@ -424,7 +424,7 @@
       "status": "available",
       "level": "Beginner",
       "description": "Build and train small neural networks yourself: what a neuron is, how a network measures its mistakes, and how it learns by nudging its weights. Includes a free playground.",
-      "url": "#/foundations",
+      "url": "/foundations/",
       "lessons": [
         "Meet the neuron",
         "Measuring mistakes",

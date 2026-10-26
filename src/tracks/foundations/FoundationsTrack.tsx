@@ -1,13 +1,17 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ArrowLeft, FlaskConical, GraduationCap, Minus, Plus, Trash2 } from 'lucide-react'
+import { FlaskConical, GraduationCap, Minus, Plus, Trash2 } from 'lucide-react'
 import type { Activation, LayerSpec } from '../../nn/network'
 import { presets, type Preset } from '../../nn/presets'
 import { allFeatures, featuresFor, lessons, stepKey } from '../../lessons'
-import { href, navigate } from '../../router'
+import { navigate } from '../../router'
+import { customPageMeta, useDocumentHead } from '../../seo'
+import { labs } from '../catalog'
 import type { TrackPageProps } from '../types'
 import { LessonPanel } from '../../ui/LessonPanel'
 import { Playground } from '../../ui/Playground'
+import { SiteFooter } from '../../ui/SiteFooter'
 import { Term } from '../../ui/Term'
+import { useHydrated } from '../../ui/useHydrated'
 import { loadFoundationsProgress, saveFoundationsProgress } from './progress'
 
 const HIDDEN_ACTIVATIONS: Activation[] = ['tanh', 'sigmoid', 'relu', 'linear']
@@ -16,10 +20,53 @@ const MAX_NEURONS = 8
 
 type FoundationsMode = 'learn' | 'play'
 
-/** `#/foundations` shows the lessons, `#/foundations/playground` the free playground. */
+/** `/foundations/` shows the lessons, `/foundations/playground/` the free playground. */
 export default function FoundationsPage({ route }: TrackPageProps) {
   const mode: FoundationsMode = route[1] === 'playground' ? 'play' : 'learn'
+  const track = labs.find((t) => t.id === 'foundations')!
+  useDocumentHead(customPageMeta(track, mode === 'play' ? 'playground' : ''))
+  const hydrated = useHydrated()
+  if (!hydrated) return <FoundationsOutline mode={mode} />
   return <FoundationsTrack key={mode} mode={mode} />
+}
+
+/**
+ * What the lab teaches, as plain HTML. Pre-rendered for search engines and shown until the
+ * live lab (which needs the browser and the learner's saved progress) takes over.
+ */
+function FoundationsOutline({ mode }: { mode: FoundationsMode }) {
+  const track = labs.find((t) => t.id === 'foundations')!
+  return (
+    <div className="home" style={{ ['--track' as string]: track.color }}>
+      <header className="hero">
+        <div className="hero-kicker">
+          {track.label} · {track.level} · {lessons.length} lessons
+        </div>
+        <h1>{mode === 'play' ? 'Neural network playground' : track.title}</h1>
+        <p>{track.pageMeta?.[mode === 'play' ? 'playground' : '']?.description ?? track.description}</p>
+        <p className="page-loading">Loading the interactive lab…</p>
+      </header>
+      <section className="home-section overview-section">
+        <h2 className="home-section-title">
+          <GraduationCap size={20} /> Lessons
+        </h2>
+        <ol className="overview-modules">
+          {lessons.map((l, i) => (
+            <li key={l.id}>
+              <div>
+                <span className="overview-num">{i + 1}</span>
+                <span className="overview-text">
+                  <h3>{l.title}</h3>
+                  <p>{l.steps.map((s) => s.title).join(' · ')}</p>
+                </span>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <SiteFooter />
+    </div>
+  )
 }
 
 function FoundationsTrack({ mode }: { mode: FoundationsMode }) {
@@ -77,14 +124,11 @@ function FoundationsTrack({ mode }: { mode: FoundationsMode }) {
   return (
     <div className="app">
       <aside className="sidebar">
-        <a className="back-link" href={href('')}>
-          <ArrowLeft size={14} /> All tracks
-        </a>
         <div className="brand">
-          <span className="track-code" style={{ color: '#a78bfa' }}>
+          <span className="track-code" style={{ color: '#a78bfa' }} aria-hidden="true">
             NN
           </span>
-          Neural Network Foundations
+          <h1>{learning ? 'Neural Network Foundations' : 'Neural Network Playground'}</h1>
         </div>
 
         <div className="mode-tabs">
@@ -208,6 +252,7 @@ function FoundationsTrack({ mode }: { mode: FoundationsMode }) {
             </section>
           </>
         )}
+        <SiteFooter compact />
       </aside>
 
       {learning ? (

@@ -1,4 +1,5 @@
 import { use } from 'react'
+import { TrackOverview } from '../pages/TrackOverview'
 import { TrackLayout } from '../ui/TrackLayout'
 import type { ListedTrack, TrackContent, TrackMeta } from './types'
 
@@ -13,8 +14,12 @@ function contentFor(track: TrackMeta): Promise<TrackContent> {
   return promise
 }
 
-/** Renders any standard track: its content is fetched on first visit, then cached. Needs a Suspense boundary. */
-export function TrackPage({ track, route }: { track: ListedTrack; route: string[] }) {
+/**
+ * Renders any standard track: its overview, or one module in the shared layout.
+ * The content is fetched on first visit, then cached. Needs a Suspense boundary.
+ */
+export function TrackPage({ track, moduleIndex }: { track: ListedTrack; moduleIndex: number | null }) {
   const content = use(contentFor(track))
-  return <TrackLayout track={track} content={content} moduleId={route[1]} />
+  if (moduleIndex === null) return <TrackOverview track={track} content={content} />
+  return <TrackLayout track={track} content={content} moduleId={track.modules[moduleIndex].id} />
 }

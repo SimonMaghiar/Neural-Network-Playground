@@ -90,3 +90,6 @@ export const glossary = {
 } as const
 
 export type GlossaryTerm = keyof typeof glossary
+
+/** Anchor of a term on the glossary page, e.g. `KV cache` → `kv-cache`. */
+export const glossaryAnchor = (term: string) => term.toLowerCase().replace(/[^a-z0-9]+/g, '-')

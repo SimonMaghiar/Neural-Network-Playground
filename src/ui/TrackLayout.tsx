@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, BookOpen, CircleCheck, FlaskConical, Lightbulb, Target, Trophy } from 'lucide-react'
 import { href } from '../router'
+import { modulePageMeta, useDocumentHead } from '../seo'
 import { courses } from '../tracks/catalog'
-import { loadProgress, saveModuleDone } from '../tracks/progress'
+import { saveModuleDone, useProgress } from '../tracks/progress'
 import type { ListedTrack, TrackContent } from '../tracks/types'
 import { CourseNav } from './CourseNav'
 import { Quiz } from './Quiz'
+import { SiteFooter } from './SiteFooter'
 
 interface Props {
   track: ListedTrack
@@ -17,8 +19,9 @@ export function TrackLayout({ track, content, moduleId }: Props) {
   const index = Math.max(0, track.modules.findIndex((m) => m.id === moduleId))
   const meta = track.modules[index]
   const mod = content[meta.id]
-  const [progress, setProgress] = useState(loadProgress)
+  const progress = useProgress()
   const done = new Set(progress[track.id] ?? [])
+  useDocumentHead(modulePageMeta(track, index, mod))
   const [tasksDone, setTasksDone] = useState<Set<string>>(() => new Set())
   const main = useRef<HTMLElement>(null)
   const simPanel = useRef<HTMLElement>(null)
@@ -32,7 +35,7 @@ export function TrackLayout({ track, content, moduleId }: Props) {
     () => setTasksDone((prev) => (prev.has(meta.id) ? prev : new Set(prev).add(meta.id))),
     [meta.id],
   )
-  const markModule = () => setProgress(saveModuleDone(track.id, meta.id))
+  const markModule = () => saveModuleDone(track.id, meta.id)
 
   const prev = track.modules[index - 1]
   const next = track.modules[index + 1]
@@ -43,9 +46,6 @@ export function TrackLayout({ track, content, moduleId }: Props) {
   return (
     <div className="app track-app" style={{ ['--track' as string]: track.color }}>
       <aside className="sidebar">
-        <a className="back-link" href={href('')}>
-          <ArrowLeft size={14} /> Home
-        </a>
         <div className="sidebar-heading">Courses</div>
         <CourseNav trackId={track.id} moduleId={meta.id} progress={progress} />
         <p className="hint">
@@ -58,7 +58,10 @@ export function TrackLayout({ track, content, moduleId }: Props) {
         <article className="module" key={meta.id}>
           <header className="module-head">
             <div className="module-kicker">
-              {track.label} · Module {index + 1} of {track.modules.length}
+              <a href={href(track.id)}>
+                {track.label}: {track.title}
+              </a>{' '}
+              · Module {index + 1} of {track.modules.length}
             </div>
             <h1>{meta.title}</h1>
             <p className="module-goal">
@@ -121,6 +124,7 @@ export function TrackLayout({ track, content, moduleId }: Props) {
             )}
           </nav>
         </article>
+        <SiteFooter compact />
       </main>
 
       <aside className="sim-panel" ref={simPanel}>

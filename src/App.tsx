@@ -1,26 +1,42 @@
 import { Suspense, useEffect } from 'react'
 import './App.css'
 import './tracks.css'
+import './site.css'
 import { Home } from './pages/Home'
+import { InfoPageView } from './pages/InfoPageView'
+import { NotFound } from './pages/NotFound'
+import { resolveRoute } from './routes'
 import { useRoute } from './router'
-import { findTrack } from './tracks/catalog'
 import { TrackPage } from './tracks/TrackPage'
+import { SiteHeader } from './ui/SiteHeader'
 
 export default function App() {
   const route = useRoute()
-  const track = findTrack(route[0])
+  const page = resolveRoute(route)
+  const pageKey = 'track' in page ? page.track.id : page.kind === 'info' ? page.info.id : page.kind
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [track])
+  }, [pageKey])
 
-  let page = <Home />
-  if (track?.page) {
-    const CustomPage = track.page
-    page = <CustomPage route={route} />
-  } else if (track?.loadContent) {
-    page = <TrackPage key={track.id} track={track} route={route} />
+  let content = <Home />
+  if (page.kind === 'custom') {
+    const CustomPage = page.track.page!
+    content = <CustomPage route={route} />
+  } else if (page.kind === 'track') {
+    content = <TrackPage key={page.track.id} track={page.track} moduleIndex={page.moduleIndex} />
+  } else if (page.kind === 'info') {
+    content = <InfoPageView key={page.info.id} page={page.info} />
+  } else if (page.kind === 'notFound') {
+    content = <NotFound />
   }
 
-  return <Suspense fallback={<div className="page-loading">Loading…</div>}>{page}</Suspense>
+  return (
+    <>
+      <SiteHeader section={route[0] ?? ''} />
+      <div className="site-page">
+        <Suspense fallback={<div className="page-loading">Loading…</div>}>{content}</Suspense>
+      </div>
+    </>
+  )
 }
