@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { ArrowLeft, ArrowRight, BookOpen, Circle, CircleCheck, FlaskConical, Lightbulb, Target, Trophy } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, CircleCheck, FlaskConical, Lightbulb, Target, Trophy } from 'lucide-react'
 import { href } from '../router'
+import { courses } from '../tracks/catalog'
 import { loadProgress, saveModuleDone } from '../tracks/progress'
 import type { ListedTrack, TrackContent } from '../tracks/types'
+import { CourseNav } from './CourseNav'
 import { Quiz } from './Quiz'
 
 interface Props {
@@ -15,7 +17,8 @@ export function TrackLayout({ track, content, moduleId }: Props) {
   const index = Math.max(0, track.modules.findIndex((m) => m.id === moduleId))
   const meta = track.modules[index]
   const mod = content[meta.id]
-  const [done, setDone] = useState(() => new Set(loadProgress()[track.id] ?? []))
+  const [progress, setProgress] = useState(loadProgress)
+  const done = new Set(progress[track.id] ?? [])
   const [tasksDone, setTasksDone] = useState<Set<string>>(() => new Set())
   const main = useRef<HTMLElement>(null)
   const simPanel = useRef<HTMLElement>(null)
@@ -29,10 +32,11 @@ export function TrackLayout({ track, content, moduleId }: Props) {
     () => setTasksDone((prev) => (prev.has(meta.id) ? prev : new Set(prev).add(meta.id))),
     [meta.id],
   )
-  const markModule = () => setDone(new Set(saveModuleDone(track.id, meta.id)[track.id]))
+  const markModule = () => setProgress(saveModuleDone(track.id, meta.id))
 
   const prev = track.modules[index - 1]
   const next = track.modules[index + 1]
+  const nextTrack = courses.slice(courses.findIndex((c) => c.id === track.id) + 1).find((c) => c.loadContent)
   const Sim = mod.sim
   const taskDone = tasksDone.has(meta.id)
 
@@ -40,29 +44,10 @@ export function TrackLayout({ track, content, moduleId }: Props) {
     <div className="app track-app" style={{ ['--track' as string]: track.color }}>
       <aside className="sidebar">
         <a className="back-link" href={href('')}>
-          <ArrowLeft size={14} /> All tracks
+          <ArrowLeft size={14} /> Home
         </a>
-        <div className="brand">
-          <span className="track-code">{track.code}</span>
-          {track.title}
-        </div>
-        <div className="track-progress">
-          <div className="track-progress-bar">
-            <div style={{ width: `${(done.size / track.modules.length) * 100}%` }} />
-          </div>
-          <span>
-            {done.size} of {track.modules.length} modules done
-          </span>
-        </div>
-        <nav className="module-list">
-          {track.modules.map((m, i) => (
-            <a key={m.id} href={href(`${track.id}/${m.id}`)} className={i === index ? 'is-current' : ''}>
-              {done.has(m.id) ? <CircleCheck size={16} className="ok" /> : <Circle size={16} />}
-              <span className="module-num">{i + 1}</span>
-              <span>{m.title}</span>
-            </a>
-          ))}
-        </nav>
+        <div className="sidebar-heading">Courses</div>
+        <CourseNav trackId={track.id} moduleId={meta.id} progress={progress} />
         <p className="hint">
           A module counts as done when you answer all of its check questions correctly. Your progress is saved in this
           browser.
@@ -125,9 +110,13 @@ export function TrackLayout({ track, content, moduleId }: Props) {
               <a className="btn primary" href={href(`${track.id}/${next.id}`)}>
                 Next: {next.title} <ArrowRight size={16} />
               </a>
+            ) : nextTrack ? (
+              <a className="btn primary" href={href(`${nextTrack.id}/${nextTrack.modules[0].id}`)}>
+                Next course: {nextTrack.title} <ArrowRight size={16} />
+              </a>
             ) : (
               <a className="btn primary" href={href('')}>
-                Back to all tracks <ArrowRight size={16} />
+                Back to the home page <ArrowRight size={16} />
               </a>
             )}
           </nav>

@@ -345,7 +345,177 @@ a.track-card:hover {
 
 .track-app {
   --accent: var(--track);
-  grid-template-columns: 250px minmax(380px, 1fr) minmax(500px, 1.2fr);
+  grid-template-columns: 280px minmax(380px, 1fr) minmax(500px, 1.2fr);
+}
+
+.sidebar-heading {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 650;
+  color: var(--muted);
+  margin-bottom: -10px;
+}
+
+.course-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-track {
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.nav-track.is-current {
+  border-color: color-mix(in srgb, var(--track) 35%, transparent);
+  background: color-mix(in srgb, var(--track) 5%, transparent);
+}
+
+.nav-track-head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nav-track-head:hover {
+  background: var(--panel-2);
+}
+
+.nav-track-code {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 30px;
+  border-radius: 8px;
+  font: 700 11px var(--mono);
+  color: var(--track);
+  background: color-mix(in srgb, var(--track) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--track) 40%, transparent);
+}
+
+.nav-track-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nav-track-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 650;
+  color: var(--track);
+}
+
+.nav-track-count {
+  font-family: var(--mono);
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.nav-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.nav-track-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-h);
+}
+
+.nav-track.is-soon .nav-track-title,
+.nav-track.is-soon .nav-track-code {
+  opacity: 0.6;
+}
+
+.nav-chevron {
+  color: var(--muted);
+  transition: transform 0.15s;
+}
+
+.nav-chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.nav-track-bar {
+  height: 3px;
+  margin: 0 10px 6px 54px;
+  border-radius: 99px;
+  background: var(--panel-2);
+  overflow: hidden;
+}
+
+.nav-track-bar > div {
+  height: 100%;
+  background: var(--track);
+}
+
+.nav-modules {
+  list-style: none;
+  margin: 0 0 6px 25px;
+  padding: 0 4px 0 8px;
+  border-left: 2px solid color-mix(in srgb, var(--track) 30%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nav-modules a,
+.nav-module-soon {
+  display: grid;
+  grid-template-columns: 15px 16px 1fr;
+  gap: 7px;
+  align-items: start;
+  padding: 5px 8px;
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-modules svg {
+  margin-top: 1px;
+  color: var(--muted);
+}
+
+.nav-modules svg.ok {
+  color: var(--good);
+}
+
+.nav-modules a:hover {
+  background: var(--panel-2);
+}
+
+.nav-modules a.is-current {
+  background: color-mix(in srgb, var(--track) 16%, transparent);
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.nav-module-soon {
+  color: var(--muted);
+  cursor: default;
 }
 
 .track-app .sidebar {

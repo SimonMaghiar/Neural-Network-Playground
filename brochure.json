@@ -1,0 +1,445 @@
+{
+  "title": "From a single neuron to the GPUs and LLMs behind modern AI",
+  "tagline": "An interactive course that takes complete beginners from the silicon up to how modern large language models work.",
+  "audience": "Complete beginners who want to reach an advanced level of understanding. No math background needed.",
+  "format": {
+    "summary": "Every module is a short, hands-on lesson. The explanation is in the middle of the page, an interactive simulation is on the right, and every course and module is always visible in the left sidebar.",
+    "eachModuleContains": [
+      "A one-sentence goal",
+      "A plain-language introduction with hover-to-explain glossary terms",
+      "An interactive simulation with a task to complete",
+      "Key takeaways",
+      "A short quiz with explanations (the module counts as done when all answers are correct)",
+      "An optional 'Go deeper' section with technical detail and real hardware numbers"
+    ],
+    "progress": "Saved in the browser. Each course shows how many modules are done."
+  },
+  "learningPath": [
+    "Track 1: Why AI Runs on GPUs",
+    "Track 2: How LLMs Work",
+    "Track 3: Running LLMs at Scale",
+    "Track 4: What LLMs Are Used For"
+  ],
+  "courses": [
+    {
+      "track": 1,
+      "id": "gpu",
+      "code": "GPU",
+      "title": "Why AI Runs on GPUs",
+      "status": "available",
+      "level": "Beginner → Intermediate",
+      "description": "Why a graphics chip became the engine of AI: parallel workers, matrix multiplication, memory bottlenecks, number precision and how much hardware big models need.",
+      "url": "#/gpu/multiplication",
+      "modules": [
+        {
+          "number": 1,
+          "id": "multiplication",
+          "title": "AI is mostly multiplication",
+          "goal": "See why AI needs an enormous amount of very simple math.",
+          "summary": "A neuron only multiplies and adds. A big model repeats this billions of times: producing one word costs about 2 operations per parameter.",
+          "simulation": {
+            "name": "Operations counter",
+            "component": "src/tracks/gpu/sims/OpsCounter.tsx",
+            "description": "Pick a network, from a 2-weight neuron up to GPT-3 (175 billion weights). The simulation counts the multiplications and additions needed for one word and shows how long that takes for a person with a calculator, a desktop CPU and an AI GPU (NVIDIA H100), on a logarithmic bar chart.",
+            "whatYouDo": ["Choose bigger and bigger models", "Compare the time per word for a human, a CPU and a GPU"],
+            "task": "Finish with GPT-3: one word needs about 350 billion operations, over 11,000 years by hand."
+          },
+          "keyTakeaways": [
+            "Neural networks do almost nothing except multiply and add, but a staggering number of times.",
+            "Producing one word costs about 2 operations per parameter.",
+            "Training costs vastly more than answering.",
+            "The winning chip is the one that does the most simple operations at once."
+          ]
+        },
+        {
+          "number": 2,
+          "id": "cpu-vs-gpu",
+          "title": "CPU vs GPU: experts vs an army",
+          "goal": "Understand the different design ideas behind a CPU and a GPU, and when each one wins.",
+          "summary": "A CPU is a few brilliant, fast cores; a GPU is thousands of simple ones working in parallel. Neural networks are lots of identical, independent jobs, which is exactly what GPUs are built for.",
+          "simulation": {
+            "name": "CPU vs GPU race",
+            "component": "src/tracks/gpu/sims/CpuGpuRace.tsx",
+            "description": "An animated race between a CPU (8 fast workers) and a GPU (512 slower workers with a start-up cost). Each job is a cell in a grid that fills up as work completes.",
+            "whatYouDo": [
+              "Choose the number of jobs (16 to 4,096)",
+              "Choose independent jobs or jobs that each depend on the previous result",
+              "Start the race and read the verdict"
+            ],
+            "task": "Find a setting where the CPU wins and one where the GPU wins."
+          },
+          "keyTakeaways": [
+            "CPU: few, fast, flexible cores. GPU: thousands of simple cores.",
+            "A GPU has a start-up cost, so tiny jobs are not worth sending to it.",
+            "If every step depends on the previous one, extra workers cannot help."
+          ]
+        },
+        {
+          "number": 3,
+          "id": "matrices",
+          "title": "Neural networks are matrix multiplication",
+          "goal": "See that a whole layer of neurons is one matrix multiplication, which is exactly what GPUs are best at.",
+          "summary": "Put a layer's weights in a grid and computing every neuron becomes one matrix multiplication. Every output is independent, and batching many inputs turns it into a large grid-times-grid operation.",
+          "simulation": {
+            "name": "Layer as a matrix",
+            "component": "src/tracks/gpu/sims/MatrixLayer.tsx",
+            "description": "A small network (3 inputs, 4 neurons) drawn next to its weight matrix, input matrix and output matrix. Selecting a neuron highlights the matching row, column and result, and shows the calculation.",
+            "whatYouDo": ["Click each neuron or output cell", "Switch from one input to a batch of 4 inputs"],
+            "task": "Explore all four neurons to see that every output is one row times one column."
+          },
+          "keyTakeaways": [
+            "A layer of neurons = weight matrix × input vector; with a batch it becomes matrix × matrix.",
+            "Every output number is independent: perfect for parallel workers."
+          ]
+        },
+        {
+          "number": 4,
+          "id": "memory-wall",
+          "title": "Memory is the real bottleneck",
+          "goal": "Discover that a GPU is often waiting for data, not doing math.",
+          "summary": "A GPU can compute far faster than its memory can feed it. Arithmetic intensity (operations per byte loaded) decides whether the math units are busy or idle.",
+          "simulation": {
+            "name": "Roofline explorer",
+            "component": "src/tracks/gpu/sims/Roofline.tsx",
+            "description": "A roofline chart with real NVIDIA H100 numbers (about 989 trillion operations per second, 3.35 TB/s memory). A dot shows where a workload lands, with a gauge of how busy the GPU's math units are.",
+            "whatYouDo": [
+              "Pick real workloads: adding two lists, a chatbot for 1 user, for 64 users, a large training multiply",
+              "Slide the operations-per-byte value"
+            ],
+            "task": "Find a workload where the GPU is less than 1% busy and one where it reaches 100%."
+          },
+          "keyTakeaways": [
+            "Low arithmetic intensity means waiting for memory.",
+            "A chatbot answering one user is memory-bound; batching many users fills the GPU."
+          ]
+        },
+        {
+          "number": 5,
+          "id": "memory-hierarchy",
+          "title": "The memory hierarchy",
+          "goal": "Learn the layers of memory in a GPU, and why 'close and small' beats 'far and big'.",
+          "summary": "From registers to shared memory, L2 cache, HBM, CPU memory and SSD: each step down is bigger but much slower. The model has to live in HBM.",
+          "simulation": {
+            "name": "Memory ladder",
+            "component": "src/tracks/gpu/sims/MemoryLadder.tsx",
+            "description": "A ladder of six memory levels with sizes and speeds, plus a kitchen analogy: if reading a register took 1 second, HBM would take minutes and an SSD days. Fetching from a level animates a data packet travelling for a proportional time.",
+            "whatYouDo": ["Fetch data from different levels and compare the waiting times"],
+            "task": "Fetch from the registers, from GPU memory (HBM) and from the SSD."
+          },
+          "keyTakeaways": [
+            "Faster memory is smaller and closer to the workers.",
+            "If a model doesn't fit in GPU memory, it becomes dramatically slower."
+          ]
+        },
+        {
+          "number": 6,
+          "id": "threads",
+          "title": "Threads, warps and SMs",
+          "goal": "Understand how work is organised on a GPU: threads, warps, blocks and SMs.",
+          "summary": "Thousands of threads run the same program. Threads move in lockstep teams of 32 (warps), and blocks of work are spread over the GPU's streaming multiprocessors (SMs).",
+          "simulation": {
+            "name": "Scheduler and warp divergence",
+            "component": "src/tracks/gpu/sims/Scheduler.tsx",
+            "description": "Part 1 spreads blocks of work over 4 SMs in rounds and shows how busy the SMs are, revealing the 'tail effect'. Part 2 shows a 32-thread warp meeting an 'if': when threads disagree, the warp runs both paths one after the other.",
+            "whatYouDo": ["Change the number of blocks", "Change how many threads take the 'if' branch"],
+            "task": "Choose 8 or more blocks that keep every SM busy in every round."
+          },
+          "keyTakeaways": [
+            "Work that doesn't split evenly leaves SMs idle in the last round.",
+            "Different branches inside a warp cost extra passes; neural network math has almost none."
+          ]
+        },
+        {
+          "number": 7,
+          "id": "tiling",
+          "title": "Tiling: reuse data before you drop it",
+          "goal": "Learn the most important trick in GPU programming: load a piece of data once, then reuse it many times.",
+          "summary": "Copying small tiles of each matrix into fast memory and reusing them cuts the trips to slow memory, as long as the tiles still fit.",
+          "simulation": {
+            "name": "Tiled matrix multiplication",
+            "component": "src/tracks/gpu/sims/Tiling.tsx",
+            "description": "An animated 8×8 matrix multiplication. Highlighted tiles of A and B are copied into fast memory while a tile of C is built up. Counters show the trips to slow memory and how full the fast memory is.",
+            "whatYouDo": ["Pick a tile size (1×1, 2×2, 4×4, 8×8)", "Run the multiplication and compare the memory trips"],
+            "task": "Run the biggest tile that still fits: 4×4 needs 256 trips instead of 1,024."
+          },
+          "keyTakeaways": [
+            "The same result can cost very different amounts of memory traffic.",
+            "Fast AI libraries such as cuBLAS and FlashAttention are largely clever tiling."
+          ]
+        },
+        {
+          "number": 8,
+          "id": "precision",
+          "title": "Number precision and tensor cores",
+          "goal": "See how storing numbers with fewer bits saves memory and gains speed, and what it costs.",
+          "summary": "FP32, BF16, FP16, FP8, INT8 and INT4 trade range and precision for memory and speed. Fewer bits mean faster tensor-core math and smaller models.",
+          "simulation": {
+            "name": "Number format comparison",
+            "component": "src/tracks/gpu/sims/Precision.tsx",
+            "description": "Type any number and see how six formats store it: the bit layout (sign, exponent, mantissa), the stored value, the rounding error, the memory a 7-billion-weight model would need and the H100 speed for that format.",
+            "whatYouDo": ["Type numbers or pick presets", "Watch overflow and rounding errors appear"],
+            "task": "Find a number FP16 can't store (above 65,504) but BF16 can."
+          },
+          "keyTakeaways": [
+            "Exponent bits = range; mantissa bits = precision.",
+            "BF16 keeps FP32's range with fewer digits, which is why it is popular for training."
+          ]
+        },
+        {
+          "number": 9,
+          "id": "sizing",
+          "title": "How many GPUs does a model need?",
+          "goal": "Put it all together: estimate the memory, the number of GPUs and the speed for real models.",
+          "summary": "Memory ≈ parameters × bytes per parameter (plus extra), single-user speed ≈ memory bandwidth ÷ model size, and training needs about 16 bytes per parameter.",
+          "simulation": {
+            "name": "GPU sizing calculator",
+            "component": "src/tracks/gpu/sims/GpuSizer.tsx",
+            "description": "Choose running or training, a model size (1B to 405B), a number format and a GPU (RTX 4090 to B200). The calculator shows the memory needed, the number of GPUs (drawn as a rack) and the top speed in tokens per second.",
+            "whatYouDo": ["Combine model size, number format and GPU", "Switch between running and training"],
+            "task": "Make a 70B model run on a single GPU (it fits in 80 GB with 4-bit weights)."
+          },
+          "keyTakeaways": [
+            "Quantization lets big models fit on fewer GPUs and run faster.",
+            "Training needs roughly 8× more memory than running in BF16, before counting activations."
+          ]
+        }
+      ]
+    },
+    {
+      "track": 2,
+      "id": "llm",
+      "code": "LLM",
+      "title": "How LLMs Work",
+      "status": "available",
+      "level": "Intermediate",
+      "description": "How a chatbot turns your words into an answer: tokens, embeddings, attention, the transformer, sampling, training, the KV cache and quantization.",
+      "url": "#/llm/next-word",
+      "modules": [
+        {
+          "number": 1,
+          "id": "next-word",
+          "title": "Predicting the next word",
+          "goal": "Understand the one simple job every LLM does: guess the next word.",
+          "summary": "An LLM gives every possible next word a probability, picks one, adds it and repeats. Every answer comes from this loop.",
+          "simulation": {
+            "name": "Tiny next-word model",
+            "component": "src/tracks/llm/sims/NextWord.tsx",
+            "description": "A miniature language model learned from 12 sentences. It shows the probability of each possible next word as bars; you build a sentence by clicking words or letting the model pick at random.",
+            "whatYouDo": ["Click the next word yourself or let the model choose", "Look at the sentences it learned from"],
+            "task": "Build a sentence of at least 6 words ending with a full stop."
+          },
+          "keyTakeaways": [
+            "An LLM predicts the next piece of text again and again.",
+            "Its knowledge comes from patterns in its training text."
+          ]
+        },
+        {
+          "number": 2,
+          "id": "tokens",
+          "title": "Tokenization: text to numbers",
+          "goal": "See how text becomes the numbers a model can work with, and why words get cut into pieces.",
+          "summary": "A tokenizer cuts text into tokens with ID numbers. Byte-pair encoding learns its vocabulary by repeatedly merging the most frequent pair of symbols.",
+          "simulation": {
+            "name": "Byte-pair encoding trainer",
+            "component": "src/tracks/llm/sims/Tokenizer.tsx",
+            "description": "A real byte-pair-encoding tokenizer trained in the browser on a small word list. Your text is shown as coloured tokens with their IDs, next to letter and token counts and the list of merges learned so far.",
+            "whatYouDo": ["Slide the number of merges from 0 to 40", "Type your own text, including unseen words"],
+            "task": "Use at least 20 merges and reach 3 or more letters per token."
+          },
+          "keyTakeaways": [
+            "Common words become one token; rare words are split into pieces.",
+            "In English one token is about 4 characters, roughly ¾ of a word."
+          ]
+        },
+        {
+          "number": 3,
+          "id": "embeddings",
+          "title": "Embeddings: meaning as a map",
+          "goal": "See how a model turns each token into a point on a 'map of meaning'.",
+          "summary": "Each token becomes a list of numbers (a vector). Similar meanings sit close together, and directions on the map carry meaning.",
+          "simulation": {
+            "name": "Map of meaning",
+            "component": "src/tracks/llm/sims/Embeddings.tsx",
+            "description": "A 2-D map of words in three groups (people, animals, food). Word math draws arrows on the map and finds the nearest word; clicking a word lists its nearest neighbours.",
+            "whatYouDo": ["Build word equations such as puppy − dog + cat", "Click words to see their neighbours"],
+            "task": "Compute king − man + woman (it lands on queen)."
+          },
+          "keyTakeaways": [
+            "An embedding is a list of numbers that stands for a token's meaning.",
+            "Embeddings are learned during training, not hand-labelled."
+          ]
+        },
+        {
+          "number": 4,
+          "id": "attention",
+          "title": "Attention: which words matter",
+          "goal": "Understand attention: how each word gathers information from the words that matter for it.",
+          "summary": "Each word scores how relevant every other word is; softmax turns the scores into percentages, and the word mixes in information in those proportions.",
+          "simulation": {
+            "name": "Attention explorer",
+            "component": "src/tracks/llm/sims/Attention.tsx",
+            "description": "The sentence 'The animal didn't cross the street because it was too tired / wide'. Clicking a word shades the others by how much attention they receive, with a table of relevance scores and softmax percentages.",
+            "whatYouDo": ["Click any word to make it the query", "Switch the ending between 'tired' and 'wide'"],
+            "task": "Click 'it' in both versions: it attends to 'animal' with 'tired' and to 'street' with 'wide'."
+          },
+          "keyTakeaways": [
+            "Attention lets every word decide which other words matter.",
+            "Models run many attention heads in parallel."
+          ]
+        },
+        {
+          "number": 5,
+          "id": "transformer",
+          "title": "The transformer block",
+          "goal": "See the whole machine: how tokens flow through a tall stack of identical blocks.",
+          "summary": "Embeddings pass through many identical blocks of attention and feed-forward layers, then become next-token probabilities. Bigger models add blocks and width.",
+          "simulation": {
+            "name": "Transformer builder",
+            "component": "src/tracks/llm/sims/TransformerStack.tsx",
+            "description": "Set the number of blocks and the width; the simulation draws the stack, animates a token flowing through it and computes the parameter count and memory, next to real models (GPT-2 small, GPT-2 XL, GPT-3).",
+            "whatYouDo": ["Change blocks (1–96) and width (128–12,288)", "Send a token through the stack"],
+            "task": "Rebuild GPT-2 small: 12 blocks, width 768 (about 124 million parameters)."
+          },
+          "keyTakeaways": [
+            "Each block = attention (tokens talk to each other) + feed-forward (each token thinks alone).",
+            "Parameters grow with the number of blocks and with the width squared."
+          ]
+        },
+        {
+          "number": 6,
+          "id": "sampling",
+          "title": "Temperature and sampling",
+          "goal": "Learn how the model picks one word from its probabilities, and what temperature really does.",
+          "summary": "Temperature sharpens or flattens the probabilities; top-p removes the unlikely tail. The model's scores never change, only how we choose.",
+          "simulation": {
+            "name": "Sampling lab",
+            "component": "src/tracks/llm/sims/Sampling.tsx",
+            "description": "Candidate next words for 'I like to drink a cup of …', from 'tea' to 'socks', shown as probability bars that react to temperature and top-p. Drawing 20 samples shows how often each word is picked.",
+            "whatYouDo": ["Move the temperature (0–2) and top-p sliders", "Sample 20 words and compare"],
+            "task": "Sample at temperature 0, then at 1.5 or higher with top-p at 1."
+          },
+          "keyTakeaways": [
+            "Temperature 0 always takes the top word; higher means more variety and more risk.",
+            "This is why the same question can get different answers."
+          ]
+        },
+        {
+          "number": 7,
+          "id": "training",
+          "title": "Pre-training, fine-tuning and RLHF",
+          "goal": "Understand the three training stages that turn a text predictor into a helpful assistant.",
+          "summary": "Pre-training on trillions of words gives knowledge, fine-tuning teaches the assistant format, and preference tuning (RLHF) shapes answers to what people prefer.",
+          "simulation": {
+            "name": "Training stages and human rater",
+            "component": "src/tracks/llm/sims/TrainingStages.tsx",
+            "description": "Three stage tabs show the training data, what the model learns and how it answers 'How do I boil an egg?' after each stage. In stage 3 you rate pairs of answers like the human raters behind RLHF.",
+            "whatYouDo": ["Compare the answer after each stage", "Pick the better answer in three pairs"],
+            "task": "Visit all three stages and rate all three answer pairs."
+          },
+          "keyTakeaways": [
+            "A pre-trained base model only continues text.",
+            "Pre-training is by far the most expensive stage."
+          ]
+        },
+        {
+          "number": 8,
+          "id": "kv-cache",
+          "title": "KV cache and context length",
+          "goal": "Learn the trick that makes generating long answers fast, and why it eats so much memory.",
+          "summary": "Keys and values of earlier tokens never change, so they are cached. This saves huge amounts of work, but the cache grows with conversation length and the number of users.",
+          "simulation": {
+            "name": "KV cache stepper and memory calculator",
+            "component": "src/tracks/llm/sims/KvCache.tsx",
+            "description": "Part 1 generates a sentence token by token, showing which keys and values are computed and which are reused, with a running count. Part 2 calculates the KV-cache memory for Llama 3 8B or 70B by conversation length and number of users.",
+            "whatYouDo": ["Generate tokens with and without the cache", "Change the model, context length and users"],
+            "task": "Generate the full sentence without and with the cache (44 versus 9 computations)."
+          },
+          "keyTakeaways": [
+            "With the cache, each new token costs about the same.",
+            "For long conversations the cache can need more memory than the model itself."
+          ]
+        },
+        {
+          "number": 9,
+          "id": "quantization",
+          "title": "Quantization: shrinking models",
+          "goal": "See how models are shrunk to fewer bits per weight, and the trick that keeps them accurate.",
+          "summary": "Weights are rounded to a few allowed values. Rare outliers stretch the scale and wreck accuracy; a separate scale per small group fixes it.",
+          "simulation": {
+            "name": "Quantization explorer",
+            "component": "src/tracks/llm/sims/Quantize.tsx",
+            "description": "A histogram of 1,024 realistic weights (with optional outliers) before and after rounding, with the allowed values drawn in. Stats show the rounding error, the share of weights rounded to zero and the memory for a 70B model.",
+            "whatYouDo": ["Choose 8, 4, 3 or 2 bits", "Switch between one scale per layer and one per group of 32", "Toggle the outliers"],
+            "task": "With outliers, compare 4-bit per-layer and per-group scaling (the error drops about threefold)."
+          },
+          "keyTakeaways": [
+            "Fewer bits = smaller and faster, but bigger rounding errors.",
+            "Per-group scales keep 4-bit models accurate."
+          ]
+        }
+      ]
+    },
+    {
+      "track": 3,
+      "id": "serving",
+      "code": "API",
+      "title": "Running LLMs at Scale",
+      "status": "coming soon",
+      "level": "Advanced",
+      "description": "What it takes to serve millions of users: batching, memory management, speed tricks, and the metrics that decide cost.",
+      "plannedModules": [
+        "From model to API",
+        "Batching: static vs continuous",
+        "KV-cache memory and PagedAttention",
+        "Prefill vs decode",
+        "Speculative decoding",
+        "Speed metrics: TTFT and tokens/s",
+        "The cost of a request"
+      ]
+    },
+    {
+      "track": 4,
+      "id": "apps",
+      "code": "APP",
+      "title": "What LLMs Are Used For",
+      "status": "coming soon",
+      "level": "Intermediate → Advanced",
+      "description": "Turning a model into useful products: prompting, searching your own documents, tools and agents, evaluation, and the risks to watch for.",
+      "plannedModules": [
+        "Chatbots and prompting",
+        "RAG: answering from your documents",
+        "Tool use and function calling",
+        "The agent loop",
+        "Images, audio and multimodal models",
+        "Measuring quality (evals)",
+        "Hallucinations, bias and security"
+      ]
+    }
+  ],
+  "labs": [
+    {
+      "id": "foundations",
+      "code": "NN",
+      "title": "Neural Network Foundations",
+      "status": "available",
+      "level": "Beginner",
+      "description": "Build and train small neural networks yourself: what a neuron is, how a network measures its mistakes, and how it learns by nudging its weights. Includes a free playground.",
+      "url": "#/foundations",
+      "lessons": [
+        "Meet the neuron",
+        "Measuring mistakes",
+        "Learning by tiny nudges",
+        "Why the bias matters",
+        "Yes-or-no questions",
+        "When one neuron isn't enough",
+        "Teamwork: hidden layers",
+        "You did it!"
+      ],
+      "simulation": {
+        "name": "Neural network playground",
+        "description": "A live network diagram where line colour and thickness show each weight and neuron colour shows its output. You can train step by step, watch an answer flow from input to output, inspect any neuron or connection with real numbers, tune weights by hand, and follow the mistake score on charts. A free playground offers six example models (doubling, Celsius to Fahrenheit, AND, XOR, absolute value, sine wave) with configurable hidden layers."
+      }
+    }
+  ],
+  "copyright": "© 2026 smbondrnet. All rights reserved."
+}
