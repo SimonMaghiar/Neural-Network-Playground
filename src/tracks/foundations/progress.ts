@@ -1,4 +1,4 @@
-import { lessons, stepKey } from '../lessons'
+import { lessons, stepKey } from '../../lessons'
 
 const STORAGE_KEY = 'neural-playground-progress'
 

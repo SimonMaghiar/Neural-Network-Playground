@@ -1,5 +1,5 @@
 import { Term } from '../../ui/Term'
-import type { ModuleContent } from '../types'
+import type { TrackContent } from '../types'
 import { CpuGpuRace } from './sims/CpuGpuRace'
 import { GpuSizer } from './sims/GpuSizer'
 import { MatrixLayer } from './sims/MatrixLayer'
@@ -10,14 +10,15 @@ import { Roofline } from './sims/Roofline'
 import { Scheduler } from './sims/Scheduler'
 import { Tiling } from './sims/Tiling'
 
-export const gpuContent: Record<string, ModuleContent> = {
+export const content: TrackContent = {
   multiplication: {
     goal: 'See why AI needs an enormous amount of very simple math.',
     intro: (
       <>
         <p>
-          In Track 1 you met a <Term t="neuron" />: multiply each input by a <Term t="weight" />, add them up, add a{' '}
-          <Term t="bias" />. That's it. No magic, just multiplication and addition.
+          AI models are built from tiny calculators called <Term t="neuron">neurons</Term>. Each one multiplies its inputs
+          by a <Term t="weight" />, adds them up and adds a <Term t="bias" />. That's it. No magic, just multiplication and
+          addition. (Want to build one yourself? Try the Neural Network Lab.)
         </p>
         <p>
           A big AI model is the same idea repeated billions of times. Every number it learned is called a{' '}

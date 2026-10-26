@@ -1,12 +1,17 @@
 # Neural Network Playground
 
-An interactive course that takes complete beginners from a single neuron to the hardware and language models behind modern AI. It is organised in five tracks:
+An interactive course that takes complete beginners from a single neuron to the hardware and language models behind modern AI.
 
-1. **Neural Network Foundations**: guided lessons and a free playground where you watch neurons, weights and biases change as a network trains.
-2. **Why AI Runs on GPUs**: nine hands-on modules covering parallelism, matrix multiplication, the memory wall, the memory hierarchy, threads and warps, tiling, number precision and GPU sizing.
-3. **How LLMs Work** (coming soon)
-4. **Running LLMs at Scale** (coming soon)
-5. **What LLMs Are Used For** (coming soon)
+**Courses** (a numbered, step-by-step path):
+
+1. **Why AI Runs on GPUs**: nine hands-on modules covering parallelism, matrix multiplication, the memory wall, the memory hierarchy, threads and warps, tiling, number precision and GPU sizing.
+2. **How LLMs Work**: nine hands-on modules covering next-word prediction, tokenization, embeddings, attention, the transformer, sampling, the training stages, the KV cache and quantization.
+3. **Running LLMs at Scale** (coming soon)
+4. **What LLMs Are Used For** (coming soon)
+
+**Lab** (hands-on workshops, outside the numbered path):
+
+- **Neural Network Foundations**: guided lessons and a free playground where you watch neurons, weights and biases change as a network trains.
 
 Each module has a plain-language introduction, an interactive simulation with a task, key takeaways, a short quiz and an optional technical deep dive.
 
@@ -64,14 +69,28 @@ src/
   pages/
     Home.tsx        Landing page with the learning path and track cards
   tracks/
-    catalog.ts      Track and module list
-    FoundationsTrack.tsx  Track 1: lessons and free playground
-    gpu/
-      modules.tsx   Track 2 content
-      sims/         One interactive simulation per GPU module
+    catalog.ts      The courses (numbered by position) and the labs
+    types.ts        Shared types: TrackMeta, ModuleContent, SimProps, …
+    TrackPage.tsx   Generic page for any standard track (loads its content on demand)
+    gpu/            Track 1
+    llm/            Track 2
+    serving/        Track 3 (outline only)
+    apps/           Track 4 (outline only)
+    foundations/    Lab: lessons and free playground (custom page)
   router.ts         Hash-based routing (#/gpu/tiling)
-  App.tsx           Routes to the home page and the tracks
+  App.tsx           Routes to the home page or the matching track
 ```
+
+Every track lives in its own folder:
+
+```
+tracks/<track>/
+  meta.ts         Title, colour, level and module list (small; used by the home page)
+  content.tsx     Text, task, takeaways, quiz and deep dive for each module (loaded on first visit)
+  sims/           One interactive simulation component per module
+```
+
+To add a track: create the folder with a `meta.ts` (set `loadContent: () => import('./content').then((m) => m.content)`), write `content.tsx` and the simulations, and add the track to `courses` or `labs` in `catalog.ts`. Course numbers follow the order of that list. Leaving out `loadContent` shows the track as "Coming soon".
 
 ## Built with
 

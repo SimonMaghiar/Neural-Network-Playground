@@ -62,6 +62,31 @@ export const glossary = {
   VRAM: 'The memory on a graphics card (on AI GPUs this is HBM). The model must fit in it to run fast.',
   batch: 'A group of inputs processed together in one go. Bigger batches reuse the same weights for more work.',
   token: 'A small piece of text (a word or part of a word) that a language model reads or writes one at a time.',
+  LLM: 'Large Language Model: a huge neural network trained on enormous amounts of text to predict the next token. ChatGPT, Claude, Gemini and Llama are LLMs.',
+  prompt: 'The text you give a language model: your question or instruction, plus anything else in the conversation.',
+  probability: 'How likely something is, from 0% (never) to 100% (certain). An LLM gives every possible next token a probability.',
+  vocabulary: 'The fixed list of all tokens a model knows, typically 30,000 to 200,000 of them. Each has an ID number.',
+  tokenizer: 'The program that cuts text into tokens and turns them into ID numbers (and back again).',
+  embedding:
+    'A list of numbers that represents a token\'s meaning. Tokens with similar meanings get similar lists, so they sit close together on a "map of meaning".',
+  vector: 'A list of numbers, which you can picture as an arrow or a point in space. Embeddings are vectors.',
+  attention:
+    'The step where each word looks at the other words and decides which ones matter for understanding it, then mixes in their information.',
+  softmax: 'A formula that turns any list of scores into probabilities that add up to 100%. Higher score = bigger share.',
+  transformer:
+    'The neural network design behind all modern LLMs (2017). It is a tall stack of identical blocks, each with an attention step and a feed-forward step.',
+  'feed-forward':
+    'The part of each transformer block that processes every token on its own, through two big layers of neurons. It holds most of the model\'s weights.',
+  'context window': 'The maximum number of tokens a model can look at at once: your prompt plus its answer so far.',
+  temperature:
+    'A setting that controls how adventurous the model is when picking the next token. Low = safe and repetitive, high = creative but riskier.',
+  'top-p': 'A setting that throws away the unlikely tokens, keeping only the most likely ones that together cover p (for example 90%) of the probability.',
+  'pre-training': 'The first and most expensive training stage: learning to predict the next token on trillions of words of text.',
+  'fine-tuning': 'Extra training on a small, carefully chosen dataset to teach a pre-trained model a specific behaviour, like answering questions.',
+  RLHF: 'Reinforcement Learning from Human Feedback: people rate answers, and the model is tuned to produce the kind of answers people prefer.',
+  'reward model': 'A helper model trained on human ratings that predicts how much people would like an answer.',
+  'KV cache':
+    'Memory where the model keeps the keys and values it already computed for earlier tokens, so it does not redo that work for every new token.',
 } as const
 
 export type GlossaryTerm = keyof typeof glossary

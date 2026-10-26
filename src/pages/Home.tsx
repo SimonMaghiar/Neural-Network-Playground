@@ -1,43 +1,46 @@
-import { ArrowRight, Clock, FlaskConical } from 'lucide-react'
-import { lessons } from '../lessons'
+import { ArrowRight, Clock, FlaskConical, GraduationCap } from 'lucide-react'
 import { href } from '../router'
-import { tracks, type TrackMeta } from '../tracks/catalog'
-import { foundationsLessonsDone } from '../tracks/foundationsProgress'
+import { courses, labs } from '../tracks/catalog'
 import { loadProgress } from '../tracks/progress'
+import { isAvailable, type ListedTrack } from '../tracks/types'
 
 const PREVIEW = 5
 
-function TrackCard({ track, modules, done }: { track: TrackMeta; modules: string[]; done: number }) {
-  const startPath = track.id === 'foundations' ? 'foundations' : `${track.id}/${track.modules[0]?.id ?? ''}`
+function TrackCard({ track, done }: { track: ListedTrack; done: number }) {
+  const available = isAvailable(track)
+  const count = track.modules.length
+  const startPath = track.page ? track.id : `${track.id}/${track.modules[0]?.id ?? ''}`
   const body = (
     <>
       <div className="track-card-top">
         <span className="track-badge">{track.code}</span>
         <div>
-          <div className="track-number">Track {track.number}</div>
+          <div className="track-number">{track.label}</div>
           <h2>{track.title}</h2>
         </div>
-        <span className="track-count">{modules.length} modules</span>
+        <span className="track-count">
+          {count} {track.section === 'lab' ? 'lessons' : 'modules'}
+        </span>
       </div>
       <p className="track-desc">{track.description}</p>
       <div className="track-level">{track.level}</div>
       <ol className="track-modules">
-        {modules.slice(0, PREVIEW).map((m) => (
-          <li key={m}>{m}</li>
+        {track.modules.slice(0, PREVIEW).map((m) => (
+          <li key={m.id}>{m.title}</li>
         ))}
-        {modules.length > PREVIEW && <li className="more">+ {modules.length - PREVIEW} more</li>}
+        {count > PREVIEW && <li className="more">+ {count - PREVIEW} more</li>}
       </ol>
       <div className="track-card-foot">
-        {track.available ? (
+        {available ? (
           <>
             <div className="track-progress-bar">
-              <div style={{ width: `${(done / modules.length) * 100}%` }} />
+              <div style={{ width: `${(done / count) * 100}%` }} />
             </div>
             <span className="track-done">
-              {done} / {modules.length} done
+              {done} / {count} done
             </span>
             <span className="track-cta">
-              {done > 0 ? 'Continue' : 'Start track'} <ArrowRight size={16} />
+              {done > 0 ? 'Continue' : track.section === 'lab' ? 'Open lab' : 'Start track'} <ArrowRight size={16} />
             </span>
           </>
         ) : (
@@ -49,7 +52,7 @@ function TrackCard({ track, modules, done }: { track: TrackMeta; modules: string
     </>
   )
   const style = { ['--track' as string]: track.color }
-  return track.available ? (
+  return available ? (
     <a className="track-card" href={href(startPath)} style={style}>
       {body}
     </a>
@@ -62,7 +65,8 @@ function TrackCard({ track, modules, done }: { track: TrackMeta; modules: string
 
 export function Home() {
   const progress = loadProgress()
-  const foundationsDone = foundationsLessonsDone()
+  const doneIn = (t: ListedTrack) => (t.modulesDone ? t.modulesDone() : (progress[t.id] ?? []).length)
+  const first = courses[0]
 
   return (
     <div className="home">
@@ -73,36 +77,54 @@ export function Home() {
           to the GPUs and LLMs behind modern AI
         </h1>
         <p>
-          No math background needed. Every idea comes with something to play with: train a neuron, race a CPU against a
-          GPU, find the memory bottleneck, and work out how much hardware a real model needs.
+          No math background needed. Every idea comes with something to play with: race a CPU against a GPU, watch
+          attention pick the words that matter, work out how much hardware a real model needs, and train your own neural
+          network in the lab.
         </p>
         <div className="hero-actions">
-          <a className="btn primary big" href={href('foundations')}>
-            Start from the beginning <ArrowRight size={18} />
+          <a className="btn primary big" href={href(`${first.id}/${first.modules[0].id}`)}>
+            Start {first.label} <ArrowRight size={18} />
           </a>
-          <a className="btn big" href={href('playground')}>
-            <FlaskConical size={18} /> Open the free playground
+          <a className="btn big" href={href(labs[0].id)}>
+            <FlaskConical size={18} /> Open the {labs[0].title} lab
           </a>
         </div>
       </header>
 
-      <section className="path">
-        {tracks.map((t, i) => (
-          <div key={t.id} className="path-step" style={{ ['--track' as string]: t.color }}>
-            <span className="path-dot">{t.code}</span>
-            <span className="path-name">{t.title}</span>
-            {i < tracks.length - 1 && <span className="path-line" />}
-          </div>
-        ))}
+      <section className="home-section">
+        <h2 className="home-section-title">
+          <GraduationCap size={20} /> Courses
+        </h2>
+        <p className="home-section-desc">A step-by-step path. Each track builds on the ones before it.</p>
+        <div className="path">
+          {courses.map((t, i) => (
+            <div key={t.id} className="path-step" style={{ ['--track' as string]: t.color }}>
+              <span className="path-dot">{t.code}</span>
+              <span className="path-name">{t.title}</span>
+              {i < courses.length - 1 && <span className="path-line" />}
+            </div>
+          ))}
+        </div>
+        <div className="track-grid">
+          {courses.map((t) => (
+            <TrackCard key={t.id} track={t} done={doneIn(t)} />
+          ))}
+        </div>
       </section>
 
-      <section className="track-grid">
-        {tracks.map((t) => {
-          const isFoundations = t.id === 'foundations'
-          const modules = isFoundations ? lessons.map((l) => l.title) : t.modules.map((m) => m.title)
-          const done = isFoundations ? foundationsDone : (progress[t.id] ?? []).length
-          return <TrackCard key={t.id} track={t} modules={modules} done={done} />
-        })}
+      <section className="home-section">
+        <h2 className="home-section-title">
+          <FlaskConical size={20} /> Lab
+        </h2>
+        <p className="home-section-desc">
+          Hands-on workshops where you build and train things yourself. Do them any time: before the courses as a warm-up,
+          or alongside them.
+        </p>
+        <div className="track-grid">
+          {labs.map((t) => (
+            <TrackCard key={t.id} track={t} done={doneIn(t)} />
+          ))}
+        </div>
       </section>
 
       <footer className="home-foot">

@@ -1,32 +1,25 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import './App.css'
 import './tracks.css'
 import { Home } from './pages/Home'
 import { useRoute } from './router'
-
-const FoundationsTrack = lazy(() => import('./tracks/FoundationsTrack'))
-const GpuTrack = lazy(() => import('./tracks/gpu/GpuTrack'))
+import { findTrack } from './tracks/catalog'
+import { TrackPage } from './tracks/TrackPage'
 
 export default function App() {
-  const [section] = useRoute()
+  const route = useRoute()
+  const track = findTrack(route[0])
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [section])
+  }, [track])
 
-  let page
-  switch (section) {
-    case 'foundations':
-      page = <FoundationsTrack key="learn" mode="learn" />
-      break
-    case 'playground':
-      page = <FoundationsTrack key="play" mode="play" />
-      break
-    case 'gpu':
-      page = <GpuTrack />
-      break
-    default:
-      page = <Home />
+  let page = <Home />
+  if (track?.page) {
+    const CustomPage = track.page
+    page = <CustomPage route={route} />
+  } else if (track?.loadContent) {
+    page = <TrackPage key={track.id} track={track} route={route} />
   }
 
   return <Suspense fallback={<div className="page-loading">Loading…</div>}>{page}</Suspense>

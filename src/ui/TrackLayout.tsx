@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, BookOpen, Circle, CircleCheck, FlaskConical, Lightbulb, Target, Trophy } from 'lucide-react'
 import { href } from '../router'
-import type { TrackMeta } from '../tracks/catalog'
 import { loadProgress, saveModuleDone } from '../tracks/progress'
-import type { ModuleContent } from '../tracks/types'
+import type { ListedTrack, TrackContent } from '../tracks/types'
 import { Quiz } from './Quiz'
 
 interface Props {
-  track: TrackMeta
-  content: Record<string, ModuleContent>
+  track: ListedTrack
+  content: TrackContent
   moduleId: string | undefined
 }
 
@@ -74,7 +73,7 @@ export function TrackLayout({ track, content, moduleId }: Props) {
         <article className="module" key={meta.id}>
           <header className="module-head">
             <div className="module-kicker">
-              Track {track.number} · Module {index + 1} of {track.modules.length}
+              {track.label} · Module {index + 1} of {track.modules.length}
             </div>
             <h1>{meta.title}</h1>
             <p className="module-goal">

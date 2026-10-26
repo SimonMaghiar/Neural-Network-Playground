@@ -1,24 +1,31 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ArrowLeft, FlaskConical, GraduationCap, Minus, Plus, Trash2 } from 'lucide-react'
-import type { Activation, LayerSpec } from '../nn/network'
-import { presets, type Preset } from '../nn/presets'
-import { allFeatures, featuresFor, lessons, stepKey } from '../lessons'
-import { href, navigate } from '../router'
-import { LessonPanel } from '../ui/LessonPanel'
-import { Playground } from '../ui/Playground'
-import { Term } from '../ui/Term'
-import { loadFoundationsProgress, saveFoundationsProgress } from './foundationsProgress'
+import type { Activation, LayerSpec } from '../../nn/network'
+import { presets, type Preset } from '../../nn/presets'
+import { allFeatures, featuresFor, lessons, stepKey } from '../../lessons'
+import { href, navigate } from '../../router'
+import type { TrackPageProps } from '../types'
+import { LessonPanel } from '../../ui/LessonPanel'
+import { Playground } from '../../ui/Playground'
+import { Term } from '../../ui/Term'
+import { loadFoundationsProgress, saveFoundationsProgress } from './progress'
 
 const HIDDEN_ACTIVATIONS: Activation[] = ['tanh', 'sigmoid', 'relu', 'linear']
 const MAX_HIDDEN_LAYERS = 3
 const MAX_NEURONS = 8
 
-export type FoundationsMode = 'learn' | 'play'
+type FoundationsMode = 'learn' | 'play'
 
-export default function FoundationsTrack({ mode }: { mode: FoundationsMode }) {
+/** `#/foundations` shows the lessons, `#/foundations/playground` the free playground. */
+export default function FoundationsPage({ route }: TrackPageProps) {
+  const mode: FoundationsMode = route[1] === 'playground' ? 'play' : 'learn'
+  return <FoundationsTrack key={mode} mode={mode} />
+}
+
+function FoundationsTrack({ mode }: { mode: FoundationsMode }) {
   const [saved] = useState(loadFoundationsProgress)
   const setMode = (m: FoundationsMode) => {
-    if (m !== mode) navigate(m === 'learn' ? 'foundations' : 'playground')
+    if (m !== mode) navigate(m === 'learn' ? 'foundations' : 'foundations/playground')
   }
   const [pos, setPos] = useState({ lesson: saved.lesson, step: saved.step })
   const [completed, setCompleted] = useState(() => new Set(saved.completed))

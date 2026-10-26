@@ -4,8 +4,8 @@ import type { SimProps } from '../../types'
 import { formatCount, formatDuration } from '../../units'
 
 const models = [
-  { name: 'Your doubling neuron (Track 1)', params: 2 },
-  { name: 'Hallway-light network (Track 1)', params: 13 },
+  { name: 'Doubling neuron (from the lab)', params: 2 },
+  { name: 'Hallway-light network (from the lab)', params: 13 },
   { name: 'Small handwriting reader', params: 100_000 },
   { name: 'GPT-2 (2019)', params: 1.5e9 },
   { name: 'Llama 3 8B (2024)', params: 8e9 },
