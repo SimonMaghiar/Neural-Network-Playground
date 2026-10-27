@@ -2837,3 +2837,138 @@ button.prob-row:hover {
 .ai-steps svg {
   vertical-align: -2px;
 }
+
+.bq-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+}
+
+.bq-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+}
+
+.bq-card.is-right {
+  border-color: color-mix(in srgb, var(--good) 55%, var(--border));
+}
+
+.bq-card.is-wrong {
+  border-color: color-mix(in srgb, var(--bad) 55%, var(--border));
+}
+
+.bq-card h4 {
+  margin: 0;
+  color: var(--text-h);
+  font-size: 14.5px;
+}
+
+.bq-scene {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.bq-art {
+  display: grid;
+  place-items: center;
+  padding: 6px 0;
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.bq-body {
+  fill: #1e2433;
+  stroke: #3a4256;
+}
+
+.bq-glass {
+  fill: rgba(56, 189, 248, 0.12);
+  stroke: #38bdf8;
+}
+
+.bq-accent {
+  fill: #2dd4bf;
+}
+
+.bq-muted {
+  fill: var(--muted);
+}
+
+.bq-slot {
+  fill: var(--bg);
+}
+
+.bq-snack {
+  fill: #facc15;
+}
+
+.bq-readout {
+  fill: var(--text-h);
+  font: 650 11px var(--mono);
+}
+
+.bq-key {
+  fill: #3a4256;
+}
+
+.bq-light {
+  fill: #c3c8d4;
+}
+
+.bq-dark {
+  fill: #4b5368;
+}
+
+.bq-piece {
+  fill: var(--bg);
+  stroke: var(--text-h);
+  stroke-width: 1.5;
+}
+
+.bq-piece.you {
+  fill: var(--text-h);
+  stroke: var(--bg);
+}
+
+.bq-eye {
+  fill: var(--text-h);
+}
+
+.bq-smile,
+.bq-squiggle,
+.bq-arrow {
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.bq-smile {
+  stroke: var(--text-h);
+}
+
+.bq-squiggle {
+  stroke: var(--bad);
+}
+
+.bq-arrow {
+  stroke: var(--muted);
+  stroke-dasharray: 2 2;
+}
+
+.bq-words {
+  fill: var(--text-h);
+  font: 13px var(--mono);
+}
+
+.bq-words.small {
+  font-size: 10px;
+}
+
+.bq-words.reply {
+  fill: #2dd4bf;
+}

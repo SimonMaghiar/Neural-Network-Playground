@@ -1,6 +1,7 @@
 import { Term } from '../../ui/Term'
 import type { TrackContent } from '../types'
 import { AiFamily } from './sims/AiFamily'
+import { BigQuestion } from './sims/BigQuestion'
 import { GradientDescent } from './sims/GradientDescent'
 import { HiddenLayers } from './sims/HiddenLayers'
 import { NeuronDecision } from './sims/NeuronDecision'
@@ -9,6 +10,100 @@ import { SpamSorter } from './sims/SpamSorter'
 import { TrainVsInfer } from './sims/TrainVsInfer'
 
 export const content: TrackContent = {
+  'big-question': {
+    goal: 'Tell AI apart from ordinary computing: AI makes judgment calls on tasks that have no exact recipe.',
+    intro: (
+      <>
+        <p>
+          In the 1940s, "computer" was a job title. Rooms full of people, many of them women, worked out long sums by
+          hand for engineers and astronomers. Then machines took over the job, and nobody called those machines
+          intelligent. So "a machine doing a person's work" can't be what AI means.
+        </p>
+        <p>
+          Here is a sharper test. Some tasks have an <b>exact recipe</b>: fixed steps that always give the right answer.
+          Adding numbers. Finding a price. Checking whether a word is in the dictionary. A computer following that
+          recipe is fast and reliable, but it never has to decide anything.
+        </p>
+        <p>
+          Other tasks have no such recipe. Is that your face, in bad light, with new glasses? What's the best chess move,
+          when there are more possible games than atoms in the observable universe? Did "teh" mean "the" or "tea"?
+          Nobody can write down every right answer in advance. A machine that handles these has to make a{' '}
+          <b>judgment call</b>: weigh up what it sees and pick the most likely answer.
+        </p>
+        <p>
+          That is the territory of <Term t="AI">artificial intelligence (AI)</Term>: building machines that do things
+          that would take intelligence if a person did them, like recognising, reasoning and using language. And because
+          AI judges, it can be wrong. A calculator can't misjudge anything. It never judges.
+        </p>
+        <p>How a machine gets good at judging is what the rest of this course is about.</p>
+      </>
+    ),
+    sim: BigQuestion,
+    task: {
+      text: 'Sort all 7 machines. For each one, ask: is there an exact recipe that always gets it right, or does it have to make a judgment call?',
+      done: 'The vending machine, calculator and dictionary follow exact recipes. Chess, face unlock, autocorrect and the chatbot have to judge. Look at the two spellcheckers: same job, different kind of machine.',
+    },
+    takeaways: [
+      'AI is about building machines that do things that would take intelligence if a person did them.',
+      'The tell: there is no exact recipe for the task, so the machine has to make a judgment call.',
+      'Following a fixed recipe is not AI, however useful it is. Calculators replaced human "computers" without being intelligent.',
+      'Judging means AI can be wrong, in a way a calculator never is.',
+    ],
+    quiz: [
+      {
+        question: 'Arithmetic used to be a job for people. Why is a calculator still not AI?',
+        options: [
+          'It is too simple to build',
+          'Arithmetic has an exact recipe that always gives the right answer, so there is nothing to judge',
+          'Calculators were invented before AI',
+          'It cannot handle big enough numbers',
+        ],
+        answer: 1,
+        explain: 'Whether a person used to do the job is not the test. What matters is whether the task needs a judgment call.',
+      },
+      {
+        question: 'Which of these is AI?',
+        options: [
+          'A ticket machine that prints the price for the zone you pick',
+          'An app that names the song playing in a noisy café',
+          'A kitchen timer that rings after 5 minutes',
+          'A database that finds a customer by their ID number',
+        ],
+        answer: 1,
+        explain: 'A noisy recording never matches the original exactly, so the app has to judge which song it sounds most like. The others are exact lookups or fixed steps.',
+      },
+      {
+        question: 'A 1997 chess program ran only on rules written by people. It learned nothing. Is it AI?',
+        options: [
+          'No: AI has to learn',
+          'Yes: nobody can check every possible game, so it has to judge which moves look best',
+          'No: games do not count',
+          'Only if it wins',
+        ],
+        answer: 1,
+        explain: 'Learning from examples is how most AI is built today, but it is not what makes something AI. More on that two lessons from now.',
+      },
+    ],
+    deepDive: (
+      <>
+        <p>
+          The name "artificial intelligence" comes from a 1955 proposal by John McCarthy and colleagues for a summer
+          workshop at Dartmouth College. That 1956 workshop is usually counted as the birth of the field.
+        </p>
+        <p>
+          Strictly speaking, AI programs are step-by-step instructions too. The difference is what the steps produce: a
+          best guess with no guarantee, for problems where a guaranteed answer is unknown or far too slow to compute.
+          Chess does have an exact recipe in principle (check every possible game), but running it would take longer
+          than the age of the universe.
+        </p>
+        <p>
+          The line also moves. Once machines do something reliably, people tend to stop calling it AI. Chess was once
+          the showpiece of machine intelligence and is now "just search". This is known as the <b>AI effect</b>.
+        </p>
+      </>
+    ),
+  },
+
   'what-is-ai': {
     goal: 'Understand the big difference between AI and normal software: AI learns its rules from examples.',
     intro: (

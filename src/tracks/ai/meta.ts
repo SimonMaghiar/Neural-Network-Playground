@@ -11,7 +11,7 @@ export const aiTrack: TrackMeta = {
   color: '#2dd4bf',
   level: 'Beginner',
   modules: [
-    { id: 'big-question', title: 'The Big Question: What Is Artificial Intelligence?', ready: soon },
+    { id: 'big-question', title: 'The Big Question: What Is Artificial Intelligence?' },
     { id: 'what-is-ai', title: "Traditional Software vs AI: What's the Difference?" },
     { id: 'ml-dl-llms', title: 'Machine Learning, Deep Learning and LLMs: The AI Family Tree' },
     { id: 'learning-types', title: 'Supervised vs Unsupervised vs Reinforcement Learning', ready: soon },
