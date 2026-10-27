@@ -973,7 +973,16 @@ a.track-card:hover {
 
 .is-brand .sim-panel {
   border-left: none;
-  background: transparent;
+  background: #0f0d0e;
+  padding: 0 16px 16px 0;
+}
+
+.is-brand .module-main::-webkit-scrollbar-thumb {
+  border-color: var(--ink);
+}
+
+.is-brand .module-main:has(.lesson-sheet.is-dark)::-webkit-scrollbar-thumb {
+  border-color: #0f0d0e;
 }
 
 .is-brand .sim-card {
@@ -1080,8 +1089,25 @@ a.track-card:hover {
 }
 
 .is-brand .module-main {
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 0;
+  padding-right: 0;
+  background: var(--ink);
+  scrollbar-color: #6b645c var(--ink);
+}
+
+.is-brand .module-main::-webkit-scrollbar,
+.is-brand .module-main::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+
+.is-brand .module-main:has(.lesson-sheet.is-dark) {
+  background: #0f0d0e;
+  scrollbar-color: #6b645c #0f0d0e;
+}
+
+.is-brand .module-main:has(.lesson-sheet.is-dark)::-webkit-scrollbar,
+.is-brand .module-main:has(.lesson-sheet.is-dark)::-webkit-scrollbar-track {
+  background: #0f0d0e;
 }
 
 .is-brand .lesson-sheet h1 {
@@ -1103,6 +1129,15 @@ a.track-card:hover {
 .is-brand .module {
   max-width: none;
   gap: 48px;
+}
+
+.is-brand .module.lesson-sheet {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  box-shadow: none;
 }
 
 .is-brand .module h2,
