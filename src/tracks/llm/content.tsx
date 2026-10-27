@@ -219,7 +219,7 @@ export const content: TrackContent = {
         </p>
         <p>
           The same idea powers semantic search: embed documents and questions, then retrieve the closest ones. You'll
-          meet that again in the "What LLMs Are Used For" track (RAG).
+          meet that again in the "How Do You Give AI Its Own Knowledge?" course.
         </p>
       </>
     ),

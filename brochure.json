@@ -15,18 +15,23 @@
     "progress": "Saved in the browser. Each course shows how many modules are done."
   },
   "learningPath": [
-    "Track 1: AI and Neural Network Foundations",
-    "Track 2: Why AI Runs on GPUs",
-    "Track 3: How LLMs Work",
-    "Track 4: Running LLMs at Scale",
-    "Track 5: What LLMs Are Used For"
+    "Track 1: How Do Machines Learn?",
+    "Track 2: How Does ChatGPT Actually Work?",
+    "Track 3: Why Does AI Run on GPUs?",
+    "Track 4: How Does AI Serve Millions of People?",
+    "Track 5: Your First AI-Powered Application",
+    "Track 6: How Do You Give AI Its Own Knowledge?",
+    "Track 7: From Chatbots to AI Agents",
+    "Track 8: AI Beyond Text: Seeing, Hearing and Creating",
+    "Track 9: Can You Really Trust AI?",
+    "Track 10: From AI Prototype to Real Product"
   ],
   "courses": [
     {
       "track": 1,
       "id": "ai",
       "code": "AI",
-      "title": "AI and Neural Network Foundations",
+      "title": "How Do Machines Learn?",
       "status": "available",
       "level": "Beginner",
       "description": "Start here: what AI really is, how machines learn patterns from data, what a neuron does, how a network learns from its mistakes, and the difference between training a model and using it.",
@@ -161,10 +166,10 @@
       ]
     },
     {
-      "track": 2,
+      "track": 3,
       "id": "gpu",
       "code": "GPU",
-      "title": "Why AI Runs on GPUs",
+      "title": "Why Does AI Run on GPUs?",
       "status": "available",
       "level": "Beginner → Intermediate",
       "description": "Why a graphics chip became the engine of AI: parallel workers, matrix multiplication, memory bottlenecks, number precision and how much hardware big models need.",
@@ -345,10 +350,10 @@
       ]
     },
     {
-      "track": 3,
+      "track": 2,
       "id": "llm",
       "code": "LLM",
-      "title": "How LLMs Work",
+      "title": "How Does ChatGPT Actually Work?",
       "status": "available",
       "level": "Intermediate",
       "description": "How a chatbot turns your words into an answer: tokens, embeddings, attention, the transformer, sampling, training, the KV cache and quantization.",
@@ -522,37 +527,79 @@
       "track": 4,
       "id": "serving",
       "code": "API",
-      "title": "Running LLMs at Scale",
+      "title": "How Does AI Serve Millions of People?",
       "status": "coming soon",
       "level": "Advanced",
-      "description": "What it takes to serve millions of users: batching, memory management, speed tricks, and the metrics that decide cost.",
+      "description": "What happens after you press send: how one reply is generated for many people at once, and what it costs.",
       "plannedModules": [
-        "From model to API",
-        "Batching: static vs continuous",
-        "KV-cache memory and PagedAttention",
-        "Prefill vs decode",
-        "Speculative decoding",
-        "Speed metrics: TTFT and tokens/s",
-        "The cost of a request"
+        "What Happens After You Press Send?",
+        "Prefill vs Decode: The Two Phases of LLM Inference",
+        "Why AI Responds Quickly but Generates Slowly",
+        "Latency vs Throughput: Speed Isn't Just One Number",
+        "Batching: How One GPU Handles Multiple Users",
+        "Continuous Batching: Keeping GPUs Busy",
+        "KV Cache: Why AI Doesn't Recalculate Everything",
+        "PagedAttention: Managing AI Memory Efficiently",
+        "Speculative Decoding: Can a Small Model Speed Up a Big One?",
+        "When One GPU Isn't Enough",
+        "Inside an LLM Serving Engine",
+        "How Much Does One AI Response Actually Cost?",
+        "Why Some AI Models Are Faster and Cheaper Than Others"
       ]
     },
     {
       "track": 5,
-      "id": "apps",
+      "id": "first-app",
       "code": "APP",
-      "title": "What LLMs Are Used For",
+      "title": "Your First AI-Powered Application",
+      "status": "coming soon",
+      "level": "Intermediate",
+      "description": "How to pick a model, call it from your own code, and shape its answers into a working chatbot."
+    },
+    {
+      "track": 6,
+      "id": "knowledge",
+      "code": "RAG",
+      "title": "How Do You Give AI Its Own Knowledge?",
       "status": "coming soon",
       "level": "Intermediate → Advanced",
-      "description": "Turning a model into useful products: prompting, searching your own documents, tools and agents, evaluation, and the risks to watch for.",
-      "plannedModules": [
-        "Chatbots and prompting",
-        "RAG: answering from your documents",
-        "Tool use and function calling",
-        "The agent loop",
-        "Images, audio and multimodal models",
-        "Measuring quality (evals)",
-        "Hallucinations, bias and security"
-      ]
+      "description": "How to let a model search your documents, and when fine-tuning is the better tool."
+    },
+    {
+      "track": 7,
+      "id": "agents",
+      "code": "AGT",
+      "title": "From Chatbots to AI Agents",
+      "status": "coming soon",
+      "level": "Intermediate → Advanced",
+      "description": "How a model uses tools, repeats a loop of thinking and acting, and stays under your control."
+    },
+    {
+      "track": 8,
+      "id": "senses",
+      "code": "SEE",
+      "title": "AI Beyond Text: Seeing, Hearing and Creating",
+      "status": "coming soon",
+      "level": "Intermediate",
+      "description": "How models understand and create images, speech and video, not only text."
+    },
+    {
+      "track": 9,
+      "id": "trust",
+      "code": "TRU",
+      "title": "Can You Really Trust AI?",
+      "status": "coming soon",
+      "level": "Advanced",
+      "description": "How to tell a good answer from a confident wrong one, and how to test, protect and watch an AI system."
+    },
+    {
+      "track": 10,
+      "id": "product",
+      "code": "PRO",
+      "title": "From AI Prototype to Real Product",
+      "status": "coming soon",
+      "level": "Advanced",
+      "description": "How to turn a working prototype into an application you can deploy, monitor and afford."
     }
   ],
   "labs": [

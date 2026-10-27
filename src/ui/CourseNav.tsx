@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Check, ChevronDown, Clock } from 'lucide-react'
 import { href } from '../router'
 import { courses } from '../tracks/catalog'
-import { isAvailable } from '../tracks/types'
+import { isAvailable, isReady } from '../tracks/types'
 
 interface Props {
   trackId: string
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const availableCourses = courses.filter(isAvailable)
-const totalModules = availableCourses.reduce((n, t) => n + t.modules.length, 0)
+const totalModules = availableCourses.reduce((n, t) => n + t.modules.filter(isReady).length, 0)
 
 /** Every course and its modules, drawn as a path so learners can see where they are. */
 export function CourseNav({ trackId, moduleId, progress }: Props) {
@@ -33,7 +33,7 @@ export function CourseNav({ trackId, moduleId, progress }: Props) {
 
   const doneModules = availableCourses.reduce((n, t) => {
     const finished = new Set(progress[t.id] ?? [])
-    return n + t.modules.filter((m) => finished.has(m.id)).length
+    return n + t.modules.filter((m) => isReady(m) && finished.has(m.id)).length
   }, 0)
 
   return (
@@ -61,7 +61,9 @@ export function CourseNav({ trackId, moduleId, progress }: Props) {
         const done = new Set(progress[t.id] ?? [])
         const expanded = open.has(t.id)
         const current = t.id === trackId
-        const share = available ? (done.size / t.modules.length) * 100 : 0
+        const readyLessons = t.modules.filter(isReady)
+        const readyDone = readyLessons.filter((m) => done.has(m.id)).length
+        const share = available && readyLessons.length ? (readyDone / readyLessons.length) * 100 : 0
         return (
           <section
             key={t.id}
@@ -76,7 +78,7 @@ export function CourseNav({ trackId, moduleId, progress }: Props) {
                   <span className="nav-track-label">{t.label}</span>
                   {available ? (
                     <span className="nav-track-count">
-                      {done.size}/{t.modules.length}
+                      {readyDone}/{readyLessons.length}
                     </span>
                   ) : (
                     <span className="nav-soon">
@@ -90,8 +92,9 @@ export function CourseNav({ trackId, moduleId, progress }: Props) {
             {expanded && (
               <ol className="nav-path">
                 {t.modules.map((m, i) => {
-                  const finished = done.has(m.id)
-                  const here = current && m.id === moduleId
+                  const playable = available && isReady(m)
+                  const finished = playable && done.has(m.id)
+                  const here = playable && current && m.id === moduleId
                   const node = (
                     <>
                       <span className={`nav-node${finished ? ' is-done' : ''}${here ? ' is-current' : ''}`}>
@@ -102,7 +105,7 @@ export function CourseNav({ trackId, moduleId, progress }: Props) {
                   )
                   return (
                     <li key={m.id} className={finished ? 'is-done' : ''}>
-                      {available ? (
+                      {playable ? (
                         <a
                           href={href(`${t.id}/${m.id}`)}
                           className={`${here ? 'is-current' : ''}${finished ? ' is-done' : ''}`}

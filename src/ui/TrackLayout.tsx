@@ -4,7 +4,7 @@ import { href } from '../router'
 import { modulePageMeta, useDocumentHead } from '../seo'
 import { courses } from '../tracks/catalog'
 import { saveModuleDone, useProgress } from '../tracks/progress'
-import type { ListedTrack, TrackContent } from '../tracks/types'
+import { isReady, type ListedTrack, type TrackContent } from '../tracks/types'
 import { CourseNav } from './CourseNav'
 import { Quiz } from './Quiz'
 import { SiteFooter } from './SiteFooter'
@@ -37,9 +37,12 @@ export function TrackLayout({ track, content, moduleId }: Props) {
   )
   const markModule = () => saveModuleDone(track.id, meta.id)
 
-  const prev = track.modules[index - 1]
-  const next = track.modules[index + 1]
+  const playable = track.modules.filter(isReady)
+  const at = playable.findIndex((m) => m.id === meta.id)
+  const prev = playable[at - 1]
+  const next = playable[at + 1]
   const nextTrack = courses.slice(courses.findIndex((c) => c.id === track.id) + 1).find((c) => c.loadContent)
+  const nextStart = nextTrack?.modules.find(isReady)
   const Sim = mod.sim
   const taskDone = tasksDone.has(meta.id)
 
@@ -110,7 +113,7 @@ export function TrackLayout({ track, content, moduleId }: Props) {
                 Next: {next.title} <ArrowRight size={16} />
               </a>
             ) : nextTrack ? (
-              <a className="btn primary" href={href(`${nextTrack.id}/${nextTrack.modules[0].id}`)}>
+              <a className="btn primary" href={href(`${nextTrack.id}/${nextStart!.id}`)}>
                 Next course: {nextTrack.title} <ArrowRight size={16} />
               </a>
             ) : (

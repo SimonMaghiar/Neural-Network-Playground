@@ -145,14 +145,14 @@ export const content: TrackContent = {
     deepDive: (
       <>
         <p>
-          Machine learning also includes methods that are not neural networks at all, such as linear regression (Module
-          3), decision trees and their combinations ("random forests", "gradient boosting"). These are still widely used
+          Machine learning also includes methods that are not neural networks at all, such as linear regression (the
+          house-price pattern), decision trees and their combinations ("random forests", "gradient boosting"). These are still widely used
           for table-shaped data, like prices, risks and sales forecasts.
         </p>
         <p>
           Deep learning took over around 2012, when a deep network called AlexNet beat every other method at recognising
           images. Three things came together: big datasets, better training tricks, and GPUs, which you will meet in
-          Track 2. LLMs arrived after the transformer design was published in 2017 (Track 3).
+          Track 3. LLMs arrived after the transformer design was published in 2017 (Track 2).
         </p>
       </>
     ),
@@ -471,7 +471,7 @@ export const content: TrackContent = {
         <p>
           Both jobs are mountains of multiplications and additions: for every answer, roughly every weight is used. Train
           once (huge cost, done by the model maker), then run inference millions of times (a smaller cost per answer, but
-          paid for every single user). That is why AI needs very special hardware, which is exactly where Track 2 picks
+          paid for every single user). That is why AI needs very special hardware, which is exactly where Track 3 picks
           up.
         </p>
       </>
@@ -485,7 +485,7 @@ export const content: TrackContent = {
       'Training = forward pass + compare + backward pass, repeated over huge amounts of data. The weights change.',
       'Inference = forward pass only. The weights are frozen.',
       'One training step costs about 3 times the math of one answer, and training repeats it over billions of examples.',
-      'Every weight must be stored in memory and used for every answer: the reason AI needs special hardware (Track 2).',
+      'Every weight must be stored in memory and used for every answer: the reason AI needs special hardware (Track 3).',
     ],
     quiz: [
       {
@@ -509,7 +509,7 @@ export const content: TrackContent = {
         question: 'A model has 8 billion parameters. About how many operations does one forward pass need?',
         options: ['About 8 thousand', 'About 16 billion', 'About 8 trillion', 'About 16'],
         answer: 1,
-        explain: 'Roughly 2 per parameter (one multiply, one add): 2 × 8 billion = 16 billion. Track 2 starts from exactly this number.',
+        explain: 'Roughly 2 per parameter (one multiply, one add): 2 × 8 billion = 16 billion. Track 3 starts from exactly this number.',
       },
     ],
     deepDive: (

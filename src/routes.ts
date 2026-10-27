@@ -1,7 +1,7 @@
 import { findInfoPage, infoPages, type InfoPage } from './pages/info'
 import { href } from './router'
 import { findTrack, tracks } from './tracks/catalog'
-import type { ListedTrack } from './tracks/types'
+import { isReady, type ListedTrack } from './tracks/types'
 
 export type Page =
   | { kind: 'home' }
@@ -25,7 +25,7 @@ export function resolveRoute(route: string[]): Page {
   if (track.page) return subPaths(track).includes(sub) ? { kind: 'custom', track, sub } : { kind: 'notFound' }
   if (track.loadContent) {
     if (!sub) return { kind: 'track', track, moduleIndex: null }
-    const moduleIndex = track.modules.findIndex((m) => m.id === sub)
+    const moduleIndex = track.modules.findIndex((m) => m.id === sub && isReady(m))
     if (moduleIndex >= 0) return { kind: 'track', track, moduleIndex }
   }
   return { kind: 'notFound' }
@@ -36,7 +36,7 @@ export function allPaths(): string[] {
   const paths = ['/']
   for (const t of tracks) {
     if (t.page) paths.push(...subPaths(t).map((sub) => href(sub ? `${t.id}/${sub}` : t.id)))
-    else if (t.loadContent) paths.push(href(t.id), ...t.modules.map((m) => href(`${t.id}/${m.id}`)))
+    else if (t.loadContent) paths.push(href(t.id), ...t.modules.filter(isReady).map((m) => href(`${t.id}/${m.id}`)))
   }
   paths.push(...infoPages.map((p) => href(p.id)))
   return paths

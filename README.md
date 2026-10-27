@@ -4,11 +4,16 @@ An interactive course that takes complete beginners from a single neuron to the 
 
 **Courses** (a numbered, step-by-step path):
 
-1. **AI and Neural Network Foundations**: seven hands-on modules for complete beginners covering what AI is, machine learning vs deep learning vs LLMs, data and predictions, the neuron, loss and gradient descent, hidden layers, and training vs inference.
-2. **Why AI Runs on GPUs**: nine hands-on modules covering parallelism, matrix multiplication, the memory wall, the memory hierarchy, threads and warps, tiling, number precision and GPU sizing.
-3. **How LLMs Work**: nine hands-on modules covering next-word prediction, tokenization, embeddings, attention, the transformer, sampling, the training stages, the KV cache and quantization.
-4. **Running LLMs at Scale** (coming soon)
-5. **What LLMs Are Used For** (coming soon)
+1. **How Do Machines Learn?**: what AI is, how it differs from ordinary software, neurons, patterns, and how a network learns from its mistakes. Seven modules are playable; the rest of the lesson list is still to come.
+2. **How Does ChatGPT Actually Work?**: tokens, embeddings, attention, the transformer, sampling, training, context, and making a model smaller. Nine modules are playable.
+3. **Why Does AI Run on GPUs?**: why the work is so much arithmetic, CPUs versus GPUs, memory, threads, tiling, number precision, and how much memory a model needs. Nine modules are playable.
+4. **How Does AI Serve Millions of People?** (coming soon)
+5. **Your First AI-Powered Application** (coming soon)
+6. **How Do You Give AI Its Own Knowledge?** (coming soon)
+7. **From Chatbots to AI Agents** (coming soon)
+8. **AI Beyond Text: Seeing, Hearing and Creating** (coming soon)
+9. **Can You Really Trust AI?** (coming soon)
+10. **From AI Prototype to Real Product** (coming soon)
 
 **Lab** (hands-on workshops, outside the numbered path):
 
@@ -107,11 +112,16 @@ src/
     catalog.ts      The courses (numbered by position) and the labs
     types.ts        Shared types: TrackMeta, ModuleContent, SimProps, …
     TrackPage.tsx   Generic page for any standard track (loads its content on demand)
-    ai/             Track 1
-    gpu/            Track 2
-    llm/            Track 3
+    ai/             Track 1, How Do Machines Learn?
+    llm/            Track 2, How Does ChatGPT Actually Work?
+    gpu/            Track 3, Why Does AI Run on GPUs?
     serving/        Track 4 (outline only)
-    apps/           Track 5 (outline only)
+    first-app/      Track 5 (outline only)
+    knowledge/      Track 6 (outline only)
+    agents/         Track 7 (outline only)
+    senses/         Track 8 (outline only)
+    trust/          Track 9 (outline only)
+    product/        Track 10 (outline only)
     foundations/    Lab: lessons and free playground (custom page)
   site.ts           Site name, domain, contact email and owner
   site.css          Global header, search box, footer and site pages

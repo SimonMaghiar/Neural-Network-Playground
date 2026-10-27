@@ -3,7 +3,7 @@ import { href } from '../router'
 import { homeMeta, useDocumentHead } from '../seo'
 import { courses, labs } from '../tracks/catalog'
 import { useProgress } from '../tracks/progress'
-import { isAvailable, type ListedTrack } from '../tracks/types'
+import { isAvailable, isReady, type ListedTrack } from '../tracks/types'
 import { SiteFooter } from '../ui/SiteFooter'
 import { useHydrated } from '../ui/useHydrated'
 
@@ -11,7 +11,9 @@ const PREVIEW = 5
 
 function TrackCard({ track, done }: { track: ListedTrack; done: number }) {
   const available = isAvailable(track)
-  const count = track.modules.length
+  const published = track.modules.filter(isReady)
+  const listed = track.modules.length
+  const count = available ? published.length : listed
   const body = (
     <>
       <div className="track-card-top">
@@ -21,7 +23,7 @@ function TrackCard({ track, done }: { track: ListedTrack; done: number }) {
           <h2>{track.title}</h2>
         </div>
         <span className="track-count">
-          {count} {track.section === 'lab' ? 'lessons' : 'modules'}
+          {listed} {track.section === 'lab' ? 'lessons' : 'modules'}
         </span>
       </div>
       <p className="track-desc">{track.description}</p>
@@ -30,7 +32,7 @@ function TrackCard({ track, done }: { track: ListedTrack; done: number }) {
         {track.modules.slice(0, PREVIEW).map((m) => (
           <li key={m.id}>{m.title}</li>
         ))}
-        {count > PREVIEW && <li className="more">+ {count - PREVIEW} more</li>}
+        {listed > PREVIEW && <li className="more">+ {listed - PREVIEW} more</li>}
       </ol>
       <div className="track-card-foot">
         {available ? (
@@ -74,6 +76,7 @@ export function Home() {
     return (progress[t.id] ?? []).length
   }
   const first = courses[0]
+  const firstLesson = first.modules.find(isReady) ?? first.modules[0]
 
   return (
     <div className="home">
@@ -89,7 +92,7 @@ export function Home() {
           network in the lab.
         </p>
         <div className="hero-actions">
-          <a className="btn primary big" href={href(`${first.id}/${first.modules[0].id}`)}>
+          <a className="btn primary big" href={href(`${first.id}/${firstLesson.id}`)}>
             Start {first.label} <ArrowRight size={18} />
           </a>
           <a className="btn big" href={href(labs[0].id)}>

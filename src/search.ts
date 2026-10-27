@@ -2,6 +2,7 @@ import { lessons } from './lessons'
 import { infoPages } from './pages/info'
 import { href } from './router'
 import { courses, labs } from './tracks/catalog'
+import { isReady } from './tracks/types'
 import { glossary, glossaryAnchor } from './ui/glossary'
 
 export type ResultKind = 'Course' | 'Module' | 'Lab' | 'Lesson' | 'Term' | 'Page'
@@ -21,7 +22,7 @@ export function buildIndex(goals: Record<string, string> = {}): SearchItem[] {
   const items: SearchItem[] = []
   for (const t of courses.filter((c) => c.loadContent)) {
     items.push({ kind: 'Course', title: t.title, context: t.label, text: t.description, href: href(t.id) })
-    for (const m of t.modules) {
+    for (const m of t.modules.filter(isReady)) {
       const path = `${t.id}/${m.id}`
       items.push({ kind: 'Module', title: m.title, context: `${t.label}: ${t.title}`, text: goals[path], href: href(path) })
     }

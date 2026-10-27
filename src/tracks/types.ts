@@ -34,7 +34,12 @@ export interface TrackPageProps {
 export interface ModuleMeta {
   id: string
   title: string
+  /** False for a lesson that is on the curriculum but has no page yet. */
+  ready?: boolean
 }
+
+/** A lesson with a real page. Outline lessons set `ready` to false. */
+export const isReady = (m: ModuleMeta) => m.ready !== false
 
 /**
  * Everything the home page needs to know about a track. Kept light: the heavy

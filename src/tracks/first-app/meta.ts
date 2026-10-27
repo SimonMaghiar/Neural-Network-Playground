@@ -1,0 +1,31 @@
+import type { TrackMeta } from '../types'
+
+export const firstAppTrack: TrackMeta = {
+  id: 'first-app',
+  code: 'APP',
+  title: 'Your First AI-Powered Application',
+  description: 'How to pick a model, call it from your own code, and shape its answers into a working chatbot.',
+  color: '#facc15',
+  level: 'Intermediate',
+  modules: [
+    { id: 'models-to-apps', title: 'From AI Models to Real Applications' },
+    { id: 'what-is-an-api', title: 'What Is an API, and How Does It Work?' },
+    { id: 'http-json', title: 'HTTP, JSON and API Keys: The Essentials' },
+    { id: 'ecosystem', title: 'Meet the AI Model Ecosystem' },
+    { id: 'open-weight', title: 'Open-Weight Models vs Hosted AI Services' },
+    { id: 'benchmarks', title: 'AI Benchmarks: How Do We Know Which Model Is Better?' },
+    { id: 'reasoning', title: 'Reasoning Models: Why Some AI Systems Take Longer to Answer' },
+    { id: 'choose-model', title: 'How to Choose the Right AI Model' },
+    { id: 'hugging-face', title: 'Discovering Models on Hugging Face' },
+    { id: 'local', title: 'Running Your First LLM Locally' },
+    { id: 'first-call', title: 'Making Your First AI API Call' },
+    { id: 'system-prompts', title: 'System Prompts: Giving AI a Role and Instructions' },
+    { id: 'prompt-engineering', title: 'Prompt Engineering: Asking Better Questions' },
+    { id: 'few-shot', title: 'Few-Shot Prompting: Teaching Through Examples' },
+    { id: 'structured', title: 'Structured Outputs: Making AI Return Useful Data' },
+    { id: 'streaming', title: "Streaming: Displaying Answers as They're Generated" },
+    { id: 'context-engineering', title: 'Context Engineering: Giving AI the Right Information' },
+    { id: 'token-costs', title: 'Understanding Tokens, Limits and API Costs' },
+    { id: 'first-chatbot', title: 'Build Your First AI Chatbot' },
+  ],
+}

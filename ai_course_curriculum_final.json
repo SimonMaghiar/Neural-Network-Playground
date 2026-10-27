@@ -1,0 +1,206 @@
+{
+  "title": "From Zero to AI Engineer",
+  "description": "A beginner-friendly, progressively structured journey from neural networks to building and deploying reliable AI applications.",
+  "modules": [
+    {
+      "title": "How Do Machines Learn?",
+      "lessons": [
+        "The Big Question: What Is Artificial Intelligence?",
+        "Traditional Software vs AI: What's the Difference?",
+        "Machine Learning, Deep Learning and LLMs: The AI Family Tree",
+        "Supervised vs Unsupervised vs Reinforcement Learning",
+        "Where Does AI Get Its Training Data?",
+        "How Machines Discover Patterns in Data",
+        "Meet the Artificial Neuron",
+        "How a Neuron Makes a Decision",
+        "Connecting Neurons: Building a Neural Network",
+        "How AI Learns From Its Mistakes",
+        "Gradient Descent: Finding Better Weights",
+        "Backpropagation: How Neural Networks Know What to Change",
+        "Training vs Inference: Learning vs Using",
+        "When AI Memorizes Instead of Learning",
+        "Why Better Data Can Beat a Bigger Model",
+        "What Does an AI Model Actually Remember?",
+        "From Neural Networks to Language Models"
+      ]
+    },
+    {
+      "title": "How Does ChatGPT Actually Work?",
+      "lessons": [
+        "The Secret Behind LLMs: Predicting the Next Token",
+        "How AI Breaks Language Into Tokens",
+        "From Words to Numbers: Understanding Embeddings",
+        "How AI Represents Meaning as Vectors",
+        "Why Word Order Matters",
+        "Attention: How AI Connects Words Across a Sentence",
+        "Multi-Head Attention: Looking at Language From Different Angles",
+        "Inside the Transformer: The Engine Behind Modern LLMs",
+        "Mixture of Experts: How AI Activates Only Part of a Model",
+        "How AI Generates an Answer, One Token at a Time",
+        "Why the Same Prompt Can Produce Different Answers",
+        "How LLMs Learn From the Internet and Other Data",
+        "Fine-Tuning and RLHF: Teaching AI to Follow Instructions",
+        "Context Windows: How Much Can an LLM Read at Once?",
+        "Why Bigger Context Windows Don't Always Mean Better Memory",
+        "Why AI Hallucinates",
+        "Can We Make an AI Model Smaller Without Ruining It?"
+      ]
+    },
+    {
+      "title": "Why Does AI Run on GPUs?",
+      "lessons": [
+        "Why AI Is So Computationally Expensive",
+        "CPUs vs GPUs: A Few Experts vs an Army of Workers",
+        "The Math Behind AI: Matrix Multiplication",
+        "Parallel Computing: Thousands of Calculations at Once",
+        "Why Moving Data Can Be Slower Than Computing",
+        "Inside GPU Memory: Registers, Cache and VRAM",
+        "How Thousands of GPU Threads Work Together",
+        "Tiling: The Trick That Makes Matrix Multiplication Faster",
+        "Why AI Uses Different Number Precisions",
+        "Tensor Cores: Hardware Built for AI",
+        "How Much GPU Memory Does an AI Model Need?",
+        "Why Training AI Is Harder Than Running It"
+      ]
+    },
+    {
+      "title": "How Does AI Serve Millions of People?",
+      "lessons": [
+        "What Happens After You Press Send?",
+        "Prefill vs Decode: The Two Phases of LLM Inference",
+        "Why AI Responds Quickly but Generates Slowly",
+        "Latency vs Throughput: Speed Isn't Just One Number",
+        "Batching: How One GPU Handles Multiple Users",
+        "Continuous Batching: Keeping GPUs Busy",
+        "KV Cache: Why AI Doesn't Recalculate Everything",
+        "PagedAttention: Managing AI Memory Efficiently",
+        "Speculative Decoding: Can a Small Model Speed Up a Big One?",
+        "When One GPU Isn't Enough",
+        "Inside an LLM Serving Engine",
+        "How Much Does One AI Response Actually Cost?",
+        "Why Some AI Models Are Faster and Cheaper Than Others"
+      ]
+    },
+    {
+      "title": "Your First AI-Powered Application",
+      "lessons": [
+        "From AI Models to Real Applications",
+        "What Is an API, and How Does It Work?",
+        "HTTP, JSON and API Keys: The Essentials",
+        "Meet the AI Model Ecosystem",
+        "Open-Weight Models vs Hosted AI Services",
+        "AI Benchmarks: How Do We Know Which Model Is Better?",
+        "Reasoning Models: Why Some AI Systems Take Longer to Answer",
+        "How to Choose the Right AI Model",
+        "Discovering Models on Hugging Face",
+        "Running Your First LLM Locally",
+        "Making Your First AI API Call",
+        "System Prompts: Giving AI a Role and Instructions",
+        "Prompt Engineering: Asking Better Questions",
+        "Few-Shot Prompting: Teaching Through Examples",
+        "Structured Outputs: Making AI Return Useful Data",
+        "Streaming: Displaying Answers as They're Generated",
+        "Context Engineering: Giving AI the Right Information",
+        "Understanding Tokens, Limits and API Costs",
+        "Build Your First AI Chatbot"
+      ]
+    },
+    {
+      "title": "How Do You Give AI Its Own Knowledge?",
+      "lessons": [
+        "Why LLMs Don't Know Everything",
+        "How AI Searches by Meaning Instead of Keywords",
+        "Embeddings: Turning Documents Into Searchable Vectors",
+        "Measuring Similarity Between Ideas",
+        "What Is a Vector Database?",
+        "How Vector Search Finds the Closest Matches",
+        "Meet FAISS, Chroma, Pinecone and Qdrant",
+        "RAG: Giving AI Access to External Knowledge",
+        "How to Turn Documents Into AI-Readable Data",
+        "Chunking: Why Document Size Matters",
+        "Inside a Complete RAG Pipeline",
+        "Hybrid Search and Reranking: Finding Better Answers",
+        "RAG vs Fine-Tuning: Which Should You Use?",
+        "LoRA: How to Fine-Tune AI Without Retraining Everything",
+        "LangChain and LlamaIndex: Building RAG Applications",
+        "Build an AI That Can Answer Questions About Your Documents"
+      ]
+    },
+    {
+      "title": "From Chatbots to AI Agents",
+      "lessons": [
+        "What Makes an AI Agent Different From a Chatbot?",
+        "How AI Can Use Tools and Call Functions",
+        "How an LLM Chooses the Right Tool",
+        "The Agent Loop: Think, Act, Observe, Repeat",
+        "ReAct: Combining Reasoning With Actions",
+        "How Agents Remember Information",
+        "Managing an Agent's Context",
+        "Build a Simple AI Agent From Scratch",
+        "Agent Frameworks: When Do You Actually Need One?",
+        "MCP: A Universal Way to Connect AI to Tools",
+        "Inside MCP Clients and Servers",
+        "Build Your First MCP Server",
+        "Multi-Agent Systems: When Multiple AIs Work Together",
+        "Keeping AI Agents Under Control",
+        "Build an AI Research Assistant"
+      ]
+    },
+    {
+      "title": "AI Beyond Text: Seeing, Hearing and Creating",
+      "lessons": [
+        "What Happens When AI Goes Beyond Text?",
+        "How Computers Turn Images Into Numbers",
+        "How AI Understands What's in a Picture",
+        "How AI Generates Images From Words",
+        "Diffusion Models: Creating Images From Noise",
+        "How AI Converts Speech Into Text",
+        "How AI Generates Human-Like Speech",
+        "How Real-Time Voice Assistants Work",
+        "How AI Understands Video",
+        "Combining Text, Images and Audio in One Model",
+        "Build an AI Assistant That Can See or Hear"
+      ]
+    },
+    {
+      "title": "Can You Really Trust AI?",
+      "lessons": [
+        "Why AI Can Sound Confident and Still Be Wrong",
+        "How Do You Know Whether an AI Answer Is Good?",
+        "Building a Test Dataset for Your AI",
+        "Humans vs AI Judges: Who Should Evaluate Answers?",
+        "Measuring the Quality of a RAG System",
+        "How to Test an AI Agent",
+        "Regression Testing: Catching Problems Before Users Do",
+        "Understanding Hallucinations and Their Causes",
+        "Prompt Injection: When Untrusted Text Becomes an Attack",
+        "Keeping Private Data Safe",
+        "Bias, Fairness and Responsible AI",
+        "Guardrails: What Should AI Be Allowed to Do?",
+        "Observability: Seeing What Your AI Is Doing",
+        "Tools for Evaluating and Monitoring AI",
+        "Making Your AI More Reliable, One Test at a Time"
+      ]
+    },
+    {
+      "title": "From AI Prototype to Real Product",
+      "lessons": [
+        "What Does a Production AI Application Look Like?",
+        "How Frontends, Backends and AI Models Work Together",
+        "When Should You NOT Use AI?",
+        "Designing Your AI Application Architecture",
+        "Protecting API Keys and User Accounts",
+        "Rate Limits, Retries and Handling Failures",
+        "Making AI Responses Feel Instant",
+        "Managing Conversation History and Context",
+        "How to Make AI Applications Faster and Cheaper",
+        "Deploying Your AI Application to the Cloud",
+        "Monitoring Performance, Errors and Costs",
+        "Versioning Prompts, Models and Evaluations",
+        "Prompting vs RAG vs Fine-Tuning: Making the Right Choice",
+        "Using AI Coding Assistants to Build Faster",
+        "Final Project: Build and Launch Your Own AI Application"
+      ]
+    }
+  ]
+}

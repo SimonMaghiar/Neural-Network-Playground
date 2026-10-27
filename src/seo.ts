@@ -3,7 +3,7 @@ import type { InfoPage } from './pages/info'
 import { href } from './router'
 import { SITE_NAME, SITE_URL } from './site'
 import { courses } from './tracks/catalog'
-import type { ListedTrack, ModuleContent, TrackContent } from './tracks/types'
+import { isReady, type ListedTrack, type ModuleContent, type TrackContent } from './tracks/types'
 import { glossary, glossaryAnchor } from './ui/glossary'
 
 /** Everything search engines and link previews need to know about one page. */
@@ -82,13 +82,19 @@ export function trackPageMeta(track: ListedTrack, content: TrackContent): PageMe
     jsonLd: [
       {
         ...course(track),
-        hasPart: track.modules.map((m, i) => ({
-          '@type': 'LearningResource',
-          name: m.title,
-          description: content[m.id]?.goal,
-          url: url(href(`${track.id}/${m.id}`)),
-          position: i + 1,
-        })),
+        hasPart: track.modules.flatMap((m, i) =>
+          isReady(m)
+            ? [
+                {
+                  '@type': 'LearningResource',
+                  name: m.title,
+                  description: content[m.id]?.goal,
+                  url: url(href(`${track.id}/${m.id}`)),
+                  position: i + 1,
+                },
+              ]
+            : [],
+        ),
       },
       breadcrumbs([{ name: track.title, path: href(track.id) }]),
     ],
