@@ -73,32 +73,30 @@ export function TrackLayout({ track, content, moduleId }: Props) {
       </aside>
 
       <main className="module-main" ref={main}>
-        <article className="module" key={meta.id}>
-          <div className={sheetDark ? 'lesson-sheet is-dark' : 'lesson-sheet'}>
-            <button
-              type="button"
-              className="sheet-theme"
-              aria-pressed={sheetDark}
-              aria-label={sheetDark ? 'Use the light page' : 'Use the dark page'}
-              onClick={toggleSheet}
-            >
-              {sheetDark ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <header className="module-head">
-              <div className="module-kicker">
-                <a href={href(track.id)}>
-                  {track.label}: {track.title}
-                </a>{' '}
-                · Module {index + 1} of {track.modules.length}
-              </div>
-              <h1>{meta.title}</h1>
-              <p className="module-goal">
-                <Target size={16} /> {mod.goal}
-              </p>
-            </header>
+        <article className={sheetDark ? 'module lesson-sheet is-dark' : 'module lesson-sheet'} key={meta.id}>
+          <button
+            type="button"
+            className="sheet-theme"
+            aria-pressed={sheetDark}
+            aria-label={sheetDark ? 'Use the light page' : 'Use the dark page'}
+            onClick={toggleSheet}
+          >
+            {sheetDark ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <header className="module-head">
+            <div className="module-kicker">
+              <a href={href(track.id)}>
+                {track.label}: {track.title}
+              </a>{' '}
+              · Module {index + 1} of {track.modules.length}
+            </div>
+            <h1>{meta.title}</h1>
+            <p className="module-goal">
+              <Target size={16} /> {mod.goal}
+            </p>
+          </header>
 
-            <section className="module-intro">{mod.intro}</section>
-          </div>
+          <section className="module-intro">{mod.intro}</section>
 
           <section className="takeaways">
             <h2>

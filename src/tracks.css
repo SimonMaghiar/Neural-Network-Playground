@@ -1188,13 +1188,31 @@ a.track-card:hover {
   color: var(--ink);
 }
 
-.is-brand .takeaways ul,
-.is-brand .deep-dive {
-  border: 3px solid var(--char);
-  border-radius: 14px;
-  background: var(--char);
-  color: var(--ink);
-  box-shadow: 4px 4px 0 #000;
+.is-brand .lesson-sheet h2,
+.is-brand .lesson-sheet .section-title,
+.is-brand .lesson-sheet .deep-dive summary,
+.is-brand .lesson-sheet .quiz-question {
+  color: var(--char);
+}
+
+.is-brand .lesson-sheet.is-dark h2,
+.is-brand .lesson-sheet.is-dark .section-title,
+.is-brand .lesson-sheet.is-dark .deep-dive summary,
+.is-brand .lesson-sheet.is-dark .quiz-question {
+  color: #f9f4da;
+}
+
+.is-brand .lesson-sheet .takeaways ul,
+.is-brand .lesson-sheet .deep-dive {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+.is-brand .lesson-sheet .deep-dive {
+  padding: 0;
 }
 
 .is-brand .module-complete {
@@ -1966,12 +1984,13 @@ a.track-card:hover {
 
 .quiz-options {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   padding-left: 32px;
 }
 
 .quiz-option {
+  height: 100%;
   text-align: left;
   padding: 9px 12px;
   border-radius: 9px;
