@@ -1025,6 +1025,157 @@ a.track-card:hover {
   text-transform: uppercase;
 }
 
+.is-brand .lesson-sheet {
+  position: relative;
+  padding: 28px 32px 32px;
+  border: 3px solid var(--char);
+  border-radius: 18px;
+  background: var(--ink);
+  color: var(--char);
+  box-shadow: 7px 7px 0 var(--char);
+}
+
+.is-brand .lesson-sheet.is-dark {
+  background: #0f0d0e;
+  color: #f9f4da;
+  border-color: #3d3836;
+  box-shadow: 7px 7px 0 #000;
+}
+
+.is-brand .sheet-theme {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 2px solid var(--char);
+  border-radius: 999px;
+  background: var(--char);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--char);
+}
+
+.is-brand .lesson-sheet.is-dark .sheet-theme {
+  border-color: var(--yellow);
+  background: transparent;
+  color: var(--yellow);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.is-brand .sheet-theme:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--char);
+}
+
+.is-brand .lesson-sheet.is-dark .sheet-theme:hover {
+  box-shadow: 3px 3px 0 #000;
+}
+
+.is-brand .lesson-sheet .module-head {
+  padding-right: 48px;
+}
+
+.is-brand .module-main {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.is-brand .lesson-sheet h1 {
+  margin: 0 0 28px;
+}
+
+.is-brand .lesson-sheet .module-goal {
+  margin: 0 0 32px;
+}
+
+.is-brand .lesson-sheet .module-intro p {
+  margin: 0 0 24px;
+}
+
+.is-brand .lesson-sheet .module-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.is-brand .module {
+  max-width: none;
+  gap: 48px;
+}
+
+.is-brand .module h2,
+.is-brand .section-title {
+  margin-bottom: 20px;
+}
+
+.is-brand .lesson-sheet h1,
+.is-brand .lesson-sheet .module-goal,
+.is-brand .lesson-sheet .module-intro,
+.is-brand .lesson-sheet .module-intro b,
+.is-brand .lesson-sheet .module-intro strong {
+  color: var(--char);
+}
+
+.is-brand .lesson-sheet .module-kicker {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding: 4px 10px 5px;
+  background: var(--track);
+  color: var(--char);
+}
+
+.is-brand .lesson-sheet .module-kicker a {
+  color: inherit;
+  background: none;
+  padding: 0;
+}
+
+.is-brand .lesson-sheet .module-goal svg {
+  color: var(--char);
+}
+
+.is-brand .lesson-sheet .module-intro {
+  font-size: 17.5px;
+  line-height: 1.7;
+}
+
+.is-brand .lesson-sheet .module-intro b,
+.is-brand .lesson-sheet .module-intro strong {
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 100% 0.32em;
+  box-decoration-break: clone;
+}
+
+.is-brand .lesson-sheet .term-tip b {
+  background: none;
+  color: var(--ink);
+}
+
+.is-brand .lesson-sheet.is-dark h1,
+.is-brand .lesson-sheet.is-dark .module-goal,
+.is-brand .lesson-sheet.is-dark .module-intro,
+.is-brand .lesson-sheet.is-dark .module-intro b,
+.is-brand .lesson-sheet.is-dark .module-intro strong {
+  color: #f9f4da;
+}
+
+.is-brand .lesson-sheet.is-dark .module-intro b,
+.is-brand .lesson-sheet.is-dark .module-intro strong {
+  padding-bottom: 0.12em;
+  background-position: left bottom;
+  background-size: 100% 0.1em;
+}
+
+.is-brand .lesson-sheet.is-dark code {
+  background: #231f20;
+  border-color: #3d3836;
+  color: var(--yellow);
+}
+
 .is-brand .module-kicker,
 .is-brand .module-kicker a {
   color: var(--yellow);

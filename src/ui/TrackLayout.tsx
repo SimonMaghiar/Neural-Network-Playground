@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { ArrowLeft, ArrowRight, BookOpen, CircleCheck, FlaskConical, Lightbulb, Target, Trophy } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, CircleCheck, FlaskConical, Lightbulb, Moon, Sun, Target, Trophy } from 'lucide-react'
 import { href } from '../router'
 import { modulePageMeta, useDocumentHead } from '../seo'
 import { courses } from '../tracks/catalog'
@@ -9,6 +9,9 @@ import { isReady, type ListedTrack, type TrackContent } from '../tracks/types'
 import { CourseNav } from './CourseNav'
 import { Quiz } from './Quiz'
 import { SiteFooter } from './SiteFooter'
+import { useHydrated } from './useHydrated'
+
+const SHEET_THEME = 'lesson-sheet-theme'
 
 interface Props {
   track: ListedTrack
@@ -26,6 +29,21 @@ export function TrackLayout({ track, content, moduleId }: Props) {
   const [tasksDone, setTasksDone] = useState<Set<string>>(() => new Set())
   const main = useRef<HTMLElement>(null)
   const simPanel = useRef<HTMLElement>(null)
+  const hydrated = useHydrated()
+  const [sheetDark, setSheetDark] = useState(false)
+
+  useEffect(() => {
+    if (!hydrated) return
+    setSheetDark(localStorage.getItem(SHEET_THEME) === 'dark')
+  }, [hydrated])
+
+  const toggleSheet = () => {
+    setSheetDark((prev) => {
+      const next = !prev
+      localStorage.setItem(SHEET_THEME, next ? 'dark' : 'light')
+      return next
+    })
+  }
 
   useEffect(() => {
     main.current?.scrollTo(0, 0)
@@ -56,20 +74,31 @@ export function TrackLayout({ track, content, moduleId }: Props) {
 
       <main className="module-main" ref={main}>
         <article className="module" key={meta.id}>
-          <header className="module-head">
-            <div className="module-kicker">
-              <a href={href(track.id)}>
-                {track.label}: {track.title}
-              </a>{' '}
-              · Module {index + 1} of {track.modules.length}
-            </div>
-            <h1>{meta.title}</h1>
-            <p className="module-goal">
-              <Target size={16} /> {mod.goal}
-            </p>
-          </header>
+          <div className={sheetDark ? 'lesson-sheet is-dark' : 'lesson-sheet'}>
+            <button
+              type="button"
+              className="sheet-theme"
+              aria-pressed={sheetDark}
+              aria-label={sheetDark ? 'Use the light page' : 'Use the dark page'}
+              onClick={toggleSheet}
+            >
+              {sheetDark ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <header className="module-head">
+              <div className="module-kicker">
+                <a href={href(track.id)}>
+                  {track.label}: {track.title}
+                </a>{' '}
+                · Module {index + 1} of {track.modules.length}
+              </div>
+              <h1>{meta.title}</h1>
+              <p className="module-goal">
+                <Target size={16} /> {mod.goal}
+              </p>
+            </header>
 
-          <section className="module-intro">{mod.intro}</section>
+            <section className="module-intro">{mod.intro}</section>
+          </div>
 
           <section className="takeaways">
             <h2>
