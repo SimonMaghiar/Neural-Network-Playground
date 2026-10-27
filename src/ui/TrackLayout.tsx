@@ -45,13 +45,9 @@ export function TrackLayout({ track, content, moduleId }: Props) {
 
   return (
     <div className="app track-app" style={{ ['--track' as string]: track.color }}>
-      <aside className="sidebar">
-        <div className="sidebar-heading">Courses</div>
+      <aside className="sidebar course-sidebar">
         <CourseNav trackId={track.id} moduleId={meta.id} progress={progress} />
-        <p className="hint">
-          A module counts as done when you answer all of its check questions correctly. Your progress is saved in this
-          browser.
-        </p>
+        <p className="nav-note">Finish every check question to mark a module done. Progress stays in this browser.</p>
       </aside>
 
       <main className="module-main" ref={main}>
