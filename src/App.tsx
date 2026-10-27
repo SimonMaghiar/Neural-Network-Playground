@@ -33,12 +33,12 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className={page.kind === 'home' ? 'app-shell is-landing' : 'app-shell'}>
       <SiteHeader section={route[0] ?? ''} />
       <div className="site-page">
         <Suspense fallback={<div className="page-loading">Loading…</div>}>{content}</Suspense>
       </div>
       {page.kind === 'track' && page.track.section === 'course' && <CourseProgressBar color={page.track.color} />}
-    </>
+    </div>
   )
 }

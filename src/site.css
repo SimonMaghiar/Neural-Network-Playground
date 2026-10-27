@@ -4,6 +4,150 @@
   --header-h: 56px;
 }
 
+.app-shell {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Homepage only. Course and info pages keep the existing theme. */
+.app-shell.is-landing {
+  --header-h: 68px;
+  --ink: #f9f4da;
+  --coal: #0f0d0e;
+  --char: #231f20;
+  --yellow: #fcba28;
+  --blue: #12b5e5;
+  --pink: #f38ba3;
+  --orange: #fc7428;
+  --display: 'Paytone One', Outfit, sans-serif;
+  --body: Outfit, system-ui, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background-color: var(--coal);
+  background-image:
+    repeating-linear-gradient(to right, var(--char) 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(var(--char) 0 1px, transparent 1px 30px);
+  font-family: var(--body);
+}
+
+.app-shell.is-landing .site-header {
+  height: 68px;
+  background: transparent;
+  border-bottom: none;
+}
+
+.app-shell.is-landing .site-logo {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.app-shell.is-landing .site-logo-text {
+  display: inline;
+}
+
+@media (max-width: 720px) {
+  .app-shell.is-landing .site-logo {
+    font-size: 15px;
+  }
+}
+
+.app-shell.is-landing .site-logo-mark {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  color: var(--orange);
+}
+
+.app-shell.is-landing .site-nav a {
+  color: var(--ink);
+  font-weight: 500;
+  border-radius: 999px;
+}
+
+.app-shell.is-landing .site-nav a:hover,
+.app-shell.is-landing .site-nav a[aria-current='page'] {
+  color: var(--char);
+  background: var(--yellow);
+}
+
+.app-shell.is-landing .site-search input {
+  height: 40px;
+  border-radius: 999px;
+  border: 2px solid var(--char);
+  background: var(--char);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 #1a1718;
+}
+
+.app-shell.is-landing .site-search input::placeholder {
+  color: #b1a98a;
+}
+
+.app-shell.is-landing .site-search input:focus {
+  border-color: var(--yellow);
+  box-shadow: 3px 3px 0 var(--char);
+}
+
+.app-shell.is-landing .site-search-icon,
+.app-shell.is-landing .site-search-key {
+  color: #b1a98a;
+}
+
+.app-shell.is-landing .site-search-key {
+  border-color: #3d3836;
+  background: transparent;
+}
+
+.app-shell.is-landing .search-results {
+  background: var(--char);
+  border: 2px solid #3d3836;
+  box-shadow: 6px 6px 0 #000;
+}
+
+.app-shell.is-landing .search-results a {
+  color: var(--ink);
+}
+
+.app-shell.is-landing .search-results a.is-active {
+  background: var(--coal);
+}
+
+.app-shell.is-landing .search-title {
+  color: var(--ink);
+}
+
+.app-shell.is-landing .site-footer {
+  border-top: none;
+  color: #d9d3bc;
+  margin-top: 80px;
+}
+
+.app-shell.is-landing .footer-heading {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.app-shell.is-landing .site-footer a:hover {
+  color: var(--yellow);
+}
+
+.app-shell.is-landing .footer-soon small {
+  border-color: #3d3836;
+  color: var(--yellow);
+}
+
+.app-shell.is-landing .footer-legal {
+  color: #8f8874;
+}
+
 .site-page {
   flex: 1;
   min-height: 0;

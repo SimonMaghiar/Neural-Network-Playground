@@ -70,10 +70,6 @@ export function TrackLayout({ track, content, moduleId }: Props) {
 
           <section className="module-intro">{mod.intro}</section>
 
-          <p className="sim-pointer">
-            <FlaskConical size={16} /> Now try it yourself in the simulation panel.
-          </p>
-
           <section className="takeaways">
             <h2>
               <Lightbulb size={18} /> Key takeaways
