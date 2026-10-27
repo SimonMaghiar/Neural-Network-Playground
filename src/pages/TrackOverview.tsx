@@ -1,6 +1,7 @@
-import { ArrowRight, Circle, CircleCheck, ListOrdered } from 'lucide-react'
+import { ArrowRight, Circle, CircleCheck } from 'lucide-react'
 import { href } from '../router'
 import { trackPageMeta, useDocumentHead } from '../seo'
+import { cardFill } from '../tracks/colors'
 import { useProgress } from '../tracks/progress'
 import { isReady, type ListedTrack, type TrackContent } from '../tracks/types'
 import { SiteFooter } from '../ui/SiteFooter'
@@ -13,12 +14,13 @@ export function TrackOverview({ track, content }: { track: ListedTrack; content:
   const resume = ready.find((m) => !done.has(m.id))
   const start = resume ?? ready[0]
   const cta = !resume ? 'Review the course' : done.size > 0 ? `Continue: ${resume.title}` : 'Start the course'
+  const fill = cardFill(track.id)
 
   return (
-    <div className="home overview" style={{ ['--track' as string]: track.color }}>
+    <div className="home overview" style={{ ['--track' as string]: fill, ['--stamp' as string]: fill }}>
       <header className="hero">
         <div className="hero-kicker">
-          {track.label} · {track.level} · {track.modules.length} modules
+          {track.label} · {track.level}
         </div>
         <h1>{track.title}</h1>
         <p>{track.description}</p>
@@ -30,19 +32,18 @@ export function TrackOverview({ track, content }: { track: ListedTrack; content:
       </header>
 
       <section className="home-section overview-section">
-        <h2 className="home-section-title">
-          <ListOrdered size={20} /> What you will learn
-        </h2>
-        <p className="home-section-desc">
-          Every module explains one idea in plain words, lets you try it in an interactive simulation, then checks your
-          understanding with a short quiz.
-        </p>
+        <div className="section-head">
+          <h2 className="section-stamp">Modules</h2>
+          <p className="section-lead">
+            Each module explains one idea in plain words, lets you try it, then checks what stuck.
+          </p>
+        </div>
         <ol className="overview-modules">
           {track.modules.map((m, i) => {
             const playable = isReady(m)
             const body = (
               <>
-                <span className="overview-num">{i + 1}</span>
+                <span className="overview-num">{String(i + 1).padStart(2, '0')}</span>
                 <span className="overview-text">
                   <h3>{m.title}</h3>
                   <p>{playable ? content[m.id]?.goal : 'Coming soon'}</p>

@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, BookOpen, CircleCheck, FlaskConical, Lightbulb, 
 import { href } from '../router'
 import { modulePageMeta, useDocumentHead } from '../seo'
 import { courses } from '../tracks/catalog'
+import { cardFill } from '../tracks/colors'
 import { saveModuleDone, useProgress } from '../tracks/progress'
 import { isReady, type ListedTrack, type TrackContent } from '../tracks/types'
 import { CourseNav } from './CourseNav'
@@ -47,7 +48,7 @@ export function TrackLayout({ track, content, moduleId }: Props) {
   const taskDone = tasksDone.has(meta.id)
 
   return (
-    <div className="app track-app" style={{ ['--track' as string]: track.color }}>
+    <div className="app track-app" style={{ ['--track' as string]: cardFill(track.id) }}>
       <aside className="sidebar course-sidebar">
         <CourseNav trackId={track.id} moduleId={meta.id} progress={progress} />
         <p className="nav-note">Finish every check question to mark a module done. Progress stays in this browser.</p>

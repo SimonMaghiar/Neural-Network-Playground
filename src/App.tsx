@@ -7,6 +7,7 @@ import { InfoPageView } from './pages/InfoPageView'
 import { NotFound } from './pages/NotFound'
 import { resolveRoute } from './routes'
 import { useRoute } from './router'
+import { cardFill } from './tracks/colors'
 import { TrackPage } from './tracks/TrackPage'
 import { CourseProgressBar } from './ui/CourseProgressBar'
 import { SiteHeader } from './ui/SiteHeader'
@@ -32,13 +33,15 @@ export default function App() {
     content = <NotFound />
   }
 
+  const branded = page.kind === 'home' || (page.kind === 'track' && page.track.section === 'course')
+
   return (
-    <div className={page.kind === 'home' ? 'app-shell is-landing' : 'app-shell'}>
+    <div className={`app-shell${branded ? ' is-brand' : ''}${page.kind === 'home' ? ' is-landing' : ''}`}>
       <SiteHeader section={route[0] ?? ''} />
       <div className="site-page">
         <Suspense fallback={<div className="page-loading">Loading…</div>}>{content}</Suspense>
       </div>
-      {page.kind === 'track' && page.track.section === 'course' && <CourseProgressBar color={page.track.color} />}
+      {page.kind === 'track' && page.track.section === 'course' && <CourseProgressBar color={cardFill(page.track.id)} />}
     </div>
   )
 }

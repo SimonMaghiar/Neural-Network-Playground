@@ -2,28 +2,12 @@ import { ArrowRight } from 'lucide-react'
 import { HeroDeck } from './HeroDeck'
 import { href } from '../router'
 import { homeMeta, useDocumentHead } from '../seo'
+import { cardFill } from '../tracks/colors'
 import { courses, labs } from '../tracks/catalog'
 import { useProgress } from '../tracks/progress'
 import { isAvailable, isReady, type ListedTrack } from '../tracks/types'
 import { SiteFooter } from '../ui/SiteFooter'
 import { useHydrated } from '../ui/useHydrated'
-
-/** Solid card colours for the homepage. Course pages keep each track's own colour. */
-const CARD_FILL: Record<string, string> = {
-  ai: '#12b5e5',
-  llm: '#ed203d',
-  gpu: '#fcba28',
-  serving: '#0ba95b',
-  'first-app': '#f9f4da',
-  knowledge: '#f38ba3',
-  agents: '#c4b5fd',
-  senses: '#fc7428',
-  trust: '#ffb086',
-  product: '#d2ef4e',
-  foundations: '#d6bcfa',
-}
-
-const fillOf = (id: string) => CARD_FILL[id] ?? '#fcba28'
 
 function SectionDoodle({ kind }: { kind: 'courses' | 'lab' }) {
   return (
@@ -86,7 +70,7 @@ function TrackCard({ track, done, index }: { track: ListedTrack; done: number; i
       </div>
     </>
   )
-  const style = { ['--card' as string]: fillOf(track.id) }
+  const style = { ['--card' as string]: cardFill(track.id) }
   return available ? (
     <a className="track-card" href={href(track.id)} style={style}>
       {body}
@@ -109,7 +93,7 @@ function Board({ tracks }: { tracks: ListedTrack[] }) {
             {t.code}
           </>
         )
-        const style = { ['--card' as string]: fillOf(t.id) }
+        const style = { ['--card' as string]: cardFill(t.id) }
         return available ? (
           <a key={t.id} className="board-stop" href={href(t.id)} style={style} title={t.title}>
             {inner}
