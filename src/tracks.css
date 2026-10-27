@@ -424,6 +424,55 @@ a.track-card:hover {
   overflow: visible;
 }
 
+.is-landing .hero-deck {
+  position: relative;
+  aspect-ratio: 1;
+  user-select: none;
+  touch-action: none;
+}
+
+.is-landing .hero-bolts {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.is-landing .deck-card {
+  position: absolute;
+  left: 6%;
+  top: 7.5%;
+  width: 63.5%;
+  height: 82.6%;
+  transition: transform 0.48s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.is-landing .deck-card svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.is-landing .deck-card.is-front {
+  cursor: grab;
+  touch-action: none;
+}
+
+.is-landing .hero-deck.is-dragging .deck-card.is-front {
+  cursor: grabbing;
+}
+
+.is-landing .hero-deck.is-measuring .deck-card {
+  transition: none;
+}
+
+.is-landing .deck-card:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 4px;
+}
+
 .is-landing .section-head {
   display: flex;
   flex-direction: column;
@@ -665,7 +714,8 @@ a.track-card:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .is-landing .track-card,
-  .is-landing .hero-actions .btn {
+  .is-landing .hero-actions .btn,
+  .is-landing .deck-card {
     transition: none;
   }
 }

@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import { HeroDeck } from './HeroDeck'
 import { href } from '../router'
 import { homeMeta, useDocumentHead } from '../seo'
 import { courses, labs } from '../tracks/catalog'
@@ -23,62 +24,6 @@ const CARD_FILL: Record<string, string> = {
 }
 
 const fillOf = (id: string) => CARD_FILL[id] ?? '#fcba28'
-
-function HeroArt() {
-  return (
-    <svg className="hero-art" viewBox="0 0 460 460" role="img" aria-label="A card with a neuron and a sticker that says will it learn">
-      <g fill="#fcba28" stroke="#231f20" strokeWidth="3" strokeLinejoin="round">
-        <polygon points="28,78 52,78 40,108 62,108 24,156 40,118 18,118" />
-        <polygon points="400,300 424,300 412,330 434,330 396,378 412,340 390,340" />
-      </g>
-      <g transform="translate(248,48)">
-        <rect x="78" y="18" width="42" height="320" rx="12" fill="#0ba95b" stroke="#231f20" strokeWidth="4" />
-        <rect x="52" y="28" width="42" height="320" rx="12" fill="#fcba28" stroke="#231f20" strokeWidth="4" />
-        <rect x="26" y="38" width="42" height="320" rx="12" fill="#f38ba3" stroke="#231f20" strokeWidth="4" />
-        <rect x="0" y="48" width="42" height="320" rx="12" fill="#ed203d" stroke="#231f20" strokeWidth="4" />
-      </g>
-      <rect x="28" y="36" width="292" height="380" rx="24" fill="#f9f4da" stroke="#231f20" strokeWidth="5" />
-      <rect x="48" y="56" width="252" height="214" rx="16" fill="#7b5ea7" stroke="#231f20" strokeWidth="4" />
-      <g stroke="#231f20" strokeWidth="4" fill="none" strokeLinecap="round">
-        <line x1="92" y1="112" x2="150" y2="163" />
-        <line x1="92" y1="163" x2="150" y2="163" />
-        <line x1="92" y1="214" x2="150" y2="163" />
-        <line x1="198" y1="163" x2="246" y2="163" />
-      </g>
-      <circle cx="78" cy="112" r="14" fill="#12b5e5" stroke="#231f20" strokeWidth="4" />
-      <circle cx="78" cy="163" r="14" fill="#fcba28" stroke="#231f20" strokeWidth="4" />
-      <circle cx="78" cy="214" r="14" fill="#f38ba3" stroke="#231f20" strokeWidth="4" />
-      <circle cx="174" cy="163" r="36" fill="#12b5e5" stroke="#231f20" strokeWidth="4" />
-      <circle cx="162" cy="156" r="4" fill="#231f20" />
-      <circle cx="186" cy="156" r="4" fill="#231f20" />
-      <path d="M160 172c6 10 22 10 28 0" fill="none" stroke="#231f20" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="258" cy="163" r="16" fill="#fcba28" stroke="#231f20" strokeWidth="4" />
-      <g transform="translate(108,292) rotate(-7)">
-        <rect width="168" height="78" rx="12" fill="#fcba28" stroke="#231f20" strokeWidth="4" />
-        <text
-          x="84"
-          y="32"
-          textAnchor="middle"
-          fill="#231f20"
-          fontFamily="Paytone One, sans-serif"
-          fontSize="18"
-        >
-          WILL IT
-        </text>
-        <text
-          x="84"
-          y="58"
-          textAnchor="middle"
-          fill="#231f20"
-          fontFamily="Paytone One, sans-serif"
-          fontSize="24"
-        >
-          LEARN?
-        </text>
-      </g>
-    </svg>
-  )
-}
 
 function SectionDoodle({ kind }: { kind: 'courses' | 'lab' }) {
   return (
@@ -212,7 +157,7 @@ export function Home() {
             </a>
           </div>
         </div>
-        <HeroArt />
+        <HeroDeck />
       </header>
 
       <section className="home-section" id="courses">
