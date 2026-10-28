@@ -563,6 +563,414 @@ a.track-card:hover {
   background: #e6e0c8;
 }
 
+/* Winding course path. Cream road on the graph paper, one bend per stretch of lessons. */
+.is-landing .road {
+  --road: #f9f4da;
+  --stroke: 4px;
+  --ribbon: 108px;
+  --bend: 96px;
+  max-width: 1080px;
+  margin: 28px auto 12px;
+}
+
+.is-landing .road-stop {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--bend);
+  grid-template-areas:
+    'top turnTop'
+    'pocket turnMid'
+    'bottom turnBot';
+}
+
+.is-landing .road-stop.is-cap {
+  display: block;
+}
+
+.is-landing .road-top,
+.is-landing .road-bottom {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  height: var(--ribbon);
+  background: var(--road);
+  border: var(--stroke) solid var(--char);
+  color: var(--char);
+}
+
+/* Open the ribbon where the neck meets it. A child paints over the parent's border. */
+.is-landing .road-stop:not(:first-child) .road-top::before,
+.is-landing .road-stop:not(:last-child) .road-bottom::after,
+.is-landing .road-stop.is-cap:not(:last-child) .road-top::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  width: 84px;
+  height: calc(var(--stroke) + 2px);
+  background: var(--road);
+}
+
+.is-landing .road-stop:not(:first-child) .road-top::before {
+  top: calc(var(--stroke) * -1);
+}
+
+.is-landing .road-stop:not(:last-child) .road-bottom::after,
+.is-landing .road-stop.is-cap:not(:last-child) .road-top::after {
+  bottom: calc(var(--stroke) * -1);
+}
+
+.is-landing .road-top {
+  grid-area: top;
+  border-right: none;
+}
+
+.is-landing .road-bottom {
+  grid-area: bottom;
+  flex-direction: row-reverse;
+  border-right: none;
+}
+
+.is-landing .road-stop.is-cap .road-top {
+  border-right: var(--stroke) solid var(--char);
+  border-radius: 0 54px 54px 0;
+}
+
+.is-landing .road-stop:first-child .road-top {
+  border-top-left-radius: 22px;
+}
+
+.is-landing .road > .road-stop:last-child .road-bottom,
+.is-landing .road > .road-stop:last-child.is-cap .road-top {
+  border-bottom-left-radius: 22px;
+}
+
+.is-landing .road-turn-top,
+.is-landing .road-turn-mid,
+.is-landing .road-turn-bot {
+  background: var(--road);
+  margin-left: calc(var(--stroke) * -1);
+}
+
+.is-landing .road-turn-top {
+  grid-area: turnTop;
+  border-top: var(--stroke) solid var(--char);
+  border-right: var(--stroke) solid var(--char);
+  border-top-right-radius: 54px;
+}
+
+.is-landing .road-turn-mid {
+  grid-area: turnMid;
+  border-right: var(--stroke) solid var(--char);
+  border-left: var(--stroke) solid var(--char);
+}
+
+.is-landing .road-turn-bot {
+  grid-area: turnBot;
+  border-bottom: var(--stroke) solid var(--char);
+  border-right: var(--stroke) solid var(--char);
+  border-bottom-right-radius: 54px;
+}
+
+.is-landing .road-join {
+  width: 84px;
+  height: 48px;
+  margin: -8px 0;
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+  background: var(--road);
+  border-left: var(--stroke) solid var(--char);
+  border-right: var(--stroke) solid var(--char);
+}
+
+.is-landing .road-flag {
+  flex: 0 0 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0ba95b;
+  color: var(--road);
+  border-right: 3px solid var(--char);
+  font-family: var(--display);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.is-landing .road-num {
+  flex: 0 0 86px;
+  display: grid;
+  place-items: center;
+  border-right: 3px solid var(--char);
+  background: var(--road);
+  text-decoration: none;
+}
+
+.is-landing .road-num span {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  border: 4px solid var(--char);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--char);
+  font-family: var(--display);
+  font-size: 24px;
+}
+
+.is-landing a.road-num:hover span {
+  background: var(--yellow);
+}
+
+.is-landing .road-tile {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 8px;
+  border-right: 3px solid var(--char);
+  color: var(--char);
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-wrap: balance;
+  overflow: hidden;
+}
+
+.is-landing .road-top .road-tile:last-child,
+.is-landing .road-bottom .road-tile:first-child {
+  border-right: none;
+}
+
+.is-landing .road-tile.is-display {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+.is-landing a.road-tile:hover {
+  background: var(--yellow);
+}
+
+.is-landing .road-tile.is-locked {
+  cursor: default;
+}
+
+.is-landing .road-pocket {
+  grid-area: pocket;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 176px;
+  padding: 26px 28px 26px 6px;
+}
+
+.is-landing .road-stop.is-continue .road-pocket {
+  min-height: 36px;
+  padding: 0;
+}
+
+.is-landing .road-stop.is-cap .road-pocket {
+  min-height: 0;
+  padding: 22px 8px 4px;
+}
+
+.is-landing .road-copy {
+  max-width: min(640px, calc(100% - 130px));
+}
+
+.is-landing .road-kicker {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.is-landing .road-copy h3 {
+  margin: 0 0 10px;
+  color: var(--card);
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.is-landing .road-copy p {
+  margin: 0 0 14px;
+  max-width: 520px;
+  color: var(--ink);
+  font-size: 16.5px;
+  line-height: 1.45;
+}
+
+.is-landing .road-bar {
+  width: min(220px, 100%);
+  height: 10px;
+  margin: 0 0 14px;
+  background: #3a342c;
+  border: 2px solid var(--char);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.is-landing .road-bar span {
+  display: block;
+  height: 100%;
+  background: var(--yellow);
+}
+
+.is-landing .road-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.is-landing .road .btn {
+  padding: 10px 18px;
+  border: 2px solid var(--char);
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--char);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 var(--char);
+}
+
+.is-landing .road .btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--char);
+}
+
+.is-landing .road-count {
+  color: #d9d0b4;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.is-landing .road-soon {
+  display: inline-block;
+  padding: 4px 10px 6px;
+  background: var(--yellow);
+  color: var(--char);
+  border: 2px solid var(--char);
+  font-family: var(--display);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+}
+
+.is-landing .road-pieces {
+  position: absolute;
+  right: 12px;
+  bottom: 18px;
+  width: 108px;
+  height: 74px;
+  pointer-events: none;
+}
+
+.is-landing .piece {
+  position: absolute;
+  border: 3px solid var(--char);
+}
+
+.is-landing .piece-a {
+  width: 38px;
+  height: 38px;
+  top: 4px;
+  left: 8px;
+  border-radius: 50%;
+  background: var(--card);
+}
+
+.is-landing .piece-b {
+  width: 30px;
+  height: 30px;
+  top: 26px;
+  left: 40px;
+  border-radius: 8px;
+  background: var(--yellow);
+  transform: rotate(12deg);
+}
+
+.is-landing .piece-c {
+  width: 22px;
+  height: 22px;
+  bottom: 2px;
+  left: 16px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.is-landing .road a:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: -3px;
+}
+
+@media (max-width: 800px) {
+  .is-landing .road-turn-top,
+  .is-landing .road-turn-mid,
+  .is-landing .road-turn-bot,
+  .is-landing .road-join,
+  .is-landing .road-pieces {
+    display: none;
+  }
+
+  .is-landing .road-stop {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .is-landing .road-top,
+  .is-landing .road-bottom {
+    border: 4px solid var(--char);
+    border-radius: 16px;
+    overflow-x: auto;
+  }
+
+  .is-landing .road-bottom {
+    flex-direction: row;
+  }
+
+  .is-landing .road-tile {
+    flex: 0 0 140px;
+  }
+
+  .is-landing .road-pocket,
+  .is-landing .road-stop.is-continue .road-pocket,
+  .is-landing .road-stop.is-cap .road-pocket {
+    min-height: 0;
+    padding: 6px 2px 2px;
+  }
+
+  .is-landing .road-copy {
+    max-width: none;
+  }
+}
+
 .is-landing .track-grid {
   gap: 26px 22px;
   padding-bottom: 8px;

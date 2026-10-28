@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import { CoursePath } from './CoursePath'
 import { HeroDeck } from './HeroDeck'
 import { href } from '../router'
 import { homeMeta, useDocumentHead } from '../seo'
@@ -82,32 +83,6 @@ function TrackCard({ track, done, index }: { track: ListedTrack; done: number; i
   )
 }
 
-function Board({ tracks }: { tracks: ListedTrack[] }) {
-  return (
-    <div className="board" aria-label="Course path">
-      {tracks.map((t, i) => {
-        const available = isAvailable(t)
-        const inner = (
-          <>
-            <span className="board-num">{String(i + 1).padStart(2, '0')}</span>
-            {t.code}
-          </>
-        )
-        const style = { ['--card' as string]: cardFill(t.id) }
-        return available ? (
-          <a key={t.id} className="board-stop" href={href(t.id)} style={style} title={t.title}>
-            {inner}
-          </a>
-        ) : (
-          <div key={t.id} className="board-stop is-soon" style={style} title={`${t.title} (coming soon)`}>
-            {inner}
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
 export function Home() {
   useDocumentHead(homeMeta())
   const progress = useProgress()
@@ -150,12 +125,7 @@ export function Home() {
           <h2 className="section-stamp">Courses</h2>
           <p className="section-lead">Ten tracks, in order. Each one builds on the last.</p>
         </div>
-        <Board tracks={courses} />
-        <div className="track-grid">
-          {courses.map((t, i) => (
-            <TrackCard key={t.id} track={t} done={doneIn(t)} index={i + 1} />
-          ))}
-        </div>
+        <CoursePath tracks={courses} doneById={Object.fromEntries(courses.map((t) => [t.id, doneIn(t)]))} />
       </section>
 
       <section className="home-section" id="lab">
