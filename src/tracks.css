@@ -973,8 +973,36 @@ a.track-card:hover {
 
 .is-brand .sim-panel {
   border-left: none;
-  background: #0f0d0e;
-  padding: 0 16px 16px 0;
+  background: var(--char);
+  padding: 0;
+  scrollbar-color: #6b645c var(--char);
+}
+
+.is-brand .sim-panel::-webkit-scrollbar,
+.is-brand .sim-panel::-webkit-scrollbar-track {
+  background: var(--char);
+}
+
+.is-brand .sim-panel::-webkit-scrollbar-thumb {
+  border-color: var(--char);
+}
+
+.is-brand .sim-card {
+  border: 3px solid var(--char);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  background: var(--char);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.is-brand .track-app:has(.lesson-sheet.is-dark) .sim-card {
+  border-top-color: #3d3836;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 }
 
 .is-brand .module-main::-webkit-scrollbar-thumb {
@@ -982,15 +1010,7 @@ a.track-card:hover {
 }
 
 .is-brand .module-main:has(.lesson-sheet.is-dark)::-webkit-scrollbar-thumb {
-  border-color: #0f0d0e;
-}
-
-.is-brand .sim-card {
-  border: 3px solid var(--char);
-  border-radius: 16px;
-  background: var(--char);
-  color: var(--ink);
-  box-shadow: 6px 6px 0 #000;
+  border-color: var(--char);
 }
 
 .is-brand .sim-card-head,
@@ -1045,7 +1065,7 @@ a.track-card:hover {
 }
 
 .is-brand .lesson-sheet.is-dark {
-  background: #0f0d0e;
+  background: var(--char);
   color: #f9f4da;
   border-color: #3d3836;
   box-shadow: 7px 7px 0 #000;
@@ -1101,13 +1121,13 @@ a.track-card:hover {
 }
 
 .is-brand .module-main:has(.lesson-sheet.is-dark) {
-  background: #0f0d0e;
-  scrollbar-color: #6b645c #0f0d0e;
+  background: var(--char);
+  scrollbar-color: #6b645c var(--char);
 }
 
 .is-brand .module-main:has(.lesson-sheet.is-dark)::-webkit-scrollbar,
 .is-brand .module-main:has(.lesson-sheet.is-dark)::-webkit-scrollbar-track {
-  background: #0f0d0e;
+  background: var(--char);
 }
 
 .is-brand .lesson-sheet h1 {
@@ -1198,6 +1218,10 @@ a.track-card:hover {
   color: #f9f4da;
 }
 
+.is-brand .lesson-sheet.is-dark .module-goal svg {
+  color: var(--yellow);
+}
+
 .is-brand .lesson-sheet.is-dark .module-intro b,
 .is-brand .lesson-sheet.is-dark .module-intro strong {
   padding-bottom: 0.12em;
@@ -1206,7 +1230,7 @@ a.track-card:hover {
 }
 
 .is-brand .lesson-sheet.is-dark code {
-  background: #231f20;
+  background: #1b1918;
   border-color: #3d3836;
   color: var(--yellow);
 }
