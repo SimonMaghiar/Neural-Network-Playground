@@ -731,8 +731,10 @@ a.track-card:hover {
   flex: 1 1 0;
   min-width: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 4px;
   padding: 8px 8px;
   border-right: 3px solid var(--char);
   color: var(--char);
@@ -751,6 +753,12 @@ a.track-card:hover {
 .is-landing .road-top .road-tile:last-child,
 .is-landing .road-bottom .road-tile:first-child {
   border-right: none;
+}
+
+.is-landing .road-icon {
+  width: 40px;
+  height: 40px;
+  flex: none;
 }
 
 .is-landing .road-tile.is-display {
