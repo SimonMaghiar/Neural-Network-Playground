@@ -11,7 +11,7 @@
   flex-direction: column;
 }
 
-/* Homepage and course pages. Info pages and the lab keep the existing theme. */
+/* Homepage, courses, and the foundations lab. Info pages keep the existing theme. */
 .app-shell.is-brand {
   --header-h: 68px;
   --ink: #f9f4da;

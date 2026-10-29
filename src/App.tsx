@@ -33,7 +33,10 @@ export default function App() {
     content = <NotFound />
   }
 
-  const branded = page.kind === 'home' || (page.kind === 'track' && page.track.section === 'course')
+  const branded =
+    page.kind === 'home' ||
+    (page.kind === 'track' && page.track.section === 'course') ||
+    (page.kind === 'custom' && page.track.id === 'foundations')
 
   return (
     <div className={`app-shell${branded ? ' is-brand' : ''}${page.kind === 'home' ? ' is-landing' : ''}`}>

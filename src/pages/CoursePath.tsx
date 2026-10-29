@@ -41,7 +41,7 @@ const MARKS: Record<string, Mark[]> = {
     { id: 'weights', label: 'Weights', icon: 'sliders' },
     { id: 'learn', label: 'Learn', icon: 'spark', display: true },
     { id: 'layers', label: 'Layers', icon: 'stack' },
-    { id: 'data', label: 'Data', icon: 'stack', display: true },
+    { id: 'data', label: 'Data', icon: 'tokens', display: true },
     { id: 'mistake', label: 'Mistake', icon: 'target' },
   ],
   llm: [

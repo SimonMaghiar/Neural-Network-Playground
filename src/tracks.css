@@ -1312,6 +1312,288 @@ a.track-card:hover {
   box-shadow: inset -3px 0 0 var(--char);
 }
 
+/* Foundations lab: cream lesson column, charcoal network, same type as the courses. */
+.is-brand .app {
+  --track: #d6bcfa;
+  background: transparent;
+}
+
+.is-brand .app .sidebar {
+  --text: var(--char);
+  --text-h: var(--char);
+  --muted: #5c564c;
+  --accent: var(--char);
+  --border: var(--char);
+  --panel: var(--ink);
+  --panel-2: #efe8c8;
+  --bg: var(--ink);
+  background: var(--ink);
+  color: var(--char);
+  border-right: 3px solid var(--char);
+  scrollbar-color: #6b645c var(--ink);
+}
+
+.is-brand .app .brand {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.is-brand .app .brand h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--char);
+}
+
+.is-brand .app .track-code {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--char);
+  border-radius: 12px;
+  background: var(--track);
+  color: var(--char) !important;
+  font-family: var(--display);
+  font-size: 15px;
+}
+
+.is-brand .app .sidebar h4 {
+  color: var(--char);
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.is-brand .app .mode-tabs {
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.is-brand .app .mode-tabs button {
+  border: 2px solid var(--char);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--char);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.is-brand .app .mode-tabs button.is-active {
+  background: var(--yellow);
+  color: var(--char);
+  box-shadow: 3px 3px 0 var(--char);
+}
+
+.is-brand .app .lesson-kicker {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 3px 8px 5px;
+  background: var(--track);
+  color: var(--char);
+  border: 2px solid var(--char);
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.is-brand .app .lesson-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--char);
+}
+
+.is-brand .app .lesson-steps {
+  color: #5c564c;
+}
+
+.is-brand .app .lesson-body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--char);
+}
+
+.is-brand .app .lesson-body b,
+.is-brand .app .c-green,
+.is-brand .app .c-blue,
+.is-brand .app .c-red {
+  color: var(--char);
+}
+
+.is-brand .app .lesson-body b {
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+  background-repeat: no-repeat;
+  background-size: 100% 0.32em;
+  background-position: 0 88%;
+}
+
+.is-brand .app .lesson-body blockquote {
+  border-left: 4px solid var(--char);
+  border-radius: 0;
+  background: #efe8c8;
+  color: var(--char);
+}
+
+.is-brand .app .progress-dot {
+  height: 8px;
+  border: 2px solid var(--char);
+  border-radius: 99px;
+  background: #e4dcc0;
+}
+
+.is-brand .app .progress-dot.is-current {
+  background: var(--yellow);
+}
+
+.is-brand .app .progress-dot.is-done {
+  background: #0ba95b;
+}
+
+.is-brand .app .task {
+  border: 3px solid var(--char);
+  border-radius: 12px;
+  background: var(--yellow);
+  color: var(--char);
+  box-shadow: 4px 4px 0 var(--char);
+}
+
+.is-brand .app .task.is-done {
+  background: #d8f5c8;
+  border-color: var(--char);
+}
+
+.is-brand .app .task-head,
+.is-brand .app .task-hint,
+.is-brand .app .task-hint svg,
+.is-brand .app .task-done {
+  color: var(--char);
+}
+
+.is-brand .app .lesson-nav button {
+  border: 2px solid var(--char);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--char);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.is-brand .app .lesson-nav button.primary {
+  background: var(--yellow);
+  border-color: var(--char);
+  color: var(--char);
+  box-shadow: 3px 3px 0 var(--char);
+}
+
+.is-brand .app .lesson-nav button.primary:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--char);
+}
+
+.is-brand .app .link-btn {
+  color: var(--char);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.is-brand .app .preset {
+  border: 2px solid var(--char);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--char);
+}
+
+.is-brand .app .preset.is-active {
+  background: var(--yellow);
+  border-color: var(--char);
+  box-shadow: 3px 3px 0 var(--char);
+}
+
+.is-brand .app .preset-name {
+  color: var(--char);
+}
+
+.is-brand .app .arch-row {
+  border: 2px solid var(--char);
+  border-radius: 10px;
+  background: #efe8c8;
+  color: var(--char);
+}
+
+.is-brand .app .arch-row select,
+.is-brand .app .stepper button {
+  border: 2px solid var(--char);
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--char);
+}
+
+.is-brand .app .sidebar > .site-footer.compact {
+  margin-top: auto;
+  color: #5c564c;
+}
+
+.is-brand .app .sidebar > .site-footer.compact a,
+.is-brand .app .sidebar > .site-footer.compact .footer-heading {
+  color: var(--char);
+}
+
+.is-brand .app .main {
+  --bg: var(--char);
+  --panel: var(--char);
+  --panel-2: #1b1918;
+  --border: #3d3836;
+  --text: var(--ink);
+  --text-h: var(--ink);
+  --muted: #b1a98a;
+  --accent: var(--yellow);
+  background: var(--char);
+  color: var(--ink);
+  scrollbar-color: #6b645c var(--char);
+}
+
+.is-brand .app .toolbar {
+  background: var(--char);
+  border-bottom: 3px solid #3d3836;
+  color: var(--ink);
+}
+
+.is-brand .app .toolbar button {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.is-brand .app .toolbar button.primary {
+  background: var(--yellow);
+  border-color: var(--char);
+  color: var(--char);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.is-brand .app .canvas .react-flow {
+  background: var(--char);
+}
+
 .is-brand .path-head-label {
   color: var(--ink);
   font-family: var(--display);
