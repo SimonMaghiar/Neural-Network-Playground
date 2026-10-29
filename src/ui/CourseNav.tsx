@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Check, ChevronDown, Clock } from 'lucide-react'
 import { href } from '../router'
 import { courses } from '../tracks/catalog'
+import { cardFill } from '../tracks/colors'
 import { isAvailable, isReady } from '../tracks/types'
 
 interface Props {
@@ -49,7 +50,7 @@ export function CourseNav({ trackId, moduleId, progress }: Props) {
           const finished = new Set(progress[t.id] ?? [])
           const count = t.modules.filter((m) => finished.has(m.id)).length
           return (
-            <span key={t.id} style={{ flexGrow: t.modules.length, ['--track' as string]: t.color } as CSSProperties}>
+            <span key={t.id} style={{ flexGrow: t.modules.length, ['--track' as string]: cardFill(t.id) } as CSSProperties}>
               <i style={{ width: `${(count / t.modules.length) * 100}%` }} />
             </span>
           )
@@ -68,7 +69,7 @@ export function CourseNav({ trackId, moduleId, progress }: Props) {
           <section
             key={t.id}
             className={`nav-track${current ? ' is-current' : ''}${available ? '' : ' is-soon'}`}
-            style={{ ['--track' as string]: t.color, ['--p' as string]: share } as CSSProperties}
+            style={{ ['--track' as string]: cardFill(t.id), ['--p' as string]: share } as CSSProperties}
           >
             <button className="nav-track-head" onClick={() => toggle(t.id)} aria-expanded={expanded}>
               <span className="nav-track-code">{t.code}</span>

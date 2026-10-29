@@ -1313,12 +1313,12 @@ a.track-card:hover {
 }
 
 /* Foundations lab: cream lesson column, charcoal network, same type as the courses. */
-.is-brand .app {
+.is-brand .app:not(.track-app) {
   --track: #d6bcfa;
   background: transparent;
 }
 
-.is-brand .app .sidebar {
+.is-brand .app:not(.track-app) .sidebar {
   --text: var(--char);
   --text-h: var(--char);
   --muted: #5c564c;
@@ -1333,12 +1333,12 @@ a.track-card:hover {
   scrollbar-color: #6b645c var(--ink);
 }
 
-.is-brand .app .brand {
+.is-brand .app:not(.track-app) .brand {
   align-items: flex-start;
   gap: 12px;
 }
 
-.is-brand .app .brand h1 {
+.is-brand .app:not(.track-app) .brand h1 {
   font-family: var(--display);
   font-weight: 400;
   font-size: 22px;
@@ -1348,7 +1348,7 @@ a.track-card:hover {
   color: var(--char);
 }
 
-.is-brand .app .track-code {
+.is-brand .app:not(.track-app) .track-code {
   display: grid;
   place-items: center;
   flex: none;
@@ -1362,7 +1362,7 @@ a.track-card:hover {
   font-size: 15px;
 }
 
-.is-brand .app .sidebar h4 {
+.is-brand .app:not(.track-app) .sidebar h4 {
   color: var(--char);
   font-family: var(--display);
   font-weight: 400;
@@ -1370,14 +1370,14 @@ a.track-card:hover {
   letter-spacing: 0.06em;
 }
 
-.is-brand .app .mode-tabs {
+.is-brand .app:not(.track-app) .mode-tabs {
   gap: 8px;
   padding: 0;
   background: transparent;
   border: none;
 }
 
-.is-brand .app .mode-tabs button {
+.is-brand .app:not(.track-app) .mode-tabs button {
   border: 2px solid var(--char);
   border-radius: 999px;
   background: transparent;
@@ -1388,13 +1388,13 @@ a.track-card:hover {
   text-transform: uppercase;
 }
 
-.is-brand .app .mode-tabs button.is-active {
+.is-brand .app:not(.track-app) .mode-tabs button.is-active {
   background: var(--yellow);
   color: var(--char);
   box-shadow: 3px 3px 0 var(--char);
 }
 
-.is-brand .app .lesson-kicker {
+.is-brand .app:not(.track-app) .lesson-kicker {
   display: inline-block;
   align-self: flex-start;
   margin-top: 4px;
@@ -1408,7 +1408,7 @@ a.track-card:hover {
   text-transform: uppercase;
 }
 
-.is-brand .app .lesson-title {
+.is-brand .app:not(.track-app) .lesson-title {
   font-family: var(--display);
   font-weight: 400;
   font-size: 28px;
@@ -1418,53 +1418,53 @@ a.track-card:hover {
   color: var(--char);
 }
 
-.is-brand .app .lesson-steps {
+.is-brand .app:not(.track-app) .lesson-steps {
   color: #5c564c;
 }
 
-.is-brand .app .lesson-body {
+.is-brand .app:not(.track-app) .lesson-body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--char);
 }
 
-.is-brand .app .lesson-body b,
-.is-brand .app .c-green,
-.is-brand .app .c-blue,
-.is-brand .app .c-red {
+.is-brand .app:not(.track-app) .lesson-body b,
+.is-brand .app:not(.track-app) .c-green,
+.is-brand .app:not(.track-app) .c-blue,
+.is-brand .app:not(.track-app) .c-red {
   color: var(--char);
 }
 
-.is-brand .app .lesson-body b {
+.is-brand .app:not(.track-app) .lesson-body b {
   background-image: linear-gradient(var(--yellow), var(--yellow));
   background-repeat: no-repeat;
   background-size: 100% 0.32em;
   background-position: 0 88%;
 }
 
-.is-brand .app .lesson-body blockquote {
+.is-brand .app:not(.track-app) .lesson-body blockquote {
   border-left: 4px solid var(--char);
   border-radius: 0;
   background: #efe8c8;
   color: var(--char);
 }
 
-.is-brand .app .progress-dot {
+.is-brand .app:not(.track-app) .progress-dot {
   height: 8px;
   border: 2px solid var(--char);
   border-radius: 99px;
   background: #e4dcc0;
 }
 
-.is-brand .app .progress-dot.is-current {
+.is-brand .app:not(.track-app) .progress-dot.is-current {
   background: var(--yellow);
 }
 
-.is-brand .app .progress-dot.is-done {
+.is-brand .app:not(.track-app) .progress-dot.is-done {
   background: #0ba95b;
 }
 
-.is-brand .app .task {
+.is-brand .app:not(.track-app) .task {
   border: 3px solid var(--char);
   border-radius: 12px;
   background: var(--yellow);
@@ -1472,19 +1472,19 @@ a.track-card:hover {
   box-shadow: 4px 4px 0 var(--char);
 }
 
-.is-brand .app .task.is-done {
+.is-brand .app:not(.track-app) .task.is-done {
   background: #d8f5c8;
   border-color: var(--char);
 }
 
-.is-brand .app .task-head,
-.is-brand .app .task-hint,
-.is-brand .app .task-hint svg,
-.is-brand .app .task-done {
+.is-brand .app:not(.track-app) .task-head,
+.is-brand .app:not(.track-app) .task-hint,
+.is-brand .app:not(.track-app) .task-hint svg,
+.is-brand .app:not(.track-app) .task-done {
   color: var(--char);
 }
 
-.is-brand .app .lesson-nav button {
+.is-brand .app:not(.track-app) .lesson-nav button {
   border: 2px solid var(--char);
   border-radius: 999px;
   background: transparent;
@@ -1494,68 +1494,68 @@ a.track-card:hover {
   text-transform: uppercase;
 }
 
-.is-brand .app .lesson-nav button.primary {
+.is-brand .app:not(.track-app) .lesson-nav button.primary {
   background: var(--yellow);
   border-color: var(--char);
   color: var(--char);
   box-shadow: 3px 3px 0 var(--char);
 }
 
-.is-brand .app .lesson-nav button.primary:hover:not(:disabled) {
+.is-brand .app:not(.track-app) .lesson-nav button.primary:hover:not(:disabled) {
   transform: translate(-2px, -2px);
   box-shadow: 5px 5px 0 var(--char);
 }
 
-.is-brand .app .link-btn {
+.is-brand .app:not(.track-app) .link-btn {
   color: var(--char);
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.is-brand .app .preset {
+.is-brand .app:not(.track-app) .preset {
   border: 2px solid var(--char);
   border-radius: 12px;
   background: transparent;
   color: var(--char);
 }
 
-.is-brand .app .preset.is-active {
+.is-brand .app:not(.track-app) .preset.is-active {
   background: var(--yellow);
   border-color: var(--char);
   box-shadow: 3px 3px 0 var(--char);
 }
 
-.is-brand .app .preset-name {
+.is-brand .app:not(.track-app) .preset-name {
   color: var(--char);
 }
 
-.is-brand .app .arch-row {
+.is-brand .app:not(.track-app) .arch-row {
   border: 2px solid var(--char);
   border-radius: 10px;
   background: #efe8c8;
   color: var(--char);
 }
 
-.is-brand .app .arch-row select,
-.is-brand .app .stepper button {
+.is-brand .app:not(.track-app) .arch-row select,
+.is-brand .app:not(.track-app) .stepper button {
   border: 2px solid var(--char);
   border-radius: 8px;
   background: var(--ink);
   color: var(--char);
 }
 
-.is-brand .app .sidebar > .site-footer.compact {
+.is-brand .app:not(.track-app) .sidebar > .site-footer.compact {
   margin-top: auto;
   color: #5c564c;
 }
 
-.is-brand .app .sidebar > .site-footer.compact a,
-.is-brand .app .sidebar > .site-footer.compact .footer-heading {
+.is-brand .app:not(.track-app) .sidebar > .site-footer.compact a,
+.is-brand .app:not(.track-app) .sidebar > .site-footer.compact .footer-heading {
   color: var(--char);
 }
 
-.is-brand .app .main {
+.is-brand .app:not(.track-app) .main {
   --bg: var(--char);
   --panel: var(--char);
   --panel-2: #1b1918;
@@ -1569,13 +1569,13 @@ a.track-card:hover {
   scrollbar-color: #6b645c var(--char);
 }
 
-.is-brand .app .toolbar {
+.is-brand .app:not(.track-app) .toolbar {
   background: var(--char);
   border-bottom: 3px solid #3d3836;
   color: var(--ink);
 }
 
-.is-brand .app .toolbar button {
+.is-brand .app:not(.track-app) .toolbar button {
   border: 2px solid var(--ink);
   border-radius: 999px;
   background: transparent;
@@ -1583,14 +1583,14 @@ a.track-card:hover {
   font-weight: 700;
 }
 
-.is-brand .app .toolbar button.primary {
+.is-brand .app:not(.track-app) .toolbar button.primary {
   background: var(--yellow);
   border-color: var(--char);
   color: var(--char);
   box-shadow: 3px 3px 0 #000;
 }
 
-.is-brand .app .canvas .react-flow {
+.is-brand .app:not(.track-app) .canvas .react-flow {
   background: var(--char);
 }
 
