@@ -160,19 +160,7 @@
       "lessons": [
         "Why AI Can Sound Confident and Still Be Wrong",
         "How Do You Know Whether an AI Answer Is Good?",
-        "Building a Test Dataset for Your AI",
-        "Humans vs AI Judges: Who Should Evaluate Answers?",
-        "Measuring the Quality of a RAG System",
-        "How to Test an AI Agent",
-        "Regression Testing: Catching Problems Before Users Do",
-        "Understanding Hallucinations and Their Causes",
-        "Prompt Injection: When Untrusted Text Becomes an Attack",
-        "Keeping Private Data Safe",
-        "Bias, Fairness and Responsible AI",
-        "Guardrails: What Should AI Be Allowed to Do?",
-        "Observability: Seeing What Your AI Is Doing",
-        "Tools for Evaluating and Monitoring AI",
-        "Making Your AI More Reliable, One Test at a Time"
+        "Prompt Injection: When Untrusted Text Becomes an Attack"
       ]
     }
   ]
