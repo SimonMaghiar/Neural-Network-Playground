@@ -1312,25 +1312,26 @@ a.track-card:hover {
   box-shadow: inset -3px 0 0 var(--char);
 }
 
-/* Foundations lab: cream lesson column, charcoal network, same type as the courses. */
+/* Foundations lab: same charcoal column as the courses, cream type, yellow controls. */
 .is-brand .app:not(.track-app) {
   --track: #d6bcfa;
   background: transparent;
 }
 
 .is-brand .app:not(.track-app) .sidebar {
-  --text: var(--char);
-  --text-h: var(--char);
-  --muted: #5c564c;
-  --accent: var(--char);
-  --border: var(--char);
-  --panel: var(--ink);
-  --panel-2: #efe8c8;
-  --bg: var(--ink);
-  background: var(--ink);
-  color: var(--char);
-  border-right: 3px solid var(--char);
-  scrollbar-color: #6b645c var(--ink);
+  --text: var(--ink);
+  --text-h: var(--ink);
+  --muted: #b1a98a;
+  --accent: var(--yellow);
+  --border: #3d3836;
+  --panel: #1b1918;
+  --panel-2: #141211;
+  --bg: var(--coal);
+  background: color-mix(in srgb, var(--coal) 92%, transparent);
+  color: var(--ink);
+  border-right: none;
+  box-shadow: inset -3px 0 0 var(--char);
+  scrollbar-color: #6b645c transparent;
 }
 
 .is-brand .app:not(.track-app) .brand {
@@ -1345,7 +1346,7 @@ a.track-card:hover {
   line-height: 1.05;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--char);
+  color: var(--ink);
 }
 
 .is-brand .app:not(.track-app) .track-code {
@@ -1354,7 +1355,7 @@ a.track-card:hover {
   flex: none;
   width: 44px;
   height: 44px;
-  border: 3px solid var(--char);
+  border: 3px solid var(--ink);
   border-radius: 12px;
   background: var(--track);
   color: var(--char) !important;
@@ -1363,7 +1364,7 @@ a.track-card:hover {
 }
 
 .is-brand .app:not(.track-app) .sidebar h4 {
-  color: var(--char);
+  color: var(--muted);
   font-family: var(--display);
   font-weight: 400;
   font-size: 13px;
@@ -1378,20 +1379,26 @@ a.track-card:hover {
 }
 
 .is-brand .app:not(.track-app) .mode-tabs button {
-  border: 2px solid var(--char);
+  border: 2px solid var(--ink);
   border-radius: 999px;
   background: transparent;
-  color: var(--char);
+  color: var(--ink);
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
+.is-brand .app:not(.track-app) .mode-tabs button:hover:not(:disabled) {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
 .is-brand .app:not(.track-app) .mode-tabs button.is-active {
   background: var(--yellow);
+  border-color: var(--char);
   color: var(--char);
-  box-shadow: 3px 3px 0 var(--char);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .is-brand .app:not(.track-app) .lesson-kicker {
@@ -1415,27 +1422,21 @@ a.track-card:hover {
   line-height: 1.02;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--char);
+  color: var(--ink);
 }
 
 .is-brand .app:not(.track-app) .lesson-steps {
-  color: #5c564c;
+  color: var(--muted);
 }
 
 .is-brand .app:not(.track-app) .lesson-body {
   font-size: 16px;
   line-height: 1.6;
-  color: var(--char);
-}
-
-.is-brand .app:not(.track-app) .lesson-body b,
-.is-brand .app:not(.track-app) .c-green,
-.is-brand .app:not(.track-app) .c-blue,
-.is-brand .app:not(.track-app) .c-red {
-  color: var(--char);
+  color: var(--ink);
 }
 
 .is-brand .app:not(.track-app) .lesson-body b {
+  color: var(--ink);
   background-image: linear-gradient(var(--yellow), var(--yellow));
   background-repeat: no-repeat;
   background-size: 100% 0.32em;
@@ -1443,17 +1444,17 @@ a.track-card:hover {
 }
 
 .is-brand .app:not(.track-app) .lesson-body blockquote {
-  border-left: 4px solid var(--char);
+  border-left: 4px solid var(--yellow);
   border-radius: 0;
-  background: #efe8c8;
-  color: var(--char);
+  background: #1b1918;
+  color: var(--ink);
 }
 
 .is-brand .app:not(.track-app) .progress-dot {
   height: 8px;
-  border: 2px solid var(--char);
+  border: 2px solid #3d3836;
   border-radius: 99px;
-  background: #e4dcc0;
+  background: #1b1918;
 }
 
 .is-brand .app:not(.track-app) .progress-dot.is-current {
@@ -1485,20 +1486,25 @@ a.track-card:hover {
 }
 
 .is-brand .app:not(.track-app) .lesson-nav button {
-  border: 2px solid var(--char);
+  border: 2px solid var(--ink);
   border-radius: 999px;
   background: transparent;
-  color: var(--char);
+  color: var(--ink);
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+}
+
+.is-brand .app:not(.track-app) .lesson-nav button:hover:not(:disabled):not(.primary) {
+  border-color: var(--yellow);
+  color: var(--yellow);
 }
 
 .is-brand .app:not(.track-app) .lesson-nav button.primary {
   background: var(--yellow);
   border-color: var(--char);
   color: var(--char);
-  box-shadow: 3px 3px 0 var(--char);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .is-brand .app:not(.track-app) .lesson-nav button.primary:hover:not(:disabled) {
@@ -1507,17 +1513,17 @@ a.track-card:hover {
 }
 
 .is-brand .app:not(.track-app) .link-btn {
-  color: var(--char);
+  color: var(--ink);
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .is-brand .app:not(.track-app) .preset {
-  border: 2px solid var(--char);
+  border: 2px solid #3d3836;
   border-radius: 12px;
   background: transparent;
-  color: var(--char);
+  color: var(--ink);
 }
 
 .is-brand .app:not(.track-app) .preset.is-active {
@@ -1527,32 +1533,45 @@ a.track-card:hover {
 }
 
 .is-brand .app:not(.track-app) .preset-name {
-  color: var(--char);
+  color: var(--ink);
 }
 
 .is-brand .app:not(.track-app) .arch-row {
-  border: 2px solid var(--char);
+  border: 2px solid #3d3836;
   border-radius: 10px;
-  background: #efe8c8;
-  color: var(--char);
+  background: #1b1918;
+  color: var(--ink);
 }
 
 .is-brand .app:not(.track-app) .arch-row select,
 .is-brand .app:not(.track-app) .stepper button {
-  border: 2px solid var(--char);
+  border: 2px solid #3d3836;
   border-radius: 8px;
-  background: var(--ink);
-  color: var(--char);
+  background: var(--coal);
+  color: var(--ink);
+}
+
+.is-brand .app:not(.track-app) .arch-actions button {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.is-brand .app:not(.track-app) .arch-actions button:hover:not(:disabled) {
+  border-color: var(--yellow);
+  color: var(--yellow);
 }
 
 .is-brand .app:not(.track-app) .sidebar > .site-footer.compact {
   margin-top: auto;
-  color: #5c564c;
+  color: var(--muted);
 }
 
 .is-brand .app:not(.track-app) .sidebar > .site-footer.compact a,
 .is-brand .app:not(.track-app) .sidebar > .site-footer.compact .footer-heading {
-  color: var(--char);
+  color: var(--ink);
 }
 
 .is-brand .app:not(.track-app) .main {
