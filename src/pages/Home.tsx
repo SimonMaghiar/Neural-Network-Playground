@@ -123,7 +123,7 @@ export function Home() {
         <div className="section-head">
           <SectionDoodle kind="courses" />
           <h2 className="section-stamp">Adventures</h2>
-          <p className="section-lead">Ten tracks, in order. Each one builds on the last.</p>
+          <p className="section-lead">Nine tracks, in order. Each one builds on the last.</p>
         </div>
         <CoursePath tracks={courses} doneById={Object.fromEntries(courses.map((t) => [t.id, doneIn(t)]))} />
       </section>

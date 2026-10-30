@@ -18,6 +18,5 @@ export const sensesTrack: TrackMeta = {
     { id: 'voice', title: 'How Real-Time Voice Assistants Work' },
     { id: 'video', title: 'How AI Understands Video' },
     { id: 'multimodal', title: 'Combining Text, Images and Audio in One Model' },
-    { id: 'see-or-hear', title: 'Build an AI Assistant That Can See or Hear' },
   ],
 }

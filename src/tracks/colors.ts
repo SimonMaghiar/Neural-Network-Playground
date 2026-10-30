@@ -9,7 +9,6 @@ export const CARD_FILL: Record<string, string> = {
   agents: '#c4b5fd',
   senses: '#fc7428',
   trust: '#ffb086',
-  product: '#d2ef4e',
   foundations: '#d6bcfa',
 }
 

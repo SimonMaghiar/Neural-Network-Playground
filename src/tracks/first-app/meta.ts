@@ -4,7 +4,7 @@ export const firstAppTrack: TrackMeta = {
   id: 'first-app',
   code: 'APP',
   title: 'Your First AI-Powered Application',
-  description: 'How to pick a model, call it from your own code, and shape its answers into a working chatbot.',
+  description: 'How to pick a model, what an API call looks like, and how prompts shape the answers.',
   color: '#facc15',
   level: 'Intermediate',
   modules: [
@@ -17,8 +17,6 @@ export const firstAppTrack: TrackMeta = {
     { id: 'reasoning', title: 'Reasoning Models: Why Some AI Systems Take Longer to Answer' },
     { id: 'choose-model', title: 'How to Choose the Right AI Model' },
     { id: 'hugging-face', title: 'Discovering Models on Hugging Face' },
-    { id: 'local', title: 'Running Your First LLM Locally' },
-    { id: 'first-call', title: 'Making Your First AI API Call' },
     { id: 'system-prompts', title: 'System Prompts: Giving AI a Role and Instructions' },
     { id: 'prompt-engineering', title: 'Prompt Engineering: Asking Better Questions' },
     { id: 'few-shot', title: 'Few-Shot Prompting: Teaching Through Examples' },
@@ -26,6 +24,5 @@ export const firstAppTrack: TrackMeta = {
     { id: 'streaming', title: "Streaming: Displaying Answers as They're Generated" },
     { id: 'context-engineering', title: 'Context Engineering: Giving AI the Right Information' },
     { id: 'token-costs', title: 'Understanding Tokens, Limits and API Costs' },
-    { id: 'first-chatbot', title: 'Build Your First AI Chatbot' },
   ],
 }

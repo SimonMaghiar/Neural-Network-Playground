@@ -24,7 +24,6 @@ type IconName =
   | 'image'
   | 'wave'
   | 'shield'
-  | 'rocket'
   | 'check'
 
 interface Mark {
@@ -107,14 +106,6 @@ const MARKS: Record<string, Mark[]> = {
     { id: 'bias', label: 'Bias', icon: 'sliders' },
     { id: 'safe', label: 'Private', icon: 'key', display: true },
     { id: 'watch', label: 'Watch', icon: 'eye' },
-  ],
-  product: [
-    { id: 'ship', label: 'Ship', icon: 'rocket', display: true },
-    { id: 'key', label: 'Keys', icon: 'key' },
-    { id: 'cost', label: 'Cost', icon: 'coin', display: true },
-    { id: 'deploy', label: 'Deploy', icon: 'rocket' },
-    { id: 'logs', label: 'Logs', icon: 'stack', display: true },
-    { id: 'retry', label: 'Retry', icon: 'loop' },
   ],
 }
 
@@ -274,15 +265,6 @@ function Icon({ name }: { name: IconName }) {
       {name === 'shield' && (
         <path
           d="M24 8l14 6v10c0 8-6 14-14 16C16 38 10 32 10 24V14z"
-          fill={fill}
-          stroke={stroke}
-          strokeWidth="2.5"
-          strokeLinejoin="round"
-        />
-      )}
-      {name === 'rocket' && (
-        <path
-          d="M24 6c8 6 10 14 10 22l-6 4-4-6-4 6-6-4c0-8 2-16 10-22z"
           fill={fill}
           stroke={stroke}
           strokeWidth="2.5"

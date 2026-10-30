@@ -5,7 +5,6 @@ import { foundationsTrack } from './foundations/meta'
 import { gpuTrack } from './gpu/meta'
 import { knowledgeTrack } from './knowledge/meta'
 import { llmTrack } from './llm/meta'
-import { productTrack } from './product/meta'
 import { sensesTrack } from './senses/meta'
 import { servingTrack } from './serving/meta'
 import { trustTrack } from './trust/meta'
@@ -25,7 +24,6 @@ export const courses: ListedTrack[] = [
   agentsTrack,
   sensesTrack,
   trustTrack,
-  productTrack,
 ].map((t, i) => ({
   ...t,
   section: 'course',

@@ -22,7 +22,5 @@ export const knowledgeTrack: TrackMeta = {
     { id: 'hybrid', title: 'Hybrid Search and Reranking: Finding Better Answers' },
     { id: 'rag-vs-finetune', title: 'RAG vs Fine-Tuning: Which Should You Use?' },
     { id: 'lora', title: 'LoRA: How to Fine-Tune AI Without Retraining Everything' },
-    { id: 'frameworks', title: 'LangChain and LlamaIndex: Building RAG Applications' },
-    { id: 'doc-qa', title: 'Build an AI That Can Answer Questions About Your Documents' },
   ],
 }

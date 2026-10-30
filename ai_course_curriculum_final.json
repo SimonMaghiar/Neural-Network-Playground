@@ -1,6 +1,6 @@
 {
   "title": "From Zero to AI Engineer",
-  "description": "A beginner-friendly, progressively structured journey from neural networks to building and deploying reliable AI applications.",
+  "description": "A beginner-friendly, progressively structured journey from neural networks to how reliable AI applications work.",
   "modules": [
     {
       "title": "How Do Machines Learn?",
@@ -93,16 +93,13 @@
         "Reasoning Models: Why Some AI Systems Take Longer to Answer",
         "How to Choose the Right AI Model",
         "Discovering Models on Hugging Face",
-        "Running Your First LLM Locally",
-        "Making Your First AI API Call",
         "System Prompts: Giving AI a Role and Instructions",
         "Prompt Engineering: Asking Better Questions",
         "Few-Shot Prompting: Teaching Through Examples",
         "Structured Outputs: Making AI Return Useful Data",
         "Streaming: Displaying Answers as They're Generated",
         "Context Engineering: Giving AI the Right Information",
-        "Understanding Tokens, Limits and API Costs",
-        "Build Your First AI Chatbot"
+        "Understanding Tokens, Limits and API Costs"
       ]
     },
     {
@@ -121,9 +118,7 @@
         "Inside a Complete RAG Pipeline",
         "Hybrid Search and Reranking: Finding Better Answers",
         "RAG vs Fine-Tuning: Which Should You Use?",
-        "LoRA: How to Fine-Tune AI Without Retraining Everything",
-        "LangChain and LlamaIndex: Building RAG Applications",
-        "Build an AI That Can Answer Questions About Your Documents"
+        "LoRA: How to Fine-Tune AI Without Retraining Everything"
       ]
     },
     {
@@ -136,14 +131,11 @@
         "ReAct: Combining Reasoning With Actions",
         "How Agents Remember Information",
         "Managing an Agent's Context",
-        "Build a Simple AI Agent From Scratch",
         "Agent Frameworks: When Do You Actually Need One?",
         "MCP: A Universal Way to Connect AI to Tools",
         "Inside MCP Clients and Servers",
-        "Build Your First MCP Server",
         "Multi-Agent Systems: When Multiple AIs Work Together",
-        "Keeping AI Agents Under Control",
-        "Build an AI Research Assistant"
+        "Keeping AI Agents Under Control"
       ]
     },
     {
@@ -158,8 +150,7 @@
         "How AI Generates Human-Like Speech",
         "How Real-Time Voice Assistants Work",
         "How AI Understands Video",
-        "Combining Text, Images and Audio in One Model",
-        "Build an AI Assistant That Can See or Hear"
+        "Combining Text, Images and Audio in One Model"
       ]
     },
     {
@@ -180,26 +171,6 @@
         "Observability: Seeing What Your AI Is Doing",
         "Tools for Evaluating and Monitoring AI",
         "Making Your AI More Reliable, One Test at a Time"
-      ]
-    },
-    {
-      "title": "From AI Prototype to Real Product",
-      "lessons": [
-        "What Does a Production AI Application Look Like?",
-        "How Frontends, Backends and AI Models Work Together",
-        "When Should You NOT Use AI?",
-        "Designing Your AI Application Architecture",
-        "Protecting API Keys and User Accounts",
-        "Rate Limits, Retries and Handling Failures",
-        "Making AI Responses Feel Instant",
-        "Managing Conversation History and Context",
-        "How to Make AI Applications Faster and Cheaper",
-        "Deploying Your AI Application to the Cloud",
-        "Monitoring Performance, Errors and Costs",
-        "Versioning Prompts, Models and Evaluations",
-        "Prompting vs RAG vs Fine-Tuning: Making the Right Choice",
-        "Using AI Coding Assistants to Build Faster",
-        "Final Project: Build and Launch Your Own AI Application"
       ]
     }
   ]
