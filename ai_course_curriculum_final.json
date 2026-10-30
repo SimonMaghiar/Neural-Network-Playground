@@ -82,7 +82,7 @@
       ]
     },
     {
-      "title": "Your First AI-Powered Application",
+      "title": "How Does an Application Ask an AI Model?",
       "lessons": [
         "From AI Models to Real Applications",
         "What Is an API, and How Does It Work?",
@@ -134,6 +134,8 @@
         "Agent Frameworks: When Do You Actually Need One?",
         "MCP: A Universal Way to Connect AI to Tools",
         "Inside MCP Clients and Servers",
+        "How Do You Create a Custom AI Agent?",
+        "How Do You Add Skills to an AI Agent?",
         "Multi-Agent Systems: When Multiple AIs Work Together",
         "Keeping AI Agents Under Control"
       ]

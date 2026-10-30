@@ -3,7 +3,7 @@ import type { TrackMeta } from '../types'
 export const firstAppTrack: TrackMeta = {
   id: 'first-app',
   code: 'APP',
-  title: 'Your First AI-Powered Application',
+  title: 'How Does an Application Ask an AI Model?',
   description: 'How to pick a model, what an API call looks like, and how prompts shape the answers.',
   color: '#facc15',
   level: 'Intermediate',

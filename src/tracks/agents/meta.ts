@@ -18,6 +18,8 @@ export const agentsTrack: TrackMeta = {
     { id: 'frameworks', title: 'Agent Frameworks: When Do You Actually Need One?' },
     { id: 'mcp', title: 'MCP: A Universal Way to Connect AI to Tools' },
     { id: 'mcp-parts', title: 'Inside MCP Clients and Servers' },
+    { id: 'custom-agent', title: 'How Do You Create a Custom AI Agent?' },
+    { id: 'agent-skills', title: 'How Do You Add Skills to an AI Agent?' },
     { id: 'multi-agent', title: 'Multi-Agent Systems: When Multiple AIs Work Together' },
     { id: 'control', title: 'Keeping AI Agents Under Control' },
   ],
