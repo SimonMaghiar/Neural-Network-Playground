@@ -4693,3 +4693,287 @@ button.prob-row:hover {
 .bq-words.reply {
   fill: #2dd4bf;
 }
+
+/* ---------- big question story ---------- */
+
+.bq-story {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.story-art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.story-comic {
+  margin: 0;
+  padding: 12px 12px 16px;
+  border: 3px solid #231f20;
+  border-radius: 16px;
+  background: #f9f4da;
+  color: #231f20;
+  box-shadow: 5px 5px 0 #000;
+}
+
+.story-comic figcaption {
+  margin: 12px 6px 0;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: #231f20;
+}
+
+.story-nope {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border: 3px solid #231f20;
+  border-radius: 16px;
+  background: #f9f4da;
+  color: #231f20;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.story-stamp {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 74px;
+  height: 74px;
+  border: 3px solid #ed203d;
+  border-radius: 50%;
+  background: #f9f4da;
+  color: #ed203d;
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transform: rotate(-14deg);
+  box-shadow: 2px 2px 0 #231f20;
+}
+
+.story-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.story-kicker {
+  margin: 0;
+  padding: 4px 12px 7px;
+  border-radius: 4px;
+  background: #12b5e5;
+  color: #231f20;
+  font-size: 22px;
+  line-height: 1;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.story-lead {
+  font-size: 17px;
+}
+
+.story-split {
+  display: grid;
+  gap: 14px;
+}
+
+.story-beat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px 14px;
+  border: 3px solid #231f20;
+  border-radius: 16px;
+  color: #231f20;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.story-beat.is-recipe {
+  background: #fcba28;
+}
+
+.story-beat.is-judge {
+  background: #f38ba3;
+}
+
+.story-beat h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 0;
+  color: #231f20;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.story-beat p,
+.story-beat li {
+  font-size: 15.5px;
+  line-height: 1.4;
+}
+
+.story-beat ul {
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.story-beat li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.story-ico {
+  flex: none;
+  width: 1.35em;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.story-foot {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 2px solid #231f20;
+  font-weight: 700;
+}
+
+.story-land {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 8px 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 3px solid #231f20;
+  border-radius: 16px;
+  background: #7b5ea7;
+  color: #f9f4da;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.story-land h2 {
+  margin: 0 0 8px;
+  color: #f9f4da;
+  font-size: 26px;
+  line-height: 1.05;
+}
+
+.story-land p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: #f9f4da;
+}
+
+.story-pills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.story-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #f9f4da;
+  color: #231f20;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.story-closer {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+@container (min-width: 680px) {
+  .story-split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@container (max-width: 460px) {
+  .story-land {
+    grid-template-columns: 1fr;
+  }
+
+  .story-land .story-art {
+    width: 108px;
+  }
+}
+
+.is-brand .lesson-sheet .module-intro .bq-story p {
+  margin: 0;
+}
+
+.is-brand .lesson-sheet h2.story-kicker,
+.is-brand .lesson-sheet.is-dark h2.story-kicker {
+  color: #231f20;
+}
+
+.is-brand .lesson-sheet .story-comic,
+.is-brand .lesson-sheet .story-comic figcaption,
+.is-brand .lesson-sheet .story-nope,
+.is-brand .lesson-sheet .story-nope p,
+.is-brand .lesson-sheet .story-beat,
+.is-brand .lesson-sheet .story-beat h3,
+.is-brand .lesson-sheet .story-beat p,
+.is-brand .lesson-sheet .story-beat li,
+.is-brand .lesson-sheet.is-dark .module-intro .story-comic,
+.is-brand .lesson-sheet.is-dark .module-intro .story-comic figcaption,
+.is-brand .lesson-sheet.is-dark .module-intro .story-comic b,
+.is-brand .lesson-sheet.is-dark .module-intro .story-nope,
+.is-brand .lesson-sheet.is-dark .module-intro .story-nope p,
+.is-brand .lesson-sheet.is-dark .module-intro .story-nope b,
+.is-brand .lesson-sheet.is-dark .module-intro .story-beat,
+.is-brand .lesson-sheet.is-dark .module-intro .story-beat h3,
+.is-brand .lesson-sheet.is-dark .module-intro .story-beat p,
+.is-brand .lesson-sheet.is-dark .module-intro .story-beat li,
+.is-brand .lesson-sheet.is-dark .module-intro .story-beat b {
+  color: #231f20;
+}
+
+.is-brand .lesson-sheet .module-intro .story-beat b,
+.is-brand .lesson-sheet.is-dark .module-intro .story-beat b {
+  background-image: none;
+}
+
+.is-brand .lesson-sheet.is-dark .module-intro .story-comic b,
+.is-brand .lesson-sheet.is-dark .module-intro .story-nope b {
+  padding-bottom: 0;
+  background-position: 0 88%;
+  background-size: 100% 0.32em;
+}
+
+.is-brand .lesson-sheet .story-land,
+.is-brand .lesson-sheet .story-land h2,
+.is-brand .lesson-sheet .story-land p,
+.is-brand .lesson-sheet.is-dark .story-land,
+.is-brand .lesson-sheet.is-dark .story-land h2,
+.is-brand .lesson-sheet.is-dark .module-intro .story-land p {
+  color: #f9f4da;
+}
+
+.is-brand .lesson-sheet .story-pill,
+.is-brand .lesson-sheet.is-dark .story-pill {
+  color: #231f20;
+}
